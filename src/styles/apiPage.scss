@@ -1,0 +1,174 @@
+#apiPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+        display: flex;
+        width: 100%;
+    }
+}
+
+#openApiPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+
+        > p {
+            font-size: 24px;
+            font-weight: bolder;
+            margin: 20px 0 10px 0;
+        }
+        > h3 {
+            font-size: 20px;
+            font-weight: bolder;
+            margin-bottom: 10px;
+        }
+        > table {
+            border: 1px solid #111;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            td {
+                padding: 4px;
+                border: 1px solid #111;
+                font-size: 18px;
+
+                > b {
+                    font-size: 18px;
+                    font-weight: bolder;
+                }
+
+                > button {
+                    padding: 4px 10px;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    margin-left: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+        > .basicInfo {
+            td:nth-child(1), td:nth-child(3) {
+                background-color: rgb(229, 229, 229);
+                font-weight: bolder;
+            }
+        }
+        > .serviceInfo {
+            td:nth-child(1) {
+                background-color: rgb(229, 229, 229);
+                font-weight: bolder;
+            }
+        }
+        > .apiList {
+            tr:nth-child(5), tr:nth-child(10) {
+                border-top: 6px double #111;
+            }
+            tr:nth-child(5) > td , tr:nth-child(1) > td {
+                background-color: rgb(229, 229, 229);
+                font-weight: bolder;
+                span {
+                    font-weight: bolder;
+                    font-size: 16px;
+                    margin-left: 20px;
+                }
+            }
+            tr:nth-child(2), tr:nth-child(6), tr:nth-child(10) {
+                > td:nth-child(1) {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+        }
+        > .serviceOutline {
+            tr:nth-child(1), tr:nth-child(4), tr:nth-child(9) {
+                > td:nth-child(1) {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+        }
+        > .serviceList {
+            tr:nth-child(1) {
+                > td {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+            td:nth-child(1) {
+                background-color: rgb(229, 229, 229);
+                font-weight: bolder;
+            }
+        }
+        > .charInfoBtn {
+            margin-bottom: 10px;
+            input {
+                font-size: 20px;
+                padding: 4px;
+            }
+            button {
+                font-size: 18px;
+                padding: 4px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+        > .charInfo {
+            img {
+                width: 200px;
+            }
+            td {
+                width: 200px;
+            }
+            tr:nth-child(1) {
+                td:nth-child(1) {
+                    width: 300px;
+                    background-color: transparent;
+                }
+                td:nth-child(3) {
+                    background-color: transparent;
+                    font-weight: normal;
+                }
+                td:nth-child(2), td:nth-child(4) {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+            tr {
+                td:nth-child(1), td:nth-child(3) {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+        }
+
+        > .allInfo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            > label {
+                display: flex;
+                margin-right: 20px;
+                h2 {
+                    font-size: 18px;
+                }
+                input {
+                    width: 60px;
+                    font-size: 18px;
+                    margin-left: 10px;
+                    padding: 4px;
+                }
+            }
+            button {
+                font-size: 18px;
+                padding: 4px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
