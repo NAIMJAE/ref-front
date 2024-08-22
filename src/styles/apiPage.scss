@@ -103,6 +103,14 @@
                 font-weight: bolder;
             }
         }
+        > .error {
+            tr:nth-child(1) {
+                > td {
+                    background-color: rgb(229, 229, 229);
+                    font-weight: bolder;
+                }
+            }
+        }
         > .charInfoBtn {
             margin-bottom: 10px;
             input {

@@ -300,6 +300,34 @@ const OpenApiPage = () => {
             </div>
 
             <div>
+                <table className='error'>
+                    <tr>
+                        <td colSpan={2}>오류 코드 정리</td>
+                    </tr>
+                    <tr>
+                        <td>SERVICE_KEY_IS_NOT_REGISTERED_ERROR</td>
+                        <td>유효하지 않은 ServiceKey</td>
+                    </tr>
+                    <tr>
+                        <td>INVALID_REQUEST_PARAMETER_ERROR_TYPE</td>
+                        <td>옳바르지 않은 파라미터 (type)</td>
+                    </tr>
+                    <tr>
+                        <td>INVALID_REQUEST_PARAMETER_ERROR_NAME</td>
+                        <td>옳바르지 않은 파라미터 (name)</td>
+                    </tr>
+                    <tr>
+                        <td>PAGE_NUMBER_EXCEEDS_TOTAL_PAGES</td>
+                        <td>페이지 번호가 총 페이지 수를 초과</td>
+                    </tr>
+                    <tr>
+                        <td>UNKNOWN_ERROR</td>
+                        <td>기타 에러</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
                 <p>불러오기 예제</p>
                 <h3>/getCharacterInfo (이름으로 캐릭터 정보 조회)</h3>
                 <div className='charInfoBtn'>
