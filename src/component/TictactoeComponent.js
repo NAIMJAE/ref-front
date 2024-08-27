@@ -15,7 +15,10 @@ const TictactoeComponent = ({ roomId }) => {
         [null, null, null],
     ]);
     const webSocket = useRef();
-
+    useEffect(() => {
+        console.log('Updated playerSymbol:', playerSymbol);
+    }, [playerSymbol]);
+    
     useEffect(() => {
         /** 소켓 연결 */
         webSocket.current = new WebSocket(`ws://${Host}:8080/ref/tictactoe/${roomId}`);
@@ -28,24 +31,44 @@ const TictactoeComponent = ({ roomId }) => {
             const message = JSON.parse(event.data);
 
 
-            if (message.type === 'assignRole') {
-                // 역할 분배  
-                setPlayerSymbol(message.player === 0 ? 'X' : 'O');
-                setMyTurn(message.player === 0); // 첫 번째 플레이어가 X이고, 먼저 시작함
-
-            } else if (message.type === 'makeMove') {
-                // 게임 진행 
-                setBoard(message.board);
-                setMyTurn((prevTurn) => !prevTurn);
-            } else if (message.type === 'gameOver') {
-                // 게임 종료  
-                alert(message.result === 'win' ? 'You Win!' : 'You Lose!');
-                setBoard([
-                    [null, null, null],
-                    [null, null, null],
-                    [null, null, null],
-                ]);
-                setMyTurn(message.winner === playerSymbol);
+            switch (message.type) {
+                case 'full':
+                    alert(message.message);
+                    webSocket.current.close();
+                    break;
+        
+                case 'assignRole':
+                    // 역할 분배  
+                    setPlayerSymbol(message.player === 0 ? 'X' : 'O');
+                    setMyTurn(message.player === 0); // 첫 번째 플레이어가 X이고, 먼저 시작함
+                    break;
+        
+                case 'makeMove':
+                    // 게임 진행 
+                    setBoard(message.board);
+                    setMyTurn((prevTurn) => !prevTurn);
+                    break;
+        
+                case 'gameOver':
+                    // 게임 종료  
+                    if (message.winner === playerSymbol) {
+                        alert('You Win!');
+                    } else if (message.winner === null) {
+                        alert('Draw!');
+                    } else {
+                        alert('You Lose!');
+                    }
+                    setBoard([
+                        [null, null, null],
+                        [null, null, null],
+                        [null, null, null],
+                    ]);
+                    setMyTurn(message.winner === playerSymbol);
+                    break;
+        
+                default:
+                    console.log('Unknown message type:', message.type);
+                    break;
             }
         };
 
@@ -67,8 +90,8 @@ const TictactoeComponent = ({ roomId }) => {
 
     /** 버튼 클릭 */
     const clickHandler = (rowIndex, colIndex) => {
-    // 이미 클릭된 버튼이거나 내 차례가 아닐 때 무시
-    if (board[rowIndex][colIndex] !== null || !myTurn) return;
+        // 이미 클릭된 버튼이거나 내 차례가 아닐 때 무시
+        if (board[rowIndex][colIndex] !== null || !myTurn) return;
 
         // 업데이트를 위한 새 배열 
         const newBoard = board.map((row, rIndex) =>
@@ -80,30 +103,25 @@ const TictactoeComponent = ({ roomId }) => {
 
         // 게임 종료 조건 확인 
         const winner = checkWinner(newBoard);
-        /**
-         * flat() : 2차원 배열을 1차원 배열로 변환
-         * every(조건) : 배열 내 모든 요소가 주어진 조건을 만족하는지 검사
-         */
+
+        // 2차원 배열을 1차원 배열로 변환하고 모든 셀이 채워졌는지 확인
         const isBoardFull = newBoard.flat().every(cell => cell !== null);
 
         if (winner) {
-            // 승리했으면 
+            // 승리했으면 승리자의 기호를 직접 전송
             webSocket.current.send(JSON.stringify({
                 type: 'gameOver',
-                result: 'lose',
-                winner: winner,
+                winner: playerSymbol,
             }));
         } else if (isBoardFull) {
             // 무승부일 때
             webSocket.current.send(JSON.stringify({
                 type: 'gameOver',
-                result: 'draw',
                 winner: null,
             }));
         } else {
             // 종료 조건에 맞지 않으면  
             setBoard(newBoard);
-            setMyTurn((prevTurn) => !prevTurn);
 
             // 서버에 업데이트된 보드 상태 전송
             webSocket.current.send(JSON.stringify({
@@ -112,8 +130,8 @@ const TictactoeComponent = ({ roomId }) => {
                 nextTurn: playerSymbol === 'X' ? 'O' : 'X'
             }));
         }
-
     }
+
     /** 게임 종료 조건 확인 */
     const checkWinner = (board) => {
         const winningCombinations = [

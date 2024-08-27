@@ -1,38 +1,118 @@
-.colDiv{
+.colDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    // 설명
+    .description {
+        padding-left: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+
+        h2 {
+            font-weight: bolder;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+
+            &::before {
+                content: "※ ";
+            }
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+
+            li {
+                font-size: 16px;
+                color: #666;
+                line-height: 1.4;
+                margin-bottom: 5px;
+                list-style-type: disc;
+            }
+        }
+        .gameRule {
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            width: 100%;
+        
+            h2 {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            h3 {
+                font-size: 16px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+                color: #333;
+        
+                &::before {
+                    content: "※ ";
+                    font-weight: bold;
+                    color: #555;
+                }
+            }
+        
+            ul {
+                padding-left: 20px;
+                margin-bottom: 10px;
+        
+                li {
+                    font-size: 14px;
+                    color: #555;
+                    line-height: 1.4;
+                    margin-bottom: 5px;
+                    list-style-type: disc;
+                }
+            }
+        }
+        
+    }
+
+    // 게임방 목록
     .roomList {
         display: flex;
         gap: 10px;
         justify-content: center;
-        > .room {
+
+        >.room {
             display: flex;
             flex-direction: column;
             width: 256px;
-            height: 140px;
-            padding: 10px;
+            height: 70px;
+            padding: 15px;
             margin: 10px;
             border: 2px solid #776B5D;
             border-radius: 10px;
             background-color: #EBE3D5;
             cursor: pointer;
-    
-            > h1 {
+
+            >h1 {
                 font-size: 24px;
                 font-weight: bolder;
                 margin-bottom: 10px;
             }
-            > h2 {
+
+            >h2 {
                 font-size: 16px;
             }
         }
-        > .refBox:hover {
+
+        >.refBox:hover {
             background-color: #B0A695;
         }
     }
-    
+
 }
 
 #Tictactoe {
@@ -62,6 +142,7 @@
             &:hover {
                 background-color: #f0e68c; // 버튼 위에 마우스를 올릴 때 배경색 변경
             }
+
             &.circle {
                 &::before {
                     content: '';
@@ -74,7 +155,9 @@
             }
 
             &.cross {
-                &::before, &::after {
+
+                &::before,
+                &::after {
                     content: '';
                     position: absolute;
                     width: 10px;
@@ -93,4 +176,3 @@
         }
     }
 }
-
