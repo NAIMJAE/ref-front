@@ -1,9 +1,47 @@
+.colDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .roomList {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        > .room {
+            display: flex;
+            flex-direction: column;
+            width: 256px;
+            height: 140px;
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #776B5D;
+            border-radius: 10px;
+            background-color: #EBE3D5;
+            cursor: pointer;
+    
+            > h1 {
+                font-size: 24px;
+                font-weight: bolder;
+                margin-bottom: 10px;
+            }
+            > h2 {
+                font-size: 16px;
+            }
+        }
+        > .refBox:hover {
+            background-color: #B0A695;
+        }
+    }
+    
+}
+
 #Tictactoe {
     width: 600px;
     height: 600px;
     background-color: bisque;
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 
     .ctnRow {
         display: flex;
@@ -55,3 +93,4 @@
         }
     }
 }
+
