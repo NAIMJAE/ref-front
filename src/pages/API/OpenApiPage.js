@@ -107,7 +107,7 @@ const OpenApiPage = () => {
                     </tr>
                     <tr>
                         <td>End Point</td>
-                        <td>http://localhost:8080/ref/shinchan/v1/</td>
+                        <td>http://3.35.87.115:8080/ref/shinchan/v1/</td>
                     </tr>
                     <tr>
                         <td>인증키(serviceKey)</td>

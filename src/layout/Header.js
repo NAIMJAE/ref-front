@@ -17,7 +17,7 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
       <div id='headBox'>
         <Link to="/">Reference</Link>
         <div id='headBtn'>
-          <Link to="/">btn1</Link>
+          <Link to="/schedule">Schedule</Link>
           {!loginSlice.uid ? (
             <>
             <button onClick={() => setLoginModal(true)}>Login</button>

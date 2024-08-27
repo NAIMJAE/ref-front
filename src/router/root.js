@@ -3,10 +3,13 @@ import MainPage from "../pages/main/MainPage";
 import ApiPage from "../pages/API/ApiPage";
 import OpenApiPage from "../pages/API/OpenApiPage";
 import Tictactoe from "../pages/game/Tictactoe";
+import Schedule from "../pages/main/Schedule";
+import EncryptionPage from "../pages/Encryption/EncryptionPage";
 
 const root = createBrowserRouter([
     // main
     { path: '/', element: <MainPage /> },
+    { path: '/schedule', element: <Schedule /> },
 
     // API
     { path: '/api', element: <ApiPage /> },
@@ -14,5 +17,8 @@ const root = createBrowserRouter([
 
     // Game
     { path: '/tictactoe', element: <Tictactoe /> },
+
+    // Encryption
+    { path: '/encryption', element: <EncryptionPage /> },
 ]);
 export default root;
