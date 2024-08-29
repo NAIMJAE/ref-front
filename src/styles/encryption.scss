@@ -3,6 +3,19 @@
     flex-direction: column;
     width: 100%;
 
+    button {
+        margin-left: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 4px 10px;
+        background-color: #EBE3D5;
+        border: 1px solid #B0A695;
+        border-radius: 4px;
+    }
+    button:hover {
+        background-color: #c7b9a1;
+    }
+
     > h1 {
         font-size: 30px;
         font-weight: bolder;
@@ -15,7 +28,9 @@
     }
     > .encodeBox {
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+        border-top: 1px solid #7f7057;
+
         > h2 {
             font-size: 24px;
             font-weight: bolder;
@@ -53,7 +68,7 @@
                     align-items: center;
                     padding: 2px;
                     > h5 {
-                        width: 100px;
+                        width: 120px;
                         font-size: 16px;
                     }
                     > input {
@@ -62,13 +77,18 @@
                         padding: 4px;
                         font-size: 16px;
                     }
+                    > select {
+                        width: 400px;
+                        margin-left: 10px;
+                        padding: 4px;
+                        font-size: 16px;
+                    }
                 }
             }
-            > button {
+            > p {
                 margin-left: 10px;
                 padding: 4px;
                 font-size: 16px;
-                cursor: pointer;
             }
         }
         > .oneWayTable {
@@ -100,6 +120,93 @@
                     font-size: 20px;
                     font-weight: bolder;
                     text-align: center;
+                }
+            }
+        }
+        > .RSATable {
+            border: 1px solid #111;
+            border-collapse: collapse;
+            margin: 20px 0;
+            > tr {
+                > td {
+                    font-size: 16px;
+                    padding: 6px 10px;
+                    text-align: start;
+                    border: 1px solid #111;
+
+                    > input {
+                        width: 400px;
+                        margin-left: 10px;
+                        padding: 4px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            > tr:nth-child(1) {
+                > td {
+                    font-size: 20px;
+                    font-weight: bolder;
+                    text-align: center;
+                }
+            }
+        }
+        > .RSATable2 {
+            border: 1px solid #111;
+            border-collapse: collapse;
+            margin: 10px 0;
+            > tr {
+                > td {
+                    font-size: 16px;
+                    padding: 4px 10px;
+                    text-align: start;
+                    border: 1px solid #111;
+
+                    > .userABtn {
+                        background-color: rgb(255, 174, 145);
+                        border: 1px solid rgb(216, 137, 109);
+                    }
+                    > .userBBtn {
+                        background-color: rgb(154, 145, 255);
+                        border: 1px solid rgb(120, 111, 214);
+                    }
+                    > .userABtn:hover {
+                        background-color: rgb(223, 146, 117);
+                    }
+                    > .userBBtn:hover {
+                        background-color: rgb(125, 116, 228);
+                    }
+                    > input {
+                        width: 440px;
+                        margin-left: 10px;
+                        padding: 4px;
+                        font-size: 16px;
+                    }
+                    > span {
+                        margin-left: 10px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            > tr:nth-child(2), tr:nth-child(3) {
+                td:nth-child(3) {
+                    border-bottom: 1px solid #F3EEEA;
+                }
+            }
+            >  tr:nth-child(1) {
+                td {
+                    font-size: 20px;
+                    font-weight: bolder;
+                    text-align: center;
+                }
+                td:nth-child(2) {
+                    border-bottom: 1px solid #F3EEEA;
+                }
+            }
+            > tr:nth-child(4) {
+                td:nth-child(2) {
+                    input {
+                        width: 375px;
+                    }
                 }
             }
         }
