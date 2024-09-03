@@ -5,6 +5,7 @@ import OpenApiPage from "../pages/API/OpenApiPage";
 import Tictactoe from "../pages/game/Tictactoe";
 import Schedule from "../pages/main/Schedule";
 import EncryptionPage from "../pages/Encryption/EncryptionPage";
+import ChatBotApiPage from "../pages/API/ChatBotApiPage";
 
 const root = createBrowserRouter([
     // main
@@ -14,6 +15,7 @@ const root = createBrowserRouter([
     // API
     { path: '/api', element: <ApiPage /> },
     { path: '/openApi', element: <OpenApiPage /> },
+    { path: '/chatbot', element: <ChatBotApiPage /> },
 
     // Game
     { path: '/tictactoe', element: <Tictactoe /> },

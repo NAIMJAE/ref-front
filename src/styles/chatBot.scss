@@ -1,0 +1,110 @@
+.ChatBotApiPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 600px;
+    margin: 0 auto;
+
+    .chatBotbox {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #e6e6e6;
+        border-radius: 8px;
+        background-color: #fafafa;
+        height: 800px;
+        overflow-y: auto;
+
+        .message {
+            display: flex;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 90%;
+            word-wrap: break-word;
+
+            &.user {
+                align-self: flex-end;
+                background-color: #d1f8ff;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 20px;
+            }
+
+            &.assistant {
+                align-self: flex-start;
+                background-color: #efefef;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 20px;
+            }
+            &.typing {
+                align-self: flex-start;
+                display: flex;
+                gap: 5px;
+        
+                .dot {
+                  width: 8px;
+                  height: 8px;
+                  background-color: #999;
+                  border-radius: 50%;
+                  animation: typing 1.5s infinite;
+                }
+        
+                .dot:nth-child(2) {
+                  animation-delay: 0.3s;
+                }
+        
+                .dot:nth-child(3) {
+                  animation-delay: 0.6s;
+                }
+            }
+        }
+    }
+
+    .ctnInput {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        input[type='text'] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0095f6;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+
+            &:hover {
+                background-color: #007bbd;
+            }
+        }
+    }
+}
+
+@keyframes typing {
+    0% {
+      opacity: 0.2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
