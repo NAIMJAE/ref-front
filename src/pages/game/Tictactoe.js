@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/game.scss'
-import { Host } from "../../api/RootUrl";
 import TictactoeComponent from '../../component/TictactoeComponent';
 
 const Tictactoe = () => {
