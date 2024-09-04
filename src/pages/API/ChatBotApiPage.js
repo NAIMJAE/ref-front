@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import '../../styles/chatBot.scss'
 import { ChatBottApi, createAssistantApi, getChatApi } from '../../api/ChatBotApi';
+import { useSelector } from 'react-redux';
 
 const ChatBotApiPage = () => {
   const [messages, setMessages] = useState([]);
@@ -9,6 +10,7 @@ const ChatBotApiPage = () => {
   const [threadId, setThreadId] = useState('');
   const [assistantId, setAssistantId] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const loginSlice = useSelector((state) => state.loginSlice);
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
@@ -16,7 +18,7 @@ const ChatBotApiPage = () => {
     const createAssistantAndThread = async () => {
       try {
         // 백엔드 서버에 요청하여 Assistant 및 Thread 생성
-        const response = await createAssistantApi({ userId: 'abcd123456' });
+        const response = await createAssistantApi(loginSlice.uid != null ? loginSlice.uid : 'abcd123456');
         console.log('Assistant 및 Thread 생성됨:', response.data);
 
         setThreadId(response.data.threadId);
@@ -63,10 +65,20 @@ const ChatBotApiPage = () => {
       // 백엔드에서 받은 전체 메시지와 응답을 업데이트
       const updatedMessages = response.data;
 
+
+      console.log("updatedMessages : ", updatedMessages);
       setMessages(updatedMessages);
       setIsTyping(false);
     } catch (error) {
       console.error('Error communicating with server:', error);
+    }
+  };
+
+  /** 엔터 키 감지 핸들러 */
+  const keyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // 기본 Enter 키 동작(줄바꿈) 방지
+      sendMessage(e.target.value);
     }
   };
 
@@ -92,6 +104,7 @@ const ChatBotApiPage = () => {
             type='text'
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={keyDown}
             placeholder='Type your message...'
           />
           <button onClick={sendMessage}>Send</button>
