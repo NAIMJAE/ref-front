@@ -3,8 +3,8 @@ import { RootUrl } from "./RootUrl";
 const rootURL = RootUrl();
 
 // Assistant 및 Thread 생성 요청 전송
-export const createAssistantApi = async (data) => {
-    const response = await axios.post(`${rootURL}/assistant`, data);
+export const createAssistantApi = async (userId) => {
+    const response = await axios.get(`${rootURL}/assistant/${userId}`);
     return response;
 };
 // 사용자 메시지 전송 
