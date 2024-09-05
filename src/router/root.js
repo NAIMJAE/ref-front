@@ -6,6 +6,7 @@ import Tictactoe from "../pages/game/Tictactoe";
 import Schedule from "../pages/main/Schedule";
 import EncryptionPage from "../pages/Encryption/EncryptionPage";
 import ChatBotApiPage from "../pages/API/ChatBotApiPage";
+import SearchEngine from "../pages/searchEngine/SearchEngine";
 
 const root = createBrowserRouter([
     // main
@@ -22,5 +23,9 @@ const root = createBrowserRouter([
 
     // Encryption
     { path: '/encryption', element: <EncryptionPage /> },
+
+    // SearchEngine
+    { path: '/searchEngine', element: <SearchEngine /> },
+
 ]);
 export default root;
