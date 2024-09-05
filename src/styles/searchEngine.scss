@@ -1,0 +1,192 @@
+#searchEngine {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    button {
+        font-size: 16px;
+        cursor: pointer;
+        padding: 4px 10px;
+        background-color: #EBE3D5;
+        border: 1px solid #B0A695;
+        border-radius: 4px;
+    }
+    button:hover {
+        background-color: #c7b9a1;
+    }
+
+    h1 {
+        font-size: 20px;
+        font-weight: bolder;
+        margin: 20px 0;
+    }
+
+    > #listPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        > div {
+            display: flex;
+            justify-content: center;
+        }
+
+        > .searchBar {
+            > div {
+                display: flex;
+
+                > input {
+                    width: 600px;
+                    font-size: 16px;
+                    padding: 6px 10px;
+                    margin-right: 4px;
+                }
+                > h5 {
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    align-items: center;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        > .postList {
+            width: 800px;
+            > table {
+                border: 1px solid #111;
+                border-collapse: collapse;
+                margin: 20px 0;
+
+                td {
+                    font-size: 16px;
+                    padding: 10px 16px;
+                    border: 1px solid #111;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
+                    > a {
+                        font-size: 16px;
+                    }
+                    > span {
+                        border: 1px solid red;
+                        padding: 2px 4px;
+                        font-size: 14px;
+                        color: red;
+                        margin-left: 4px;
+                    }
+                    > span::after {
+                        content: "%";
+                    }
+                }
+
+                tr:nth-child(1) {
+                    td {
+                        font-weight: bolder;
+                    }
+                }
+
+                td:nth-child(1) {
+                    width: 60px;
+                    text-align: center;
+                }
+                td:nth-child(2) {
+                    width: 400px;
+                    cursor: pointer;
+                }
+                td:nth-child(2):hover {
+                    font-weight: bolder;
+                }
+                td:nth-child(3), td:nth-child(4) {
+                    width: 100px;
+                    text-align: center;
+                }
+            }
+        }
+
+        > .postPaging {
+            
+        }
+
+        > .postBtn {
+            width: 800px;
+            justify-content: end;
+        }
+    }
+
+    > #writePage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 800px;
+
+        > input {
+            display: flex;
+            width: 100%;
+            font-size: 16px;
+            padding: 6px 10px;
+            margin: 10px 0;
+        }
+        > textarea {
+            display: flex;
+            width: 100%;
+            min-height: 600px;
+            font-size: 16px;
+            padding: 6px 10px;
+            resize: none;
+        }
+
+        > .postBtn {
+            margin: 20px 0;
+            display: flex;
+            width: 800px;
+            justify-content: end;
+
+            > button {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    > #viewPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 800px;
+
+        > input {
+            display: flex;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bolder;
+            padding: 6px 10px;
+            margin: 10px 0;
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px solid #111;
+        }
+        > textarea {
+            display: flex;
+            width: 100%;
+            min-height: 600px;
+            font-size: 16px;
+            padding: 6px 10px;
+            resize: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+        > .postBtn {
+            margin: 20px 0;
+            display: flex;
+            width: 800px;
+            justify-content: end;
+
+            > button {
+                margin-left: 10px;
+            }
+        }
+    }
+}
