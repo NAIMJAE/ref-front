@@ -6,7 +6,7 @@ const TictactoeComponent = ({ roomId }) => {
     const [myTurn, setMyTurn] = useState(true);
 
     /** 현재 플레이어의 기호 (X 또는 O) */
-    const [playerSymbol, setPlayerSymbol] = useState(null);
+    const [playerSymbol, setPlayerSymbol] = useState("");
 
     /** 게임 보드 2차원 배열  */
     const [board, setBoard] = useState([
@@ -50,20 +50,7 @@ const TictactoeComponent = ({ roomId }) => {
                     break;
         
                 case 'gameOver':
-                    // 게임 종료  
-                    if (message.winner === playerSymbol) {
-                        alert('You Win!');
-                    } else if (message.winner === null) {
-                        alert('Draw!');
-                    } else {
-                        alert('You Lose!');
-                    }
-                    setBoard([
-                        [null, null, null],
-                        [null, null, null],
-                        [null, null, null],
-                    ]);
-                    setMyTurn(message.winner === playerSymbol);
+                    gameOver(message);
                     break;
         
                 default:
@@ -88,6 +75,24 @@ const TictactoeComponent = ({ roomId }) => {
         };
     }, [roomId]);
 
+    const gameOver = (message) => {
+        console.log("winner : ", message.winner);
+        console.log("playerSymbol : ", playerSymbol);
+        // 게임 종료  
+        if (message.winner === playerSymbol) {
+            alert('You Win!');
+        } else if (message.winner === null) {
+            alert('Draw!');
+        } else {
+            alert('You Lose!');
+        }
+        setBoard([
+            [null, null, null],
+            [null, null, null],
+            [null, null, null],
+        ]);
+        setMyTurn(message.winner === playerSymbol);
+    }
     /** 버튼 클릭 */
     const clickHandler = (rowIndex, colIndex) => {
         // 이미 클릭된 버튼이거나 내 차례가 아닐 때 무시
