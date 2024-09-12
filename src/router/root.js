@@ -7,6 +7,7 @@ import Schedule from "../pages/main/Schedule";
 import EncryptionPage from "../pages/Encryption/EncryptionPage";
 import ChatBotApiPage from "../pages/API/ChatBotApiPage";
 import SearchEngine from "../pages/searchEngine/SearchEngine";
+import DataStorage from "../pages/dataStorage/DataStorage";
 
 const root = createBrowserRouter([
     // main
@@ -27,5 +28,7 @@ const root = createBrowserRouter([
     // SearchEngine
     { path: '/searchEngine', element: <SearchEngine /> },
 
+    // DataStorage
+    { path: '/dataStorage', element: <DataStorage /> },
 ]);
 export default root;
