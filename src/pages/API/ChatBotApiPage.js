@@ -84,30 +84,46 @@ const ChatBotApiPage = () => {
 
   return (
     <MainLayout>
-      <div className='ChatBotApiPage'>
-        <div className='chatBotbox'>
-          {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.role}`}>
-              <p>{msg.content}</p>
-            </div>
-          ))}
-          {isTyping && (
-            <div className='message typing'>
-              <div className='dot'></div>
-              <div className='dot'></div>
-              <div className='dot'></div>
-            </div>
-          )}
+      <div className='colDiv'>
+        <div className='description'>
+          <h2>챗봇 설명</h2>
+          <h3>챗봇은 인공지능 어시스턴트로, 특정 역할이나 목적에 맞게 설정된 AI 모델을 통해 사용자와 상호작용할 수 있는 기능을 제공합니다.</h3>
+          <h3>사용자는 질문을 하거나 대화를 요청하면 챗봇이 그에 맞는 응답을 생성합니다.</h3>
+          <h3>챗봇은 OpenAI의 GPT 모델을 활용하며, 다양한 용도로 맞춤형 대화를 설계할 수 있습니다.</h3>
+          <h2>기본 용어 정리</h2>
+          <ul>
+            <li>어시스턴트 (Assistant): 도구를 사용할 수 있는 거대 언어 모델(GPT 모델).</li>
+            <li>스레드 (Thread): 대화의 흐름을 관리하고, 메시지들을 저장하는 공간.</li>
+            <li>메시지 (Message): 사용자와 AI 간에 주고받는 대화의 단위.</li>
+            <li>런 (Run): 어시스턴트가 스레드에 저장된 메시지들을 읽고, 응답 메시지를 추가하는 과정.</li>
+            <li>런 스텝 (Run Step): 런이 실행될 때 외부 도구를 사용하거나 여러 단계를 거쳐 응답을 생성하는 과정.</li>
+          </ul>
         </div>
-        <div className='ctnInput'>
-          <input
-            type='text'
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={keyDown}
-            placeholder='Type your message...'
-          />
-          <button onClick={sendMessage}>Send</button>
+        <div className='ChatBotApiPage'>
+          <div className='chatBotbox'>
+            {messages.map((msg, index) => (
+              <div key={index} className={`message ${msg.role}`}>
+                <p>{msg.content}</p>
+              </div>
+            ))}
+            {isTyping && (
+              <div className='message typing'>
+                <div className='dot'></div>
+                <div className='dot'></div>
+                <div className='dot'></div>
+              </div>
+            )}
+          </div>
+          <div className='ctnInput'>
+            <input
+              type='text'
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={keyDown}
+              placeholder='Type your message...'
+            />
+            <button onClick={sendMessage}>Send</button>
+          </div>
         </div>
       </div>
     </MainLayout>

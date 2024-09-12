@@ -1,15 +1,217 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/game.scss'
 import TictactoeComponent from '../../component/TictactoeComponent';
+import { Host } from "../../api/RootUrl";
+import { useSelector } from 'react-redux';
 
 const Tictactoe = () => {
+    const loginSlice = useSelector((state) => state.loginSlice);
     const [selectedRoomId, setSelectedRoomId] = useState(null);
+    const [roomPlayers, setRoomPlayers] = useState({ 1: 0, 2: 0, 3: 0 });
+    /**  내 차례인지 확인하는 변수 */
+    const [myTurn, setMyTurn] = useState(true);
 
-    /** 게임방 입장 */
-    const enterRoom = (roomId) => {
-        setSelectedRoomId(roomId);
-    };
+    /** 현재 플레이어의 기호 (X 또는 O) */
+    const [playerSymbol, setPlayerSymbol] = useState("");
+
+    /** 게임 보드 2차원 배열  */
+    const [board, setBoard] = useState([
+        [null, null, null],
+        [null, null, null],
+        [null, null, null],
+    ]);
+    const webSocket = useRef();
+    useEffect(() => {
+        /** 소켓 연결 */
+        webSocket.current = new WebSocket(`ws://${Host}:8080/ref/tictactoe`);
+
+        webSocket.current.onopen = () => {
+            console.log('WebSocket 연결!');
+        };
+
+        webSocket.current.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+
+            console.log("소켓 : ", message);
+
+            switch (message.type) {
+                case 'roomlist':
+                    console.log("Room 플레이어  : ", message.rooms);
+                    setRoomPlayers(message.rooms);
+                    break;
+
+                case 'full':
+                    alert(message.message);
+                    webSocket.current.close();
+                    break;
+
+                case 'moveRoom':
+                    // 방 이동 
+                    setSelectedRoomId(message.roomId);
+                    // 역할 분배  
+                    setPlayerSymbol(message.player === 0 ? 'X' : 'O');
+                    setMyTurn(message.player === 0); // 첫 번째 플레이어가 X이고, 먼저 시작함
+
+
+                    break;
+
+                case 'makeMove':
+                    // 게임 진행 
+                    setBoard(message.board);
+                    setMyTurn((prevTurn) => !prevTurn);
+                    break;
+
+                case 'gameOver':
+
+                    const gameOver = (message) => {
+                        console.log("winner : ", message.winner);
+                        console.log("playerSymbol : ", playerSymbol);
+                        // 게임 종료  
+                        if (message.winner === playerSymbol) {
+                            alert('You Win!');
+                        } else if (message.winner === null) {
+                            alert('Draw!');
+                        } else {
+                            alert('You Lose!');
+                        }
+                        setBoard([
+                            [null, null, null],
+                            [null, null, null],
+                            [null, null, null],
+                        ]);
+                        setMyTurn(message.winner === playerSymbol);
+                    };
+
+                    gameOver(message);
+                    break;
+
+                default:
+                    console.log('Unknown message type:', message.type);
+                    break;
+            }
+        };
+
+        webSocket.current.onclose = (error) => {
+            console.log('WebSocket 연결이 종료되었습니다.', error);
+        };
+
+        webSocket.current.onerror = (error) => {
+            console.log('WebSocket 에러:', error);
+        };
+
+        // 컴포넌트 언마운트 시 WebSocket 닫기
+        return () => {
+            if (webSocket.current) {
+                console.log("언마운트!")
+                // 소켓 닫기 전에 방 나가기 요청 전송
+                webSocket.current.send(JSON.stringify({
+                    type: 'leaveRoom',
+                    roomId: selectedRoomId,
+                    userId: loginSlice.uid
+                }));
+                webSocket.current.close();
+            }
+        };
+    }, [loginSlice]);
+
+    useEffect(() => {
+        console.log("플레이어 심볼 변경 : ", playerSymbol)
+    }, [playerSymbol])
+
+    /** 방 이동 요청 */
+    const changeRoomHandler = (roomId) => {
+
+        if (loginSlice.uid == null) {
+            alert("로그인한 회원만 이용할 수 있습니다.");
+            return;
+        }
+        webSocket.current.send(JSON.stringify({
+            type: 'moveRoom',
+            roomId: roomId,
+            userId: loginSlice.uid,
+        }));
+
+    }
+
+    /** 버튼 클릭 */
+    const clickHandler = (rowIndex, colIndex) => {
+        // 이미 클릭된 버튼이거나 내 차례가 아닐 때 무시
+        if (board[rowIndex][colIndex] !== null || !myTurn) return;
+
+        // 업데이트를 위한 새 배열 
+        const newBoard = board.map((row, rIndex) =>
+            row.map((cell, cIndex) =>
+                // 해당 버튼의 인덱스 값만 변경 
+                rIndex === rowIndex && cIndex === colIndex ? playerSymbol : cell
+            )
+        );
+
+        // 게임 종료 조건 확인 
+        const winner = checkWinner(newBoard);
+
+        // 2차원 배열을 1차원 배열로 변환하고 모든 셀이 채워졌는지 확인
+        const isBoardFull = newBoard.flat().every(cell => cell !== null);
+
+        if (winner) {
+            // 승리했으면 승리자의 기호를 직접 전송
+            webSocket.current.send(JSON.stringify({
+                type: 'gameOver',
+                roomId: selectedRoomId,
+                winner: playerSymbol,
+            }));
+        } else if (isBoardFull) {
+            // 무승부일 때
+            webSocket.current.send(JSON.stringify({
+                type: 'gameOver',
+                roomId: selectedRoomId,
+                winner: null,
+            }));
+        } else {
+            // 종료 조건에 맞지 않으면  
+            setBoard(newBoard);
+
+            // 서버에 업데이트된 보드 상태 전송
+            webSocket.current.send(JSON.stringify({
+                type: 'makeMove',
+                board: newBoard,
+                roomId: selectedRoomId,
+                nextTurn: playerSymbol === 'X' ? 'O' : 'X'
+            }));
+        }
+    }
+
+    /** 게임 종료 조건 확인 */
+    const checkWinner = (board) => {
+        const winningCombinations = [
+            // 행
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
+            // 열
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            // 대각선
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]],
+        ];
+
+        for (let combination of winningCombinations) {
+            const [a, b, c] = combination;
+            if (
+                board[a[0]][a[1]] &&
+                board[a[0]][a[1]] === board[b[0]][b[1]] &&
+                board[a[0]][a[1]] === board[c[0]][c[1]]
+            ) {
+                return board[a[0]][a[1]];
+            }
+        }
+
+        return null;
+
+    }
+
 
     return (
         <MainLayout>
@@ -40,26 +242,27 @@ const Tictactoe = () => {
                     </ul>
 
                     <div className='gameRule'>
-                    <h2>틱택토 게임 방식</h2>
-                    <h3>틱택토는 3x3 격자에서 두 명의 플레이어가 'X'와 'O' 기호를 번갈아 가며 배치하는 게임입니다.</h3>
-                    <h3>가로, 세로, 대각선 방향 중 하나로 같은 기호를 3개 연속으로 놓으면 승리합니다.</h3>
-                    <h3>게임이 무승부로 끝나거나, 한 플레이어가 승리할 때까지 차례를 계속합니다.</h3>
-                    <ul>
-                        <li>두 명의 플레이어: X와 O</li>
-                        <li>가로, 세로, 대각선으로 기호 3개를 먼저 맞추는 사람이 승리</li>
-                        <li>모든 칸이 채워질 때까지 승자가 없으면 무승부</li>
-                    </ul>
+                        <h2>틱택토 게임 방식</h2>
+                        <h3>틱택토는 3x3 격자에서 두 명의 플레이어가 'X'와 'O' 기호를 번갈아 가며 배치하는 게임입니다.</h3>
+                        <h3>가로, 세로, 대각선 방향 중 하나로 같은 기호를 3개 연속으로 놓으면 승리합니다.</h3>
+                        <h3>게임이 무승부로 끝나거나, 한 플레이어가 승리할 때까지 차례를 계속합니다.</h3>
+                        <ul>
+                            <li>두 명의 플레이어: X와 O</li>
+                            <li>가로, 세로, 대각선으로 기호 3개를 먼저 맞추는 사람이 승리</li>
+                            <li>모든 칸이 채워질 때까지 승자가 없으면 무승부</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div className='roomList'>
                     {[1, 2, 3].map(roomId => (
-                        <div key={roomId} className='room' onClick={() => enterRoom(roomId)}>
+                        <div key={roomId} className='room' onClick={() => changeRoomHandler(roomId)}>
                             <h1>{roomId}번 방</h1>
+                            <h1>{roomPlayers[roomId] || 0}명 / 2명</h1>
                         </div>
                     ))}
                 </div>
-                {selectedRoomId && <TictactoeComponent roomId={selectedRoomId} />}
+                {selectedRoomId && <TictactoeComponent clickHandler={clickHandler} myTurn={myTurn} board={board} />}
             </div>
         </MainLayout>
     )
