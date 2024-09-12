@@ -1,0 +1,63 @@
+#DataStorage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    button {
+        font-size: 18px;
+        font-weight: bolder;
+        cursor: pointer;
+        padding: 4px 10px;
+        background-color: #EBE3D5;
+        border: 1px solid #B0A695;
+        border-radius: 4px;
+    }
+    button:hover {
+        background-color: #c7b9a1;
+    }
+    div {
+        display: flex;
+    }
+    .storageBox {
+        border: 1px solid red;
+        border-radius: 10px;
+        padding: 20px;
+
+        #loginBox {
+            flex-direction: column;
+            border: 1px solid #111;
+            border-radius: 10px;
+            padding: 20px;
+
+            > h2 {
+                font-size: 20px;
+                font-weight: bolder;
+                margin-bottom: 10px;
+                align-self: center;
+            }
+            > input {
+                width: 300px;
+                font-size: 18px;
+                padding: 4px 10px;
+                margin-bottom: 10px;
+                border: 1px solid #B0A695;
+                border-radius: 4px;
+            }
+            > div {
+                display: flex;
+                justify-content: space-between;
+                > label {
+                    display: flex;
+                    margin-bottom: 10px;
+                    > p {
+                        margin-left: 4px;
+                    }
+                    > input {
+                        width: 20px;
+                    }
+                }
+            }
+            
+        }
+    }
+}
