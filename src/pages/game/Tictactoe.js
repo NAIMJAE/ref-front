@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/game.scss'
 import TictactoeComponent from '../../component/TictactoeComponent';
@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Tictactoe = () => {
     const loginSlice = useSelector((state) => state.loginSlice);
-    const [selectedRoomId, setSelectedRoomId] = useState(null);
+    const [selectedRoomId, setSelectedRoomId] = useState("");
     const [roomPlayers, setRoomPlayers] = useState({ 1: 0, 2: 0, 3: 0 });
     /**  내 차례인지 확인하는 변수 */
     const [myTurn, setMyTurn] = useState(true);
@@ -46,14 +46,18 @@ const Tictactoe = () => {
                     webSocket.current.close();
                     break;
 
+                case 'playerLeft':
+                    console.log("상대방 나감 ! ")
+                    setPlayerSymbol(message.player === 0 ? 'X' : 'O');
+                    setMyTurn(message.player === 0);
+                    break;
+
                 case 'moveRoom':
                     // 방 이동 
                     setSelectedRoomId(message.roomId);
                     // 역할 분배  
                     setPlayerSymbol(message.player === 0 ? 'X' : 'O');
                     setMyTurn(message.player === 0); // 첫 번째 플레이어가 X이고, 먼저 시작함
-
-
                     break;
 
                 case 'makeMove':
@@ -100,11 +104,10 @@ const Tictactoe = () => {
             console.log('WebSocket 에러:', error);
         };
 
-        // 컴포넌트 언마운트 시 WebSocket 닫기
-        return () => {
+        // 컴포넌트 언마운트 시 WebSocket 닫기 및 beforeunload 이벤트 처리
+        const handleBeforeUnload = (event) => {
             if (webSocket.current) {
-                console.log("언마운트!")
-                // 소켓 닫기 전에 방 나가기 요청 전송
+                console.log("beforeunload 이벤트 발생!");
                 webSocket.current.send(JSON.stringify({
                     type: 'leaveRoom',
                     roomId: selectedRoomId,
@@ -113,7 +116,26 @@ const Tictactoe = () => {
                 webSocket.current.close();
             }
         };
-    }, [loginSlice]);
+
+        // beforeunload 이벤트 리스너 추가
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            // beforeunload 이벤트 리스너 제거
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            
+            // 언마운트 시 소켓 닫기
+            if (webSocket.current) {
+                console.log("언마운트!");
+                webSocket.current.send(JSON.stringify({
+                    type: 'leaveRoom',
+                    roomId: selectedRoomId,
+                    userId: loginSlice.uid
+                }));
+                webSocket.current.close();
+            }
+        };
+    }, [loginSlice, selectedRoomId]);
 
     useEffect(() => {
         console.log("플레이어 심볼 변경 : ", playerSymbol)
@@ -256,7 +278,8 @@ const Tictactoe = () => {
 
                 <div className='roomList'>
                     {[1, 2, 3].map(roomId => (
-                        <div key={roomId} className='room' onClick={() => changeRoomHandler(roomId)}>
+                        <div key={roomId} className={`room ${selectedRoomId === roomId.toString() ? 'usedRoom' : ''}`}
+                            onClick={() => changeRoomHandler(roomId)}>
                             <h1>{roomId}번 방</h1>
                             <h1>{roomPlayers[roomId] || 0}명 / 2명</h1>
                         </div>

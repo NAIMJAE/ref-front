@@ -85,6 +85,10 @@
         gap: 10px;
         justify-content: center;
 
+        > .usedRoom {
+            background-color: #FFCA03!important;
+        }
+
         >.room {
             display: flex;
             flex-direction: column;
