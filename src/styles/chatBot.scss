@@ -91,12 +91,87 @@
             font-weight: bold;
 
             &:hover {
-                background-color: #007bbd;
+                background: linear-gradient(123deg, #fa6f00, #e433ff 50%, #8575ff);
+                
             }
         }
     }
 }
-
+        // 설명
+        .description {
+          padding-left: 20px;
+          width: 100%;
+          margin-bottom: 20px;
+  
+          h2 {
+              font-weight: bolder;
+              font-size: 24px;
+              margin-bottom: 10px;
+          }
+  
+          h3 {
+              font-size: 20px;
+              margin-bottom: 10px;
+              line-height: 1.6;
+  
+              &::before {
+                  content: "※ ";
+              }
+          }
+  
+          ul {
+              padding-left: 20px;
+              margin-bottom: 10px;
+  
+              li {
+                  font-size: 16px;
+                  color: #666;
+                  line-height: 1.4;
+                  margin-bottom: 5px;
+                  list-style-type: disc;
+              }
+          }
+          .gameRule {
+              padding: 15px;
+              margin-top: 20px;
+              background-color: #f9f9f9;
+              border-radius: 8px;
+              width: 100%;
+          
+              h2 {
+                  font-size: 20px;
+                  font-weight: bold;
+                  margin-bottom: 10px;
+              }
+          
+              h3 {
+                  font-size: 16px;
+                  margin-bottom: 8px;
+                  line-height: 1.5;
+                  color: #333;
+          
+                  &::before {
+                      content: "※ ";
+                      font-weight: bold;
+                      color: #555;
+                  }
+              }
+          
+              ul {
+                  padding-left: 20px;
+                  margin-bottom: 10px;
+          
+                  li {
+                      font-size: 14px;
+                      color: #555;
+                      line-height: 1.4;
+                      margin-bottom: 5px;
+                      list-style-type: disc;
+                  }
+              }
+          }
+          
+      }
 @keyframes typing {
     0% {
       opacity: 0.2;
