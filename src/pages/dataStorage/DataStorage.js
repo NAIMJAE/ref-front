@@ -5,19 +5,51 @@ import { loginCheckApi, sessionLoginApi } from '../../api/DataStorageApi'
 
 const DataStorage = () => {
 
+    // 쿠키에서 login 유무 저장
     const [loginState, setLoginState] = useState("");
 
+    // login 입력 정보
     const [loginData, setLoginData] = useState({
         uid : "",
         password : "",
         autoLogin : false,
     })
 
+    // 쿠키에서 사용자 정보 저장
     const [userInfo, setUserInfo] = useState("");
 
+    // 아이디 저장 체크
     const [saveId, setSaveId] = useState(false);
 
-    // useEffect
+    // 쇼핑 예제 데이터
+    const [product, setProduct] = useState([
+        {
+            thumb : "ref_dataStorage_example1.png",
+            title : "고당도 산지직송 국내산 토마토 5kg",
+            explain : "토마토 특유의 신맛이 적어 먹기 편한 토마토",
+            price : 39000,
+        },
+        {
+            thumb : "ref_dataStorage_example2.png",
+            title : "국내산 싱싱한 쪽파 300g",
+            explain : "식용증진, 우울증 불면증 개선",
+            price : 8000,
+        },
+        {
+            thumb : "ref_dataStorage_example3.png",
+            title : "당도보장 프리미엄 꿀수박 6kg",
+            explain : "꼼꼼하게 선별한 11brix이상의 꿀수박",
+            price : 32000,
+        },
+        {
+            thumb : "ref_dataStorage_example4.png",
+            title : "베트남산 고산지 스텔라나 바나나 2kg",
+            explain : "해발 600m 이상 고산지에서 자란 바나나",
+            price : 7000,
+        },
+    ]);
+
+    // 페이지에 들어올때 로그인 유무 확인하는 useEffect
     useEffect(() => {
         const loginCheck = async () => {
             try {
@@ -150,9 +182,30 @@ const DataStorage = () => {
                     </div>
                 )}
 
-                <div id='sessionBox'>
-
+                <div className='shoppingBox'>
+                    <h2>쇼핑</h2>
+                    {product && product.map((prod, index) => (
+                        <div key={index}>
+                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
+                            <div>
+                                <h1>{prod.title}</h1>
+                                <h2>{prod.explain}</h2>
+                                <div>
+                                    <h3>{prod.price}원</h3>
+                                    <label htmlFor="">
+                                        <input type="number" value={1} min={1}/>
+                                        <button>장바구니</button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
+
+                <div className='shoppingBox'>
+                    <h2>장바구니</h2>
+                </div>
+
             </div>
             
 

@@ -59,5 +59,72 @@
             }
             
         }
+
+        > .shoppingBox {
+            flex-direction: column;
+            border: 1px solid #111;
+            border-radius: 10px;
+            padding: 20px;
+
+            > h2 {
+                font-size: 20px;
+                font-weight: bolder;
+                margin-bottom: 10px;
+                align-self: center;
+            }
+
+            > div {
+                display: flex;
+                width: 500px;
+                border: 1px solid #111;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: #ffffff;
+                margin-bottom: 10px;
+
+                > img {
+                    width: 100px;
+                    height: 100px;
+                }
+                > div {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 0 10px;
+                    > h1 {
+                        font-size: 18px;
+                        font-weight: bolder;
+                    }
+                    > h2 {
+                        font-size: 16px;
+                        font-weight: bolder;
+                        color: #6c6c6c;
+                    }
+                    
+                    > div {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        > h3 {
+                            font-size: 18px;
+                            font-weight: bolder;
+                            color: #ff9028;
+                        }
+                        > label {
+                            display: flex;
+                            > input {
+                                width: 50px;
+                                font-size: 18px;
+                                text-align: center;
+                                border: 1px solid #B0A695;
+                                border-radius: 4px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
