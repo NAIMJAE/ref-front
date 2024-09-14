@@ -111,16 +111,13 @@
                             font-weight: bolder;
                             color: #ff9028;
                         }
-                        > label {
-                            display: flex;
-                            > input {
-                                width: 50px;
-                                font-size: 18px;
-                                text-align: center;
-                                border: 1px solid #B0A695;
-                                border-radius: 4px;
-                                margin-right: 10px;
-                            }
+                        > input {
+                            width: 50px;
+                            font-size: 18px;
+                            text-align: center;
+                            border: 1px solid #B0A695;
+                            border-radius: 4px;
+                            margin-right: 10px;
                         }
                     }
                 }

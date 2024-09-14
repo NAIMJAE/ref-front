@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/dataStorage.scss'
-import { loginCheckApi, sessionLoginApi } from '../../api/DataStorageApi'
+import { addCartApi, loginCheckApi, managmentCartApi, sessionLoginApi } from '../../api/DataStorageApi'
 
 const DataStorage = () => {
 
@@ -21,27 +21,34 @@ const DataStorage = () => {
     // 아이디 저장 체크
     const [saveId, setSaveId] = useState(false);
 
+    // 사용자 장바구니
+    const [userCart, setUserCart] = useState([]);
+
     // 쇼핑 예제 데이터
     const [product, setProduct] = useState([
         {
+            prodId : "a11g3g12a7",
             thumb : "ref_dataStorage_example1.png",
             title : "고당도 산지직송 국내산 토마토 5kg",
             explain : "토마토 특유의 신맛이 적어 먹기 편한 토마토",
             price : 39000,
         },
         {
+            prodId : "8gj3820fja",
             thumb : "ref_dataStorage_example2.png",
             title : "국내산 싱싱한 쪽파 300g",
             explain : "식용증진, 우울증 불면증 개선",
             price : 8000,
         },
         {
+            prodId : "a82gja72nz",
             thumb : "ref_dataStorage_example3.png",
             title : "당도보장 프리미엄 꿀수박 6kg",
             explain : "꼼꼼하게 선별한 11brix이상의 꿀수박",
             price : 32000,
         },
         {
+            prodId : "as89g73ga1",
             thumb : "ref_dataStorage_example4.png",
             title : "베트남산 고산지 스텔라나 바나나 2kg",
             explain : "해발 600m 이상 고산지에서 자란 바나나",
@@ -49,7 +56,7 @@ const DataStorage = () => {
         },
     ]);
 
-    // 페이지에 들어올때 로그인 유무 확인하는 useEffect
+    // 페이지에 들어올때 자동 로그인 유무 확인하는 useEffect
     useEffect(() => {
         const loginCheck = async () => {
             try {
@@ -62,8 +69,31 @@ const DataStorage = () => {
             }
         }
         loginCheck();
+        // 아이디 저장 체크
         saveIdCheck();
+        // 장바구니 체크
+        prodInCartCheck();
+
     },[])
+
+    // 장바구니 체크
+    const prodInCartCheck = () => {
+        if (loginState === "") {
+            const cart = getCookie("REF_CART");
+            if (cart === "") {return;}
+
+            const productsId = cart.split(",");
+
+            productsId.forEach((prodId) => {
+                product.forEach((prod) => {
+                    if (prodId === prod.prodId) {
+                        setUserCart((prev) => [...prev, prod]);
+                    }
+                });
+            });
+            
+        }
+    }
 
     // 쿠키 가져오기
     const getCookie = (name) => {
@@ -119,7 +149,7 @@ const DataStorage = () => {
         }
     }
 
-    // REF_SAVE 내용 일기
+    // REF_SAVE 내용 읽기
     const saveIdCheck = () => {
         const save = getCookie("REF_SAVE");
 
@@ -147,7 +177,88 @@ const DataStorage = () => {
         }
     }
 
+    // 장바구니 추가
+    const addCart = async (prodId) => {
+        // 비 로그인
+        if (loginState === "") {
+            const cart = getCookie("REF_CART");
+            console.log("하이", cart);
 
+            if (cart !== "") {
+                const cartArr = cart.split(",");
+
+                // 상품이 이미 장바구니에 있는지 확인
+                const isProdInCart = cartArr.some((prod) => prod === prodId.toString());
+                if (isProdInCart) {
+                    window.confirm("이미 장바구니에 등록된 상품입니다.");
+                    return;
+                }
+                
+                // 상품이 없으면 추가
+                const newCart = [...cartArr, prodId].join(",");
+                document.cookie = `REF_CART=${newCart}; path=/;`;
+
+                product.forEach((prod) => {
+                    if (prod.prodId === prodId) {
+                        setUserCart((prev) => [...prev, prod]);
+                    }
+                })
+
+            } else {
+                document.cookie = `REF_CART=${prodId}; path=/;`;
+            }
+        }else {
+            // 로그인 시
+            const data = {
+                type : "insert",
+                prodId : prodId,
+            }
+            try {
+                const response = await managmentCartApi(data);
+            } catch (error) {
+                console.log(error);
+            }
+            // userCart 를 response 받은 값으로 업데이트
+        }
+    }
+
+    // 장바구니 삭제
+    const deleteCart = async (prodId) => {
+        // 비 로그인
+        if (loginState === "") {
+            const cart = getCookie("REF_CART");
+            const cartArr = cart.split(",");
+
+            // 상품이 장바구니에 있는지 확인
+            const isProdInCart = cartArr.some((prod) => prod === prodId.toString());
+            if (!isProdInCart) {
+                return;
+            }
+            
+            // 상품이 있으면 삭제
+            const newCartArr = cartArr.filter((prod) => prod !== prodId);
+
+            const newCart = newCartArr.join(",");
+            document.cookie = `REF_CART=${newCart}; path=/;`;
+
+            setUserCart((prevCart) =>
+                prevCart.filter((prod) => prod.prodId !== prodId)
+            );
+
+        }else {
+            // 로그인 시
+            const data = {
+                type : "delete",
+                prodId : prodId,
+            }
+            try {
+                const response = await managmentCartApi(prodId);
+            } catch (error) {
+                console.log(error);
+            }
+            // userCart 를 response 받은 값으로 업데이트
+        }
+    }
 
   return (
     <MainLayout>
@@ -181,7 +292,9 @@ const DataStorage = () => {
                         <button onClick={loginBtn}>login</button>
                     </div>
                 )}
-
+            </div>
+            
+            <div className='storageBox'>
                 <div className='shoppingBox'>
                     <h2>쇼핑</h2>
                     {product && product.map((prod, index) => (
@@ -192,10 +305,7 @@ const DataStorage = () => {
                                 <h2>{prod.explain}</h2>
                                 <div>
                                     <h3>{prod.price}원</h3>
-                                    <label htmlFor="">
-                                        <input type="number" value={1} min={1}/>
-                                        <button>장바구니</button>
-                                    </label>
+                                    <button onClick={() => addCart(prod.prodId)}>장바구니</button>
                                 </div>
                             </div>
                         </div>
@@ -204,10 +314,22 @@ const DataStorage = () => {
 
                 <div className='shoppingBox'>
                     <h2>장바구니</h2>
+                    {userCart && userCart.map((prod, index) => (
+                        <div key={index}>
+                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
+                            <div>
+                                <h1>{prod.title}</h1>
+                                <h2>{prod.explain}</h2>
+                                <div>
+                                    <h3>{prod.price}원</h3>
+                                    <button onClick={() => deleteCart(prod.prodId)}>삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
             </div>
-            
+
 
         </div>
     </MainLayout>
