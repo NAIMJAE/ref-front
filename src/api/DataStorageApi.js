@@ -19,3 +19,9 @@ export const loginCheckApi = async () => {
     const response = await axios.get(`${rootURL}/datastorage/check`, { withCredentials: true });
     return response.data;
 };
+
+// 장바구니 관리
+export const managmentCartApi = async (data) => {
+    const response = await axios.get(`${rootURL}/datastorage/managementCart?type=${data.type}&prodId=${data.prodId}`, { withCredentials: true });
+    return response.data;
+};
