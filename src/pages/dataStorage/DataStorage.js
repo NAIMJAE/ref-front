@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/dataStorage.scss'
-import { addCartApi, loginCheckApi, managmentCartApi, sessionLoginApi } from '../../api/DataStorageApi'
+import { loginCheckApi, sessionLoginApi } from '../../api/DataStorageApi'
+import ShoppingConponent from '../../component/dataStorage/ShoppingConponent'
 
 const DataStorage = () => {
 
     // 쿠키에서 login 유무 저장
-    const [loginState, setLoginState] = useState("");
+    const [loginState, setLoginState] = useState(null);
 
     // login 입력 정보
     const [loginData, setLoginData] = useState({
@@ -15,16 +16,16 @@ const DataStorage = () => {
         autoLogin : false,
     })
 
-    // 쿠키에서 사용자 정보 저장
+    // User Info From Cookie
     const [userInfo, setUserInfo] = useState("");
 
-    // 아이디 저장 체크
+    // User Id Save Check
     const [saveId, setSaveId] = useState(false);
 
-    // 사용자 장바구니
+    // User Cart
     const [userCart, setUserCart] = useState([]);
 
-    // 쇼핑 예제 데이터
+    // Shopping Product Sample Data
     const [product, setProduct] = useState([
         {
             prodId : "a11g3g12a7",
@@ -56,59 +57,77 @@ const DataStorage = () => {
         },
     ]);
 
-    // 페이지에 들어올때 자동 로그인 유무 확인하는 useEffect
-    useEffect(() => {
-        const loginCheck = async () => {
-            try {
-                const response = await loginCheckApi(); 
 
-                setLoginState(getCookie("REF_LOGIN"));
-                readInfo();
-            } catch (error) {
-                console.log(error);
+    // Check User Auto Login When The Page Loads
+    useEffect(() => {
+        console.log("loginState : ",loginState)
+        const loginCheck = async () => {
+            const loginCookie = getCookie("REF_LOGIN");
+            const cartCookie = getCookie("REF_CART");
+            console.log("loginCookie : ", loginCookie);
+            console.log("cartCookie : ", cartCookie);
+
+            if (loginCookie !== null || cartCookie === null) {
+                console.log("ㅎ2")
+                try {
+                    const response = await loginCheckApi(); 
+                    console.log("Login Check Response : ",response);
+    
+                    setLoginState(getCookie("REF_LOGIN"));
+                    readInfo(); // REF_INFO Cookie Check
+                } catch (error) {
+                    console.log(error);
+                }
             }
         }
         loginCheck();
-        // 아이디 저장 체크
-        saveIdCheck();
-        // 장바구니 체크
-        prodInCartCheck();
-
+        saveIdCheck(); // REF_SAVE Cookie Check
     },[])
+
+    // Check Shopping Cart When The Page Loads
+    useEffect(() => { prodInCartCheck(); },[loginState]);
 
     // 장바구니 체크
     const prodInCartCheck = () => {
-        if (loginState === "") {
-            const cart = getCookie("REF_CART");
-            if (cart === "") {return;}
+        setUserCart(""); // 장바구니 state 초기화
 
-            const productsId = cart.split(",");
-
-            productsId.forEach((prodId) => {
-                product.forEach((prod) => {
-                    if (prodId === prod.prodId) {
-                        setUserCart((prev) => [...prev, prod]);
-                    }
-                });
-            });
-            
+        let cart = "";
+        if (loginState === null) {
+            cart = getCookie("REF_CART");
+        }else {
+            cart = getCookie("REF_USER_CART");
         }
+
+        if (cart === null) {return;}; // Cart가 비었으면 중단
+
+        const productsId = cart.split(",");
+
+        // 장바구니 state에 상품 삽입
+        productsId.forEach((prodId) => {
+            product.forEach((prod) => {
+                if (prodId === prod.prodId) {
+                    setUserCart((prev) => [...prev, prod]);
+                }
+            });
+        });
     }
 
-    // 쿠키 가져오기
+    // Read Cookie Value
     const getCookie = (name) => {
-        const cookieArr = document.cookie.split(";");  // ';'를 기준으로 모든 쿠키 분리
+        const cookieArr = document.cookie.split(";");
         for (let i = 0; i < cookieArr.length; i++) {
-            let cookiePair = cookieArr[i].split("=");  // 쿠키 이름과 값을 '='로 분리
+
+            // 쿠키 이름과 값을 '='로 분리
+            let cookiePair = cookieArr[i].split("=");
             // 쿠키 이름의 공백을 제거하고 일치하는 이름 찾기
             if (name === cookiePair[0].trim()) {
-                return decodeURIComponent(cookiePair[1]);  // 쿠키 값 반환
+                return decodeURIComponent(cookiePair[1]);
             }
         }
-        return "";  // 쿠키가 없으면
+        return null;  // 일치하는 쿠키가 없을 때
     };
 
-    // 자동 로그인 버튼
+    // Auto Login Check
     const autoLoginCheck = (e) => {
         if (e.target.checked) {
             setLoginData((prev)=>({...prev, autoLogin:true}));
@@ -117,23 +136,29 @@ const DataStorage = () => {
         }
     }
 
-    // 로그인
+    // Login
     const loginBtn = async () => {
         if (loginData.uid === "" || loginData.password === "") {
             alert("아이디와 비밀번호를 입력해주세요.");
             return;
         }
+
         try {
             const response = await sessionLoginApi(loginData);
-            setLoginState(getCookie("REF_LOGIN"));
-            readInfo();
-            rememberId();
+
+            if (response === "SUCCESS LOGIN") {
+                setLoginState(getCookie("REF_LOGIN"));
+                readInfo(); // REF_INFO Cookie Check
+                rememberId(); // REF_SAVE Cookie Check
+            }else {
+                alert(response);
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
-    // REF_INFO 내용 읽기
+    // Read REF_INFO Cookie
     const readInfo = () => {
         const info = getCookie("REF_INFO");
 
@@ -143,32 +168,31 @@ const DataStorage = () => {
             const userInfo = JSON.parse(decodedInfo);
             console.log(userInfo);
             setUserInfo(userInfo);
-
         } else {
             console.log("REF_INFO 쿠키가 없습니다.");
         }
     }
 
-    // REF_SAVE 내용 읽기
+    // Read REF_SAVE Cookie
     const saveIdCheck = () => {
         const save = getCookie("REF_SAVE");
 
-        if (save !== "") {
+        if (save !== null) {
             setLoginData((prev) => ({...prev, uid : save}));
             setSaveId(true);
         }
     }
 
-    // 로그아웃
+    // Logout
     const logoutBtn = () => {
         document.cookie = 'REF_LOGIN=; Max-Age=0; path=/;';
         document.cookie = 'REF_INFO=; Max-Age=0; path=/;';
         document.cookie = 'REF_AUTO=; Max-Age=0; path=/;';
-
+        document.cookie = 'REF_USER_CART=; Max-Age=0; path=/;';
         window.location.reload();
     }
 
-    // 아이디 저장
+    // Remember User Id
     const rememberId = () => {
         if (saveId) {
             document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; path=/;`;
@@ -177,88 +201,7 @@ const DataStorage = () => {
         }
     }
 
-    // 장바구니 추가
-    const addCart = async (prodId) => {
-        // 비 로그인
-        if (loginState === "") {
-            const cart = getCookie("REF_CART");
-            console.log("하이", cart);
-
-            if (cart !== "") {
-                const cartArr = cart.split(",");
-
-                // 상품이 이미 장바구니에 있는지 확인
-                const isProdInCart = cartArr.some((prod) => prod === prodId.toString());
-                if (isProdInCart) {
-                    window.confirm("이미 장바구니에 등록된 상품입니다.");
-                    return;
-                }
-                
-                // 상품이 없으면 추가
-                const newCart = [...cartArr, prodId].join(",");
-                document.cookie = `REF_CART=${newCart}; path=/;`;
-
-                product.forEach((prod) => {
-                    if (prod.prodId === prodId) {
-                        setUserCart((prev) => [...prev, prod]);
-                    }
-                })
-
-            } else {
-                document.cookie = `REF_CART=${prodId}; path=/;`;
-            }
-        }else {
-            // 로그인 시
-            const data = {
-                type : "insert",
-                prodId : prodId,
-            }
-            try {
-                const response = await managmentCartApi(data);
-            } catch (error) {
-                console.log(error);
-            }
-            // userCart 를 response 받은 값으로 업데이트
-        }
-    }
-
-    // 장바구니 삭제
-    const deleteCart = async (prodId) => {
-        // 비 로그인
-        if (loginState === "") {
-            const cart = getCookie("REF_CART");
-            const cartArr = cart.split(",");
-
-            // 상품이 장바구니에 있는지 확인
-            const isProdInCart = cartArr.some((prod) => prod === prodId.toString());
-            if (!isProdInCart) {
-                return;
-            }
-            
-            // 상품이 있으면 삭제
-            const newCartArr = cartArr.filter((prod) => prod !== prodId);
-
-            const newCart = newCartArr.join(",");
-            document.cookie = `REF_CART=${newCart}; path=/;`;
-
-            setUserCart((prevCart) =>
-                prevCart.filter((prod) => prod.prodId !== prodId)
-            );
-
-        }else {
-            // 로그인 시
-            const data = {
-                type : "delete",
-                prodId : prodId,
-            }
-            try {
-                const response = await managmentCartApi(prodId);
-            } catch (error) {
-                console.log(error);
-            }
-            // userCart 를 response 받은 값으로 업데이트
-        }
-    }
+    // 팝업창 만들기, 노션 정리, 프론트에서 만든 쿠키는 서버로 넘어가지 않는 것 같음 (해결방법 찾기)
 
   return (
     <MainLayout>
@@ -294,42 +237,8 @@ const DataStorage = () => {
                 )}
             </div>
             
-            <div className='storageBox'>
-                <div className='shoppingBox'>
-                    <h2>쇼핑</h2>
-                    {product && product.map((prod, index) => (
-                        <div key={index}>
-                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
-                            <div>
-                                <h1>{prod.title}</h1>
-                                <h2>{prod.explain}</h2>
-                                <div>
-                                    <h3>{prod.price}원</h3>
-                                    <button onClick={() => addCart(prod.prodId)}>장바구니</button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className='shoppingBox'>
-                    <h2>장바구니</h2>
-                    {userCart && userCart.map((prod, index) => (
-                        <div key={index}>
-                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
-                            <div>
-                                <h1>{prod.title}</h1>
-                                <h2>{prod.explain}</h2>
-                                <div>
-                                    <h3>{prod.price}원</h3>
-                                    <button onClick={() => deleteCart(prod.prodId)}>삭제</button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
+            <ShoppingConponent product={product} userCart={userCart} loginState={loginState}
+                getCookie={getCookie} setUserCart={setUserCart} prodInCartCheck={prodInCartCheck}/>
 
         </div>
     </MainLayout>
