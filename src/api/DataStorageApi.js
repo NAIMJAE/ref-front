@@ -3,9 +3,13 @@ import { RootUrl } from "./RootUrl";
 const rootURL = RootUrl();
 
 export const sessionLoginApi = async (data) => {
-    const response = await axios.post(`${rootURL}/datastorage/login`, data, { withCredentials: true });
-    console.log("response : ", response);
-    return response.data;
+    try {
+        const response = await axios.post(`${rootURL}/datastorage/login`, data, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        return handleApiError(error);
+    }
+    
 };
 /*
     { withCredentials: true }는 Axios 또는 Fetch API에서 사용하는 옵션
@@ -16,12 +20,37 @@ export const sessionLoginApi = async (data) => {
     
 */
 export const loginCheckApi = async () => {
-    const response = await axios.get(`${rootURL}/datastorage/check`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${rootURL}/datastorage/check`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        return handleApiError(error);
+    }
+    
 };
 
 // 장바구니 관리
 export const managmentCartApi = async (data) => {
     const response = await axios.get(`${rootURL}/datastorage/managementCart?type=${data.type}&prodId=${data.prodId}`, { withCredentials: true });
     return response.data;
+};
+
+// 공통 Api 요청 에러 처리 함수
+export const handleApiError = (error) => {
+    if (error.response) {
+        switch (error.response.status) {
+            // 잘못된 요청 파라미터
+            case 400:
+                console.error('Bad Request:', error.response.data);
+                return error.response.data;
+            // 
+            default:
+                console.error('Other Error:', error.response.data);
+                return error.response.data;
+        }
+    } else {
+        // 서버 응답이 없는 경우 또는 기타 에러
+        console.error('Error:', error.message);
+        return { message: '네트워크 오류가 발생했습니다.' };
+    }
 };
