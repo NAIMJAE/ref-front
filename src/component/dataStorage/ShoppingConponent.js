@@ -12,7 +12,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             console.log("cart", cart,"null?");
 
             if (cart != null) {
-                const cartArr = cart.split(",");
+                const cartArr = cart.split(".");
                 console.log("cartArr : ", cartArr);
 
                 // 상품이 이미 장바구니에 있는지 확인
@@ -23,11 +23,10 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 }
                 
                 // 상품이 없으면 추가
-                const newCart = [...cartArr, prodId].join(",");
+                const newCart = [...cartArr, prodId].join(".");
                 document.cookie = `REF_CART=${newCart}; path=/;`;
 
             } else {
-                console.log("ㅂ2")
                 document.cookie = `REF_CART=${prodId}; path=/;`;
             }
             product.forEach((prod) => {
@@ -57,7 +56,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
         if (loginState === null) {
             const cart = getCookie("REF_CART");
             console.log("cart : ", cart)
-            const cartArr = cart.split(",");
+            const cartArr = cart.split(".");
 
             // 상품이 장바구니에 있는지 확인
             const isProdInCart = cartArr.some((prod) => prod === prodId.toString());
@@ -68,7 +67,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             // 상품이 있으면 삭제
             const newCartArr = cartArr.filter((prod) => prod !== prodId);
 
-            const newCart = newCartArr.join(",");
+            const newCart = newCartArr.join(".");
             document.cookie = `REF_CART=${newCart};`;
 
             setUserCart((prevCart) =>

@@ -3,6 +3,7 @@ import MainLayout from '../../layout/MainLayout'
 import '../../styles/dataStorage.scss'
 import { loginCheckApi, sessionLoginApi } from '../../api/DataStorageApi'
 import ShoppingConponent from '../../component/dataStorage/ShoppingConponent'
+import PopupComponent from '../../component/dataStorage/PopupComponent'
 
 const DataStorage = () => {
 
@@ -24,6 +25,9 @@ const DataStorage = () => {
 
     // User Cart
     const [userCart, setUserCart] = useState([]);
+
+    // Popup State
+    const [popup, setPopup] = useState(false);
 
     // Shopping Product Sample Data
     const [product, setProduct] = useState([
@@ -60,15 +64,11 @@ const DataStorage = () => {
 
     // Check User Auto Login When The Page Loads
     useEffect(() => {
-        console.log("loginState : ",loginState)
         const loginCheck = async () => {
             const loginCookie = getCookie("REF_LOGIN");
             const cartCookie = getCookie("REF_CART");
-            console.log("loginCookie : ", loginCookie);
-            console.log("cartCookie : ", cartCookie);
 
             if (loginCookie !== null || cartCookie === null) {
-                console.log("ㅎ2")
                 try {
                     const response = await loginCheckApi(); 
                     console.log("Login Check Response : ",response);
@@ -87,6 +87,20 @@ const DataStorage = () => {
     // Check Shopping Cart When The Page Loads
     useEffect(() => { prodInCartCheck(); },[loginState]);
 
+    // Check Popup State Cookie When The Page Loads
+    useEffect(() => {
+        const checkPopCookie = () => {
+            const popupCookie = getCookie("REF_POPUP");
+            if (popupCookie) {
+                setPopup(false);
+            }else {
+                setPopup(true);
+            }
+
+        }
+        checkPopCookie();
+    },[])
+
     // 장바구니 체크
     const prodInCartCheck = () => {
         setUserCart(""); // 장바구니 state 초기화
@@ -100,7 +114,7 @@ const DataStorage = () => {
 
         if (cart === null) {return;}; // Cart가 비었으면 중단
 
-        const productsId = cart.split(",");
+        const productsId = cart.split(".");
 
         // 장바구니 state에 상품 삽입
         productsId.forEach((prodId) => {
@@ -166,7 +180,6 @@ const DataStorage = () => {
             // URL 디코딩 및 JSON 파싱
             const decodedInfo = decodeURIComponent(info);
             const userInfo = JSON.parse(decodedInfo);
-            console.log(userInfo);
             setUserInfo(userInfo);
         } else {
             console.log("REF_INFO 쿠키가 없습니다.");
@@ -201,11 +214,13 @@ const DataStorage = () => {
         }
     }
 
-    // 팝업창 만들기, 노션 정리, 프론트에서 만든 쿠키는 서버로 넘어가지 않는 것 같음 (해결방법 찾기)
+    // 팝업창 만들기, 노션 정리 
 
   return (
     <MainLayout>
         <div id='DataStorage'>
+
+            {popup && <PopupComponent setPopup={setPopup}/>}
 
             <div className='storageBox'>
                 {loginState && loginState != null ? (
