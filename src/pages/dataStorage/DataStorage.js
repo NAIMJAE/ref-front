@@ -30,7 +30,7 @@ const DataStorage = () => {
     const [popup, setPopup] = useState(false);
 
     // Shopping Product Sample Data
-    const [product, setProduct] = useState([
+    const [product] = useState([
         {
             prodId : "a11g3g12a7",
             thumb : "ref_dataStorage_example1.png",
