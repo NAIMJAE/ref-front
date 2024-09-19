@@ -9,11 +9,9 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
         // 비 로그인
         if (loginState === null) {
             const cart = getCookie("REF_CART");
-            console.log("cart", cart,"null?");
 
             if (cart != null) {
                 const cartArr = cart.split(".");
-                console.log("cartArr : ", cartArr);
 
                 // 상품이 이미 장바구니에 있는지 확인
                 const isProdInCart = cartArr.some((prod) => prod === prodId.toString());

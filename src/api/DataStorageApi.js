@@ -35,6 +35,12 @@ export const managmentCartApi = async (data) => {
     return response.data;
 };
 
+// Logout
+export const sessionLogoutApi = async () => {
+    const response = await axios.get(`${rootURL}/datastorage/logout`, { withCredentials: true });
+    return response.data;
+};
+
 // 공통 Api 요청 에러 처리 함수
 export const handleApiError = (error) => {
     if (error.response) {
