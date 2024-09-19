@@ -22,6 +22,7 @@ const OpenApiPage = () => {
             }
         }
         selectServiceKey();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     // serviceKey 생성
