@@ -16,6 +16,7 @@ const ViewPage = ({ changePage, pageNo }) => {
       }
     }
     selectPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const modify = () => {

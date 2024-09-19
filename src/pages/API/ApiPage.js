@@ -6,7 +6,6 @@ import '../../styles/apiPage.scss'
 
 const ApiPage = () => {
 
-    const [apiData, setApiData] = useState([]);
     const [locations, setLocations] = useState([]);
 
     const [searchYearCd, setSearchYearCd] = useState("");
@@ -24,7 +23,6 @@ const ApiPage = () => {
         try {
             const response = await getBicycleApi(data);
             console.log(response);
-            setApiData(response.items);
             makeLocation(response.items);
         } catch (error) {
             console.log(error);

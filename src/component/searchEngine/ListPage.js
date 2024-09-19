@@ -19,6 +19,7 @@ const ListPage = ({ changePage, checkLogin, listState, setListState }) => {
             }
         }
         selectPostList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const normalSearchBtn = async () => {
