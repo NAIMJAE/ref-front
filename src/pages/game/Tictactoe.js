@@ -149,7 +149,7 @@ const Tictactoe = () => {
     /** 게임 플레이 */
     const clickHandler = (rowIndex, colIndex) => {
         // 방 인원이 2명이 아니면 무시
-        if(roomPlayers[selectedRoomId] != 2) {
+        if(roomPlayers[selectedRoomId] !== 2) {
             alert('상대방 입장을 기다리는 중 ... ');
             return;
         }
@@ -278,9 +278,9 @@ const Tictactoe = () => {
                         </div>
                     ))}
                 </div>
-                {playerSymbol != "" && <h2 className='symbol'>내 심볼 : {playerSymbol}</h2>}
-                {roomPlayers[selectedRoomId] != 2 && <h2 className='symbol'>상대방 입장을 기다리는 중...</h2>}
-                {selectedRoomId != 0 && <TictactoeComponent clickHandler={clickHandler} myTurn={myTurn} board={board} />}
+                {playerSymbol !== "" && <h2 className='symbol'>내 심볼 : {playerSymbol}</h2>}
+                {roomPlayers[selectedRoomId] !== 2 && <h2 className='symbol'>상대방 입장을 기다리는 중...</h2>}
+                {selectedRoomId !== 0 && <TictactoeComponent clickHandler={clickHandler} myTurn={myTurn} board={board} />}
             </div>
         </MainLayout>
     )
