@@ -82,10 +82,14 @@ const DataStorage = () => {
         }
         loginCheck();
         saveIdCheck(); // REF_SAVE Cookie Check
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     // Check Shopping Cart When The Page Loads
-    useEffect(() => { prodInCartCheck(); },[loginState]);
+    useEffect(() => {
+        prodInCartCheck();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[loginState]);
 
     // Check Popup State Cookie When The Page Loads
     useEffect(() => {

@@ -39,7 +39,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 prodId : prodId,
             }
             try {
-                const response = await managmentCartApi(data);
+                await managmentCartApi(data);
             } catch (error) {
                 console.log(error);
             }
@@ -79,7 +79,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 prodId : prodId,
             }
             try {
-                const response = await managmentCartApi(data);
+                await managmentCartApi(data);
             } catch (error) {
                 console.log(error);
             }
