@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import '../../styles/dataStorage.scss'
-import { loginCheckApi, sessionLoginApi } from '../../api/DataStorageApi'
+import { loginCheckApi, sessionLoginApi, sessionLogoutApi } from '../../api/DataStorageApi'
 import ShoppingConponent from '../../component/dataStorage/ShoppingConponent'
 import PopupComponent from '../../component/dataStorage/PopupComponent'
 
@@ -47,14 +47,14 @@ const DataStorage = () => {
         },
         {
             prodId : "a82gja72nz",
-            thumb : "ref_dataStorage_example3.png",
+            thumb : "ref_dataStorage_example3.PNG",
             title : "당도보장 프리미엄 꿀수박 6kg",
             explain : "꼼꼼하게 선별한 11brix이상의 꿀수박",
             price : 32000,
         },
         {
             prodId : "as89g73ga1",
-            thumb : "ref_dataStorage_example4.png",
+            thumb : "ref_dataStorage_example4.PNG",
             title : "베트남산 고산지 스텔라나 바나나 2kg",
             explain : "해발 600m 이상 고산지에서 자란 바나나",
             price : 7000,
@@ -96,7 +96,6 @@ const DataStorage = () => {
             }else {
                 setPopup(true);
             }
-
         }
         checkPopCookie();
     },[])
@@ -129,10 +128,11 @@ const DataStorage = () => {
     // Read Cookie Value
     const getCookie = (name) => {
         const cookieArr = document.cookie.split(";");
-        for (let i = 0; i < cookieArr.length; i++) {
 
+        for (let i = 0; i < cookieArr.length; i++) {
             // 쿠키 이름과 값을 '='로 분리
             let cookiePair = cookieArr[i].split("=");
+
             // 쿠키 이름의 공백을 제거하고 일치하는 이름 찾기
             if (name === cookiePair[0].trim()) {
                 return decodeURIComponent(cookiePair[1]);
@@ -197,12 +197,19 @@ const DataStorage = () => {
     }
 
     // Logout
-    const logoutBtn = () => {
-        document.cookie = 'REF_LOGIN=; Max-Age=0; path=/;';
-        document.cookie = 'REF_INFO=; Max-Age=0; path=/;';
-        document.cookie = 'REF_AUTO=; Max-Age=0; path=/;';
-        document.cookie = 'REF_USER_CART=; Max-Age=0; path=/;';
-        window.location.reload();
+    const logoutBtn = async () => {
+        try {
+            const response = await sessionLogoutApi();
+            if (response === "SUCCESS LOGOUT") {
+                document.cookie = 'REF_LOGIN=; Max-Age=0; path=/;';
+                document.cookie = 'REF_INFO=; Max-Age=0; path=/;';
+                document.cookie = 'REF_AUTO=; Max-Age=0; path=/;';
+                document.cookie = 'REF_USER_CART=; Max-Age=0; path=/;';
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Remember User Id
