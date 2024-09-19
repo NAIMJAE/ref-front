@@ -97,6 +97,7 @@ const Tictactoe = () => {
         return () => {
             webSocket.current.close();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loginSlice]);
 
     useEffect(() => {
