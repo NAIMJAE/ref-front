@@ -1,7 +1,8 @@
 //export const Host = '3.35.87.115';
-export const Host = 'localhost';
+export const Host = 'api.refcode.info';
+//export const Host = 'localhost';
 export const RootUrl = () => {
-    return `http://${Host}:8080/ref`;
+    return `https://${Host}/ref`;
 };
 
 export const FrontUrl = () => {
