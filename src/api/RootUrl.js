@@ -1,5 +1,5 @@
 //export const Host = '3.35.87.115';
-export const Host = 'api.refcode.info';
+export const Host = 'refcode.shop';
 //export const Host = 'localhost';
 export const RootUrl = () => {
     return `https://${Host}/ref`;
