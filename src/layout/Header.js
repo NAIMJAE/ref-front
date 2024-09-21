@@ -15,7 +15,7 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
   return (
     <div id='header'>
       <div id='headBox'>
-        <Link to="/">Reference</Link>
+        <Link to="/">RefCode</Link>
         <div id='headBtn'>
           <Link to="/schedule">Schedule</Link>
           {!loginSlice.uid ? (
