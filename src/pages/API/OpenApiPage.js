@@ -15,7 +15,6 @@ const OpenApiPage = () => {
         const selectServiceKey = async () => {
             try {
                 const response = await selectServiceKeyApi(loginSlice.uid);
-                console.log(response);
                 setServiceKey(response);
             } catch (error) {
                 console.log(error);
@@ -29,7 +28,6 @@ const OpenApiPage = () => {
     const createServiceKey = async () => {
         try {
             const response = await createServiceKeyApi(loginSlice.uid);
-            console.log(response);
             setServiceKey(response);
         } catch (error) {
             console.log(error);
@@ -54,7 +52,6 @@ const OpenApiPage = () => {
 
         try {
             const response = await getInfoByNameApi(data); 
-            console.log("여기", response);
             setCharInfo(response);
         } catch (error) {
             console.log(error);
@@ -73,7 +70,6 @@ const OpenApiPage = () => {
 
         try {
             const response = await getAllInfoApi(data); 
-            console.log("여기", response);
             setCharInfoList(response.items)
         } catch (error) {
             console.log(error);
@@ -108,7 +104,7 @@ const OpenApiPage = () => {
                     </tr>
                     <tr>
                         <td>End Point</td>
-                        <td>http://3.35.87.115:8080/ref/shinchan/v1/</td>
+                        <td>https://refcode.shop/ref/shinchan/v1/</td>
                     </tr>
                     <tr>
                         <td>인증키(serviceKey)</td>
@@ -166,7 +162,7 @@ const OpenApiPage = () => {
                     <tr>
                         <td rowSpan={5}>API 서비스 배포정보</td>
                         <td>서비스 URL</td>
-                        <td>http://localhost:8080/ref/shinchan/v1/</td>
+                        <td>https://refcode.shop/ref/shinchan/v1/</td>
                     </tr>
                     <tr>
                         <td>서비스 버전</td>
