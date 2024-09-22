@@ -15,7 +15,7 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
   return (
     <div id='header'>
       <div id='logoBox'>
-        <img src="../../images/main/ppoppi_computer.png" alt="" />
+        <img src="../../images/main/refcode_icon_500.png" alt="" />
         <Link to="/">RefCode</Link>
       </div>
 

@@ -1,8 +1,8 @@
-//export const Host = '3.35.87.115';
 export const Host = 'refcode.shop';
-//export const Host = 'localhost';
+//export const Host = 'localhost:8080';
 export const RootUrl = () => {
-    return `https://${Host}/ref`;
+    return `https://refcode.shop/ref`;
+    //return `http://localhost:8080/ref`;
 };
 
 export const FrontUrl = () => {

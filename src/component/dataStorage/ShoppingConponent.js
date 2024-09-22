@@ -107,7 +107,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             ))}
         </div>
 
-        <div className='shoppingBox'>
+        <div className='shoppingBox cart'>
             <h2>장바구니</h2>
             {userCart && userCart.map((prod, index) => (
                 <div key={index}>
