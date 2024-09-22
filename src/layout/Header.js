@@ -14,10 +14,13 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
 
   return (
     <div id='header'>
-      <div id='headBox'>
+      <div id='logoBox'>
+        <img src="../../images/main/ppoppi_computer.png" alt="" />
         <Link to="/">RefCode</Link>
-        <div id='headBtn'>
-          <Link to="/schedule">Schedule</Link>
+      </div>
+
+      <div id='navBox'>
+        <div id='nav'>
           {!loginSlice.uid ? (
             <>
             <button onClick={() => setLoginModal(true)}>Login</button>
@@ -28,6 +31,13 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
             <button onClick={logoutHandler}>Logout</button>
             </>
           )}
+        </div>
+
+        <div id='select'>
+          <select name="" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
         </div>
       </div>
     </div>
