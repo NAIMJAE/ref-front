@@ -20,9 +20,10 @@
         display: flex;
     }
     .storageBox {
-        border: 1px solid red;
-        border-radius: 10px;
+        border: 1px solid #cdcdcd;
         padding: 20px;
+        margin: 0 20px;
+        justify-content: space-between;
 
         #loginBox {
             flex-direction: column;
@@ -35,6 +36,12 @@
                 font-weight: bolder;
                 margin-bottom: 10px;
                 align-self: center;
+            }
+            > h3 {
+                font-size: 14px;
+                margin-top: 10px;
+                align-self: center;
+                color: #4d4d4d;
             }
             > input {
                 width: 300px;
@@ -58,7 +65,32 @@
                     }
                 }
             }
-            
+        }
+        > #cookieBox {
+            > table {
+                border-collapse: collapse;
+                width: 700px;
+                tr {
+                    td {
+                        border: 1px solid #000;
+                        font-size: 14px;
+                        padding: 6px;
+                    }
+                    td:nth-child(1) {
+                        width: 100px;
+                        font-weight: bolder;
+                    }
+                    td:nth-child(2) {
+                        width: 110px;
+                    }
+                    td:nth-child(3) {
+                        max-width: 120px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            }
         }
 
         > .shoppingBox {
@@ -66,9 +98,10 @@
             border: 1px solid #111;
             border-radius: 10px;
             padding: 20px;
+            background-color: #c3c3c3;
 
             > h2 {
-                font-size: 20px;
+                font-size: 26px;
                 font-weight: bolder;
                 margin-bottom: 10px;
                 align-self: center;
@@ -123,6 +156,9 @@
                     }
                 }
             }
+        }
+        .cart {
+            background-color: #ebebeb;
         }
     }
 
