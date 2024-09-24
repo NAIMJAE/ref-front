@@ -235,7 +235,7 @@ const Tictactoe = () => {
                 <div className='ts_box'>
                     <h1>Tic-Tac-Toe</h1>
                     <h2 className='bg_blue bold'>WebSocket</h2>
-                    <h3>WebSocket은 HTML5 표준으로 정의된 <b className='green'>통신 프로토콜</b>입니다.</h3>
+                    <h3>WebSocket은 HTML5 표준으로 정의된 <span className='green bold'>통신 프로토콜</span>입니다.</h3>
                     <h3>클라이언트와 서버 간의 양방향 통신을 가능하게 합니다.</h3>
                     <h3>연결이 설정된 후에는 HTTP의 추가 오버헤드 없이 실시간 데이터를 주고받을 수 있습니다.</h3>
                     <h3>웹소켓 연결은 지속적으로 열려 있어, 데이터가 필요한 즉시 전송할 수 있습니다.</h3>
