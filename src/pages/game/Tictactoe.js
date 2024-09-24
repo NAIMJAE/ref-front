@@ -232,8 +232,9 @@ const Tictactoe = () => {
     return (
         <MainLayout>
             <div className='colDiv'>
-                <div className='description'>
-                    <h2>WebSocket</h2>
+                <div className='ts_box'>
+                    <h1>Tic-Tac-Toe</h1>
+                    <h2 className='bg_blue bold'>WebSocket</h2>
                     <h3>WebSocket은 HTML5 표준으로 정의된 통신 프로토콜입니다.</h3>
                     <h3>클라이언트와 서버 간의 양방향 통신을 가능하게 합니다.</h3>
                     <h3>연결이 설정된 후에는 HTTP의 추가 오버헤드 없이 실시간 데이터를 주고받을 수 있습니다.</h3>
@@ -244,8 +245,8 @@ const Tictactoe = () => {
                         <li>연결이 유지되며, 실시간 데이터 전송 가능</li>
                         <li>채팅, 게임, 실시간 알림 등에 사용됨</li>
                     </ul>
-
-                    <h2>Socket.IO</h2>
+                    <hr/>
+                    <h2 className='bg_blue bold'>Socket.IO</h2>
                     <h3>Socket.IO는 WebSocket 프로토콜을 활용하여 실시간 통신을 더 쉽게 구현할 수 있도록 도와주는 JavaScript 라이브러리입니다.</h3>
                     <h3>WebSocket을 포함한 여러 기술을 내부적으로 사용하여 연결을 유지합니다.</h3>
                     <h3>네트워크 환경에 따라 적합한 전송 프로토콜을 자동으로 선택합니다.</h3>
@@ -272,7 +273,7 @@ const Tictactoe = () => {
 
                 <div className='roomList'>
                     {[1, 2, 3].map(roomId => (
-                        <div key={roomId} className={`room ${selectedRoomId === roomId ? 'usedRoom' : ''}`}
+                        <div key={roomId} className={`room ${selectedRoomId === roomId ? 'usedRoom' : ''} color${roomId}`}
                             onClick={() => changeRoomHandler(roomId)}>
                             <h1>{roomId}번 방</h1>
                             <h1>{roomPlayers[roomId] || 0}명 / 2명</h1>

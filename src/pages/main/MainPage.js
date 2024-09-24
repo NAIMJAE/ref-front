@@ -9,6 +9,7 @@ import Moment from 'moment';
  *  1. 프로시저, 트리거, 스케줄러 사용해서 간이 인기검색어 
  *  2. JWT
  *  3. 결제 시스템 
+ *  4. 방문자 체크 
  * 
  */
 const MainPage = () => {

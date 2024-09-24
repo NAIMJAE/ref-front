@@ -213,8 +213,8 @@ const EncryptionPage = () => {
     <MainLayout>
         <div id='Encryption'>
             <h1>단방향 암호화</h1>
-            <div className='encodeBox'>
-                <h2>SHA-256</h2>
+            <div className='encodeBox ts_box'>
+                <h2 className='bg_blue bold'>SHA-256</h2>
                 <h3>입력 데이터를 256비트(32바이트) 크기의 고정된 출력 값으로 변환</h3>
                 <h3>동일한 입력에 대해 항상 동일한 출력을 생성</h3>
                 <h3>SHA-256은 일방향 해시 함수로, 해시 값을 통해 원래 입력 데이터를 복원할 수 없음</h3>
