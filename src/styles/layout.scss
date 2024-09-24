@@ -85,10 +85,6 @@ body {
                 cursor: pointer;
             }
         }
-
-        > #select {
-
-        }
     }
 }
 
@@ -195,6 +191,7 @@ body {
 }
 
 .ts_box {
+    display: flex;
     flex-direction: column;
     padding: 20px;
 
@@ -278,4 +275,17 @@ body {
         content: '■';
         padding-right: 4px;
     } 
+    ul {
+        padding-left: 20px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+
+        li {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            list-style-type: disc;
+        }
+    }
 }
