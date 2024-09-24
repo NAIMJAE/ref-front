@@ -22,10 +22,10 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 
                 // 상품이 없으면 추가
                 const newCart = [...cartArr, prodId].join(".");
-                document.cookie = `REF_CART=${newCart}; path=/;`;
+                document.cookie = `REF_CART=${newCart}; secure= true; http-only= true; same-site= none; path=/;`;
 
             } else {
-                document.cookie = `REF_CART=${prodId}; path=/;`;
+                document.cookie = `REF_CART=${prodId}; secure= true; http-only= true; same-site= none; path=/;`;
             }
             product.forEach((prod) => {
                 if (prod.prodId === prodId) {
@@ -89,7 +89,8 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
     }
 
   return (
-    <div className='storageBox'>
+    <div className='storageBox frame'>
+        <div className='pin'></div>
         <div className='shoppingBox'>
             <h2>쇼핑</h2>
             {product && product.map((prod, index) => (

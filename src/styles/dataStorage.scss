@@ -9,25 +9,23 @@
         font-weight: bolder;
         cursor: pointer;
         padding: 4px 10px;
-        background-color: #EBE3D5;
-        border: 1px solid #B0A695;
+        background-color: #d1d1d1;
+        border: 1px solid #aaaaaa;
         border-radius: 4px;
     }
     button:hover {
-        background-color: #c7b9a1;
+        background-color: #aaaaaa;
     }
     div {
         display: flex;
     }
     .storageBox {
-        padding: 20px;
-        margin: 0 20px;
         justify-content: space-between;
 
         #loginBox {
             flex-direction: column;
-            border: 1px solid #111;
-            background-color: #c5c5c5;
+            border: 1px solid #797979;
+            background-color: #eaeaea;
             border-radius: 10px;
             padding: 20px;
 
@@ -96,11 +94,11 @@
 
         > .shoppingBox {
             flex-direction: column;
-            border: 1px solid #111;
+            border: 1px solid #797979;
             border-radius: 10px;
             padding: 20px;
-            background-color: #c3c3c3;
-            width: 542px;
+            background-color: #d1d1d1;
+            width: 522px;
 
             > h2 {
                 font-size: 26px;
@@ -111,7 +109,7 @@
 
             > div {
                 display: flex;
-                width: 500px;
+                width: 480px;
                 border: 1px solid #111;
                 border-radius: 10px;
                 padding: 10px;
