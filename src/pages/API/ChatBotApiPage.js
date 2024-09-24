@@ -87,12 +87,12 @@ const ChatBotApiPage = () => {
     <MainLayout>
       <div className='colDiv'>
         <div className='ts_box'>
-        <h1>Tic-Tac-Toe</h1>
+        <h1>ChatBot</h1>
           <h2 className='bg_blue bold'>챗봇 설명</h2>
           <h3>챗봇은 인공지능 어시스턴트로, 특정 역할이나 목적에 맞게 설정된 AI 모델을 통해 사용자와 상호작용할 수 있는 기능을 제공합니다.</h3>
           <h3>사용자는 질문을 하거나 대화를 요청하면 챗봇이 그에 맞는 응답을 생성합니다.</h3>
           <h3>챗봇은 OpenAI의 GPT 모델을 활용하며, 다양한 용도로 맞춤형 대화를 설계할 수 있습니다.</h3>
-          <hr/>
+          <div className='line'></div>
           <h2 className='bg_blue bold'>기본 용어 정리</h2>
           <ul>
             <li>어시스턴트 (Assistant): 도구를 사용할 수 있는 거대 언어 모델(GPT 모델).</li>
