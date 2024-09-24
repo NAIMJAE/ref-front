@@ -24,7 +24,7 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
           {!loginSlice.uid ? (
             <>
             <button onClick={() => setLoginModal(true)}>Login</button>
-            <button onClick={() => setRegisterModal(true)}>Register</button>
+            <button onClick={() => setRegisterModal(true)}>SignUp</button>
             </>
           ) : (
             <>
@@ -35,8 +35,7 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
 
         <div id='select'>
           <select name="" id="">
-            <option value="1">1</option>
-            <option value="2">2</option>
+            <option value="1">최신순</option>
           </select>
         </div>
       </div>
