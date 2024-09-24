@@ -20,7 +20,6 @@
         display: flex;
     }
     .storageBox {
-        border: 1px solid #cdcdcd;
         padding: 20px;
         margin: 0 20px;
         justify-content: space-between;
@@ -28,6 +27,7 @@
         #loginBox {
             flex-direction: column;
             border: 1px solid #111;
+            background-color: #c5c5c5;
             border-radius: 10px;
             padding: 20px;
 
@@ -48,8 +48,9 @@
                 font-size: 18px;
                 padding: 4px 10px;
                 margin-bottom: 10px;
-                border: 1px solid #B0A695;
+                border: 1px solid #8b8b8b;
                 border-radius: 4px;
+                background-color: white;
             }
             > div {
                 display: flex;
@@ -99,6 +100,7 @@
             border-radius: 10px;
             padding: 20px;
             background-color: #c3c3c3;
+            width: 542px;
 
             > h2 {
                 font-size: 26px;

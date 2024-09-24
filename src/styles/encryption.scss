@@ -8,48 +8,21 @@
         font-size: 16px;
         cursor: pointer;
         padding: 4px 10px;
-        background-color: #EBE3D5;
-        border: 1px solid #B0A695;
+        background-color: #d1d1d1;
+        border: 1px solid #aaaaaa;
         border-radius: 4px;
     }
     button:hover {
-        background-color: #c7b9a1;
+        background-color: #aaaaaa;
     }
 
-    > h1 {
-        font-size: 30px;
-        font-weight: bolder;
-        align-self: flex-start;
-        padding: 10px;
-    }
     > div {
         display: flex;
-        width: 100%;
     }
     > .encodeBox {
         flex-direction: column;
-        margin-bottom: 40px;
-        border-top: 1px solid #7f7057;
+        margin: 20px 20px 40px 20px;
 
-        > h2 {
-            font-size: 24px;
-            font-weight: bolder;
-            align-self: flex-start;
-            padding: 10px;
-        }
-        > h3 {
-            font-size: 18px;
-            align-self: flex-start;
-            padding: 4px 10px;
-            > span {
-                font-weight: bolder;
-                color : red;
-                font-size: 18px;
-            }
-        }
-        > h3::before {
-            content: "※ ";
-        }
         > .encoding {
             display: flex;
             padding: 20px 10px;
@@ -94,7 +67,7 @@
         > .oneWayTable {
             border: 1px solid #111;
             border-collapse: collapse;
-            margin: 10px 0;
+            margin: 20px 0;
             > tr {
                 > td {
                     border: 1px solid #111;
@@ -162,18 +135,18 @@
                     border: 1px solid #111;
 
                     > .userABtn {
-                        background-color: rgb(255, 174, 145);
-                        border: 1px solid rgb(216, 137, 109);
+                        background-color: rgb(255, 215, 215);
+                        border: 1px solid rgb(223, 185, 185);
                     }
                     > .userBBtn {
-                        background-color: rgb(154, 145, 255);
-                        border: 1px solid rgb(120, 111, 214);
+                        background-color: rgb(193, 221, 235);
+                        border: 1px solid rgb(164, 187, 199);
                     }
                     > .userABtn:hover {
-                        background-color: rgb(223, 146, 117);
+                        background-color: rgb(241, 181, 181);
                     }
                     > .userBBtn:hover {
-                        background-color: rgb(125, 116, 228);
+                        background-color: rgb(163, 206, 229);
                     }
                     > input {
                         width: 440px;
@@ -189,7 +162,7 @@
             }
             > tr:nth-child(2), tr:nth-child(3) {
                 td:nth-child(3) {
-                    border-bottom: 1px solid #F3EEEA;
+                    border-bottom: 1px solid #ffffff;
                 }
             }
             >  tr:nth-child(1) {
@@ -199,7 +172,7 @@
                     text-align: center;
                 }
                 td:nth-child(2) {
-                    border-bottom: 1px solid #F3EEEA;
+                    border-bottom: 1px solid #ffffff;
                 }
             }
             > tr:nth-child(4) {
