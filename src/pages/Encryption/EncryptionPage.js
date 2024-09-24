@@ -212,13 +212,15 @@ const EncryptionPage = () => {
   return (
     <MainLayout>
         <div id='Encryption'>
-            <h1>단방향 암호화</h1>
-            <div className='encodeBox'>
-                <h2>SHA-256</h2>
-                <h3>입력 데이터를 256비트(32바이트) 크기의 고정된 출력 값으로 변환</h3>
-                <h3>동일한 입력에 대해 항상 동일한 출력을 생성</h3>
-                <h3>SHA-256은 일방향 해시 함수로, 해시 값을 통해 원래 입력 데이터를 복원할 수 없음</h3>
-
+            <div className='ts_box'>
+                <h1 className='bg_red'>단방향 암호화</h1>
+                <h2 className='bg_blue bold'>SHA-256</h2>
+                <h3>※ 입력 데이터를 256비트(32바이트) 크기의 고정된 출력 값으로 변환</h3>
+                <h3>※ 동일한 입력에 대해 항상 동일한 출력을 생성</h3>
+                <h3>※ SHA-256은 일방향 해시 함수로, 해시 값을 통해 원래 입력 데이터를 복원할 수 없음</h3>
+            </div>
+            
+            <div className='encodeBox frame'>
                 <div className='encoding'>
                     <h4>암호화</h4>
                     <div>
@@ -265,16 +267,18 @@ const EncryptionPage = () => {
                 </table>
             </div>
 
-            <div className='encodeBox'>
-                <h2>BCrypt</h2>
-                <h3>BCrypt는 Blowfish 암호 알고리즘의 확장판을 기반으로 한 해시 함수</h3>
-                <h3>비밀번호 해시화에 사용되는 강력한 암호화 알고리즘</h3>
-                <h3>Salt와 반복 횟수를 사용하여 보안을 강화 / salt는 암호화 과정에서 자동 생성 / 반복 횟수는 기본 10회</h3>
-                <h3>Salt는 비밀번호 해싱 과정에 추가되어, 같은 비밀번호라도 다른 Salt 값으로 다른 해시 결과 생성</h3>
-                <h3>반복횟수는 최소 4 ~ 최대 31 까지 가능 (10 : 기본값, 12 : 높은 보안 요구시, 14 : 매우 높은 보안 요구시)</h3>
-                <h3>Blowfish 알고리즘을 2^N 번 반복이 진행되어 N(반복 횟수)가 높으면 보안이 강력해지지만 연산 시간이 기하급수적으로 상승</h3>
-                <h3>최소 반복 횟수: 4 (2^4 = 16번의 반복 작업) / <span>최대 반복 횟수: 31 (2^31 = 약 21억 번의 반복 작업)</span></h3>
+            <div className='ts_box'>
+                <h2 className='bg_blue bold'>BCrypt</h2>
+                <h3>※ BCrypt는 Blowfish 암호 알고리즘의 확장판을 기반으로 한 해시 함수</h3>
+                <h3>※ 비밀번호 해시화에 사용되는 강력한 암호화 알고리즘</h3>
+                <h3>※ Salt와 반복 횟수를 사용하여 보안을 강화 / salt는 암호화 과정에서 자동 생성 / 반복 횟수는 기본 10회</h3>
+                <h3>※ Salt는 비밀번호 해싱 과정에 추가되어, 같은 비밀번호라도 다른 Salt 값으로 다른 해시 결과 생성</h3>
+                <h3>※ 반복횟수는 최소 4 ~ 최대 31 까지 가능 (10 : 기본값, 12 : 높은 보안 요구시, 14 : 매우 높은 보안 요구시)</h3>
+                <h3>※ Blowfish 알고리즘을 2^N 번 반복이 진행되어 N(반복 횟수)가 높으면 보안이 강력해지지만 연산 시간이 기하급수적으로 상승</h3>
+                <h3>※ 최소 반복 횟수: 4 (2^4 = 16번의 반복 작업) / <span className='red bold'>최대 반복 횟수: 31 (2^31 = 약 21억 번의 반복 작업)</span></h3>
+            </div>
 
+            <div className='encodeBox frame'>
                 <div className='encoding'>
                     <h4>암호화</h4>
                     <div>
@@ -338,13 +342,16 @@ const EncryptionPage = () => {
                 </table>
             </div>
 
-            <h1>양방향 암호화</h1>
-            <div className='encodeBox'>
-                <h2>AES</h2>
-                <h3>현재 가장 널리 사용되는 대칭 키 암호화 알고리즘</h3>
-                <h3>AES는 데이터를 블록 단위로 암호화하며, 보통 128bit, 192bit, 256bit의 키 길이를 사용</h3>
-                <h3>bit에 따라서 AES-128, AES-192, AES-256 으로 나누어짐</h3>
+            <div className='ts_box'>
+                <br/><div className='line'></div>
+                <h1 className='bg_red'>양방향 암호화</h1>
+                <h2 className='bg_blue bold'>AES</h2>
+                <h3>※ 현재 가장 널리 사용되는 대칭 키 암호화 알고리즘</h3>
+                <h3>※ AES는 데이터를 블록 단위로 암호화하며, 보통 128bit, 192bit, 256bit의 키 길이를 사용</h3>
+                <h3>※ bit에 따라서 AES-128, AES-192, AES-256 으로 나누어짐</h3>
+            </div>
 
+            <div className='encodeBox frame'>
                 <div className='encoding'>
                     <h4>암호화</h4>
                     <div>
@@ -401,14 +408,16 @@ const EncryptionPage = () => {
                 </div>
             </div>
 
-            <div className='encodeBox'>
-                <h2>RSA</h2>
-                <h3>RSA는 전 세계에서 가장 많이 사용되는 공개키 암호 알고리즘</h3>
-                <h3>공개 키와 비밀 키 쌍을 사용하여 데이터를 암호화하고 복호화</h3>
-                <h3>RSA 알고리즘의 보안성은 소인수분해 문제가 매우 복잡하고 시간이 많이 걸린다는 점에 근거</h3>
-                <h3>B의 공개 키로 암호화 - B의 비밀번호 키로 복호화 (기밀성 보장을 위한 암호화)</h3>
-                <h3>A의 비밀 키로 암호화 - A의 공개 키로 복호화 (무결성 및 인증 보장)</h3>
+            <div className='ts_box'>
+                <h2 className='bg_blue bold'>RSA</h2>
+                <h3>※ RSA는 전 세계에서 가장 많이 사용되는 공개키 암호 알고리즘</h3>
+                <h3>※ 공개 키와 비밀 키 쌍을 사용하여 데이터를 암호화하고 복호화</h3>
+                <h3>※ RSA 알고리즘의 보안성은 소인수분해 문제가 매우 복잡하고 시간이 많이 걸린다는 점에 근거</h3>
+                <h3>※ B의 공개 키로 암호화 - B의 비밀번호 키로 복호화 (기밀성 보장을 위한 암호화)</h3>
+                <h3>※ A의 비밀 키로 암호화 - A의 공개 키로 복호화 (무결성 및 인증 보장)</h3>
+            </div>
 
+            <div className='encodeBox frame'>
                 <table className='RSATable'>
                     <tr>
                         <td>USER A <button onClick={() => cerateRSAKeys("userA")}>key 생성</button></td>

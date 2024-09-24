@@ -219,9 +219,9 @@ const DataStorage = () => {
     // Remember User Id
     const rememberId = () => {
         if (saveId) {
-            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; path=/;`;
+            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure= true; http-only= true; same-site= none; path=/;`;
         }else {
-            document.cookie = `REF_SAVE=; Max-Age=0; path=/;`;
+            document.cookie = `REF_SAVE=; Max-Age=0; secure= true; http-only= true; same-site= none; path=/;`;
         }
     }
 
@@ -279,7 +279,7 @@ const DataStorage = () => {
                 <h3 >세션은 클라이언트와 서버 간의 상태를 유지하기 위해 서버 측에서 관리되는 데이터</h3>
                 <h3>클라이언트와 상호작용하는 동안 사용자의 상태를 유지하는 역할을 함</h3>
 
-                <div className='line'></div>
+                <br/><div className='line'></div>
 
                 <h1>쿠키와 세션을 이용한 예제</h1>
                 <h2 className='bg_green bold'>로그인 (Login)</h2>
@@ -290,7 +290,7 @@ const DataStorage = () => {
             </div>
 
 
-            <div className='storageBox'>
+            <div className='storageBox frame'>
                 {loginState && loginState != null ? (
                     <div id='loginBox'>
                         <h2>{userInfo.userName} 님</h2>

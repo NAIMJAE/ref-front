@@ -4,7 +4,7 @@ const PopupComponent = ({ setPopup }) => {
 
     // Create REF_POPUP Cookie
     const createCookie = () => {
-        document.cookie = 'REF_POPUP=true; Max-Age=86400; path=/;';
+        document.cookie = 'REF_POPUP=true; Max-Age=86400; secure= true; http-only= true; same-site= none; path=/;';
         setPopup(false);
     }
 
