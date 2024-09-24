@@ -27,7 +27,7 @@ const Tictactoe = () => {
     const webSocket = useRef();
     useEffect(() => {
         /** 소켓 연결 */
-        webSocket.current = new WebSocket(`ws://${Host}:8080/ref/tictactoe`);
+        webSocket.current = new WebSocket(`wss://${Host}/ref/tictactoe`);
 
         webSocket.current.onopen = () => {
             console.log('WebSocket 연결!');

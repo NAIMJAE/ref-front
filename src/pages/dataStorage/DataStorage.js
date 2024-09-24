@@ -82,6 +82,7 @@ const DataStorage = () => {
         }
         loginCheck();
         saveIdCheck(); // REF_SAVE Cookie Check
+        checkCookie();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -193,7 +194,6 @@ const DataStorage = () => {
     // Read REF_SAVE Cookie
     const saveIdCheck = () => {
         const save = getCookie("REF_SAVE");
-
         if (save !== null) {
             setLoginData((prev) => ({...prev, uid : save}));
             setSaveId(true);
@@ -225,13 +225,70 @@ const DataStorage = () => {
         }
     }
 
-    // 팝업창 만들기, 노션 정리 
+    const [cookies, setCookies] = useState({
+        REF_LOGIN: "null",
+        REF_AUTO: "null",
+        REF_SAVE: "null",
+        REF_INFO: "null",
+        REF_POPUP: "null",
+        REF_CART: "null",
+        REF_USER_CART: "null",
+    });
+
+    const checkCookie = () => {
+        const cookieArr = document.cookie.split(";");
+
+        // 새로운 쿠키 객체 생성 (현재 쿠키 상태 복사)
+        let newCookies = { ...cookies };
+
+        for (let i = 0; i < cookieArr.length; i++) {
+            // 쿠키 이름과 값을 '='로 분리
+            let cookiePair = cookieArr[i].split("=");
+
+            // 쿠키 이름의 공백을 제거하고 일치하는 이름 찾기
+            let name = cookiePair[0].trim(); // 쿠키 이름
+            let value = decodeURIComponent(cookiePair[1]); // 쿠키 값
+
+            // 쿠키 이름이 useState 내 상태 이름과 일치할 경우 값 업데이트
+            if (newCookies.hasOwnProperty(name)) {
+                newCookies[name] = value;
+            }
+        }
+
+        // 상태 업데이트
+        setCookies(newCookies);
+    }
 
   return (
     <MainLayout>
         <div id='DataStorage'>
 
             {popup && <PopupComponent setPopup={setPopup}/>}
+
+            <div className='ts_box'>
+                <h1>웹 브라우저의 데이터 저장소</h1>
+                <h2 className='bg_blue bold'>캐시 (Cache)</h2>
+                <h3 >캐시는 자주 사용되거나 다시 사용할 가능성이 높은 데이터를 임시로 저장하는 역할</h3>
+                <h3 >캐시는 네트워크 요청을 줄이고, 서버 부하를 줄이며, 응답 속도를 개선할 수 있음</h3>
+
+                <h2 className='bg_blue bold'>쿠키 (Cookie)</h2>
+                <h3 >쿠키는 클라이언트에 소량의 데이터를 저장하는 방법</h3>
+                <h3 >사용자의 로그인 상태나 선호 설정 등을 저장하여, 클라이언트가 다시 접속했을 때 상태를 유지</h3>
+
+                <h2 className='bg_blue bold'>세션 (Session)</h2>
+                <h3 >세션은 클라이언트와 서버 간의 상태를 유지하기 위해 서버 측에서 관리되는 데이터</h3>
+                <h3>클라이언트와 상호작용하는 동안 사용자의 상태를 유지하는 역할을 함</h3>
+
+                <div className='line'></div>
+
+                <h1>쿠키와 세션을 이용한 예제</h1>
+                <h2 className='bg_green bold'>로그인 (Login)</h2>
+                <h3 >사용자 인증 성공시 사용자의 세션에 회원 정보를 저장한 뒤, 로그인 유무와 사용자 정보를 쿠키로 반환</h3>
+                <h3 >로그인 유무와 사용자 정보를 저장하는 쿠키는 세션 쿠키로 생성되어, 해당 세션이 만료되면 사라짐</h3>
+                <h3 >아이디 저장, 자동 로그인과 같은 기능은 영구 쿠키를 이용해 일정 기간동안 사용자 선택 사항을 저장</h3>
+
+            </div>
+
 
             <div className='storageBox'>
                 {loginState && loginState != null ? (
@@ -259,8 +316,56 @@ const DataStorage = () => {
                         </div>
                         
                         <button onClick={loginBtn}>login</button>
+                        <h3>샘플 계정 abcd1234 / abcd1234!</h3>
                     </div>
                 )}
+                <div id='cookieBox'>
+                    {cookies && 
+                        <table>
+                            <tr>
+                                <td>REF_LOGIN</td>
+                                <td>로그인 유무</td>
+                                <td>{cookies.REF_LOGIN}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_POPUP</td>
+                                <td>팝업 관리</td>
+                                <td>{cookies.REF_POPUP}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_AUTO</td>
+                                <td>자동 로그인</td>
+                                <td>{cookies.REF_AUTO}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_CART</td>
+                                <td>비회원 CART</td>
+                                <td>{cookies.REF_CART}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_SAVE</td>
+                                <td>아이디 저장</td>
+                                <td>{cookies.REF_SAVE}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_USER_CART</td>
+                                <td>회원 CART</td>
+                                <td>{cookies.REF_USER_CART}</td>
+                            </tr>
+                            <tr>
+                                <td>REF_INFO</td>
+                                <td>사용자 정보</td>
+                                <td>{cookies.REF_INFO}</td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
+
+            <div className='ts_box'>
+                <h2 className='bg_green bold'>장바구니 (Cart)</h2>
+                <h3 >비로그인 상태에서 장바구니에 추가하는 상품들은 브라우저의 쿠키에 저장</h3>
+                <h3 >사용자가 로그인 시 쿠키에 저장되어 있는 상품들을 사용자의 장바구니 데이터베이스에 업데이트</h3>
             </div>
             
             <ShoppingConponent product={product} userCart={userCart} loginState={loginState}
