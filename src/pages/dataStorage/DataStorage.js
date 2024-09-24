@@ -219,9 +219,9 @@ const DataStorage = () => {
     // Remember User Id
     const rememberId = () => {
         if (saveId) {
-            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; path=/;`;
+            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure= true; http-only= true; same-site= none; path=/;`;
         }else {
-            document.cookie = `REF_SAVE=; Max-Age=0; path=/;`;
+            document.cookie = `REF_SAVE=; Max-Age=0; secure= true; http-only= true; same-site= none; path=/;`;
         }
     }
 
@@ -290,7 +290,7 @@ const DataStorage = () => {
             </div>
 
 
-            <div className='storageBox'>
+            <div className='storageBox frame'>
                 {loginState && loginState != null ? (
                     <div id='loginBox'>
                         <h2>{userInfo.userName} 님</h2>
