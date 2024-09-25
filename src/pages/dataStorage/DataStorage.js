@@ -239,7 +239,6 @@ const DataStorage = () => {
     const checkCookie = () => {
         setTimeout(() => {
             const cookieArr = document.cookie.split(";");
-            console.log("cookieArr : ",cookieArr);
 
             // 새로운 쿠키 객체 생성 (현재 쿠키 상태 복사)
             let newCookies = { ...cookies };
