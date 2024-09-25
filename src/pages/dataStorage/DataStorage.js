@@ -220,9 +220,9 @@ const DataStorage = () => {
     // Remember User Id
     const rememberId = () => {
         if (saveId) {
-            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure= true; sameSite= none; path=/;`;
+            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure; sameSite=none; domain=.refcode.info; path=/;`;
         }else {
-            document.cookie = `REF_SAVE=; Max-Age=0; secure= true; sameSite= none; path=/;`;
+            document.cookie = `REF_SAVE=; Max-Age=0; secure; sameSite=none; domain=.refcode.info; path=/;`;
         }
     }
 
