@@ -1,7 +1,7 @@
 import React from 'react'
 import { managmentCartApi } from '../../api/DataStorageApi';
 
-const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCart, prodInCartCheck }) => {
+const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCart, prodInCartCheck, checkCookie }) => {
 
     
     // 장바구니 추가
@@ -22,10 +22,10 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 
                 // 상품이 없으면 추가
                 const newCart = [...cartArr, prodId].join(".");
-                document.cookie = `REF_CART=${newCart}; secure= true; http-only= true; same-site= none; path=/;`;
+                document.cookie = `REF_CART=${newCart}; secure= true; sameSite= none; path=/;`;
 
             } else {
-                document.cookie = `REF_CART=${prodId}; secure= true; http-only= true; same-site= none; path=/;`;
+                document.cookie = `REF_CART=${prodId}; secure= true; sameSite= none; path=/;`;
             }
             product.forEach((prod) => {
                 if (prod.prodId === prodId) {
@@ -46,6 +46,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             // userCart 를 response 받은 값으로 업데이트
             prodInCartCheck();
         }
+        checkCookie(); // Check All Cookies
     }
 
     // 장바구니 삭제
@@ -86,11 +87,11 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             // userCart 를 response 받은 값으로 업데이트
             prodInCartCheck();
         }
+        checkCookie(); // Check All Cookies
     }
 
   return (
     <div className='storageBox frame'>
-        <div className='pin'></div>
         <div className='shoppingBox'>
             <h2>쇼핑</h2>
             {product && product.map((prod, index) => (

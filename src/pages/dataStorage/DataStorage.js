@@ -82,7 +82,7 @@ const DataStorage = () => {
         }
         loginCheck();
         saveIdCheck(); // REF_SAVE Cookie Check
-        checkCookie();
+        checkCookie(); // Check All Cookies
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -161,7 +161,6 @@ const DataStorage = () => {
             alert("아이디와 비밀번호를 입력해주세요.");
             return;
         }
-
         try {
             const response = await sessionLoginApi(loginData);
 
@@ -175,6 +174,7 @@ const DataStorage = () => {
         } catch (error) {
             console.log(error);
         }
+        checkCookie(); // Check All Cookies
     }
 
     // Read REF_INFO Cookie
@@ -214,14 +214,15 @@ const DataStorage = () => {
         } catch (error) {
             console.log(error);
         }
+        checkCookie(); // Check All Cookies
     }
 
     // Remember User Id
     const rememberId = () => {
         if (saveId) {
-            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure= true; http-only= true; same-site= none; path=/;`;
+            document.cookie = `REF_SAVE=${loginData.uid}; Max-Age=604800; secure= true; sameSite= none; path=/;`;
         }else {
-            document.cookie = `REF_SAVE=; Max-Age=0; secure= true; http-only= true; same-site= none; path=/;`;
+            document.cookie = `REF_SAVE=; Max-Age=0; secure= true; sameSite= none; path=/;`;
         }
     }
 
@@ -236,27 +237,35 @@ const DataStorage = () => {
     });
 
     const checkCookie = () => {
-        const cookieArr = document.cookie.split(";");
+        setTimeout(() => {
+            const cookieArr = document.cookie.split(";");
 
-        // 새로운 쿠키 객체 생성 (현재 쿠키 상태 복사)
-        let newCookies = { ...cookies };
+            // 새로운 쿠키 객체 생성 (현재 쿠키 상태 복사)
+            let newCookies = { ...cookies };
 
-        for (let i = 0; i < cookieArr.length; i++) {
-            // 쿠키 이름과 값을 '='로 분리
-            let cookiePair = cookieArr[i].split("=");
+            for (let i = 0; i < cookieArr.length; i++) {
+                // 쿠키 이름과 값을 '='로 분리
+                let cookiePair = cookieArr[i].split("=");
 
-            // 쿠키 이름의 공백을 제거하고 일치하는 이름 찾기
-            let name = cookiePair[0].trim(); // 쿠키 이름
-            let value = decodeURIComponent(cookiePair[1]); // 쿠키 값
+                // 쿠키 이름의 공백을 제거하고 일치하는 이름 찾기
+                let name = cookiePair[0].trim(); // 쿠키 이름
+                let value = decodeURIComponent(cookiePair[1]); // 쿠키 값
 
-            // 쿠키 이름이 useState 내 상태 이름과 일치할 경우 값 업데이트
-            if (newCookies.hasOwnProperty(name)) {
-                newCookies[name] = value;
+                // 쿠키 이름이 useState 내 상태 이름과 일치할 경우 값 업데이트
+                if (newCookies.hasOwnProperty(name)) {
+                    newCookies[name] = value;
+                }
             }
-        }
-
-        // 상태 업데이트
-        setCookies(newCookies);
+    
+            // 상태에 정의된 모든 쿠키 이름을 순회하면서 값이 없으면 null로 설정
+            for (let key in newCookies) {
+                if (!cookieArr.some(cookie => cookie.trim().startsWith(key + "="))) {
+                    newCookies[key] = "null";
+                }
+            }
+            // 상태 업데이트
+            setCookies(newCookies);
+        }, 100);
     }
 
   return (
@@ -369,7 +378,7 @@ const DataStorage = () => {
             </div>
             
             <ShoppingConponent product={product} userCart={userCart} loginState={loginState}
-                getCookie={getCookie} setUserCart={setUserCart} prodInCartCheck={prodInCartCheck}/>
+                getCookie={getCookie} setUserCart={setUserCart} prodInCartCheck={prodInCartCheck} checkCookie={checkCookie}/>
 
         </div>
     </MainLayout>
