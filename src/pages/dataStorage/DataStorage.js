@@ -204,11 +204,12 @@ const DataStorage = () => {
     const logoutBtn = async () => {
         try {
             const response = await sessionLogoutApi();
+            console.log("response : ", response);
             if (response === "SUCCESS LOGOUT") {
-                document.cookie = 'REF_LOGIN=; Max-Age=0; path=/;';
-                document.cookie = 'REF_INFO=; Max-Age=0; path=/;';
-                document.cookie = 'REF_AUTO=; Max-Age=0; path=/;';
-                document.cookie = 'REF_USER_CART=; Max-Age=0; path=/;';
+                document.cookie = 'REF_LOGIN=; Max-Age=0; path=/; domain=.refcode.info;';
+                document.cookie = 'REF_INFO=; Max-Age=0; path=/; domain=.refcode.info;';
+                document.cookie = 'REF_AUTO=; Max-Age=0; path=/; domain=.refcode.info;';
+                document.cookie = 'REF_USER_CART=; Max-Age=0; path=/; domain=.refcode.info;';
                 window.location.reload();
             }
         } catch (error) {
