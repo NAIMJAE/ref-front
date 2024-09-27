@@ -6,6 +6,7 @@ import EncryptionPage from "../pages/Encryption/EncryptionPage";
 import ChatBotApiPage from "../pages/API/ChatBotApiPage";
 import SearchEngine from "../pages/searchEngine/SearchEngine";
 import DataStorage from "../pages/dataStorage/DataStorage";
+import VisitorTracking from "../pages/webAnalytics/VisitorTrackingPage";
 
 const root = createBrowserRouter([
     // main
@@ -26,5 +27,8 @@ const root = createBrowserRouter([
 
     // DataStorage
     { path: '/dataStorage', element: <DataStorage /> },
+
+    //webAnalytics
+    { path: '/visitorTracking', element: <VisitorTracking /> },
 ]);
 export default root;

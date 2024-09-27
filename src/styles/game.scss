@@ -169,6 +169,7 @@
                 background-color: #f0e68c; // 버튼 위에 마우스를 올릴 때 배경색 변경
             }
             &.circle {
+                
                 &::before {
                   content: '';
                   width: 100px; // 원의 너비
