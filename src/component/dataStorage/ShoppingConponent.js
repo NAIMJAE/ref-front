@@ -22,10 +22,10 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
                 
                 // 상품이 없으면 추가
                 const newCart = [...cartArr, prodId].join(".");
-                document.cookie = `REF_CART=${newCart}; secure= true; sameSite= none; path=/;`;
+                document.cookie = `REF_CART=${newCart}; secure; sameSite=none; domain=.refcode.info; path=/;`;
 
             } else {
-                document.cookie = `REF_CART=${prodId}; secure= true; sameSite= none; path=/;`;
+                document.cookie = `REF_CART=${prodId}; secure; sameSite=none; domain=.refcode.info; path=/;`;
             }
             product.forEach((prod) => {
                 if (prod.prodId === prodId) {

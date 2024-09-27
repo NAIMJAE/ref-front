@@ -95,7 +95,6 @@ body {
 }
 #footer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-self: center;
     align-items: center;
@@ -103,27 +102,66 @@ body {
     padding: 20px 20px 40px 20px;
     z-index: 2;
     border-top: 1px solid #333333;
+    justify-content: space-between;
 
     > div {
         display: flex;
-        margin-bottom: 20px;
+        flex-direction: column;
+        align-self: start;
+        padding: 0 10px;
         
-        > a {
-            font-size: 18px;
+        > h2 {
+            font-size: 20px;
             font-weight: bolder;
+            padding: 0 40px 10px 40px;
             color: #333333;
         }
-        > p {
-            padding: 0 20px;
-            font-size: 18px;
-            font-weight: bolder;
+        > h3 {
+            font-size: 14px;
+            padding: 2px 40px;
             color: #333333;
         }
-    }
-    > h2 {
-        font-size: 16px;
-        padding: 4px 0;
-        color: #333333;
+
+        > div {
+            display: flex;
+
+            > .creator {
+                display: flex;
+                flex-direction: column;
+                padding: 0 40px;
+    
+                > div {
+                    display: flex;
+                }
+                > .name {
+                    align-items: center;
+    
+                    > img {
+                        display: flex;
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                    > h1 {
+                        font-size: 16px;
+                        font-weight: bolder;
+                        color: #333333;
+                    }
+                }
+                > .icon {
+                    margin-top: 5px;
+                    > a {
+                        display: flex;
+                        > img {
+                            display: flex;
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
