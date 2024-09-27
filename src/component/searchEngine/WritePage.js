@@ -26,7 +26,7 @@ const WritePage = ({ changePage, uid }) => {
     }
 
   return (
-    <div id='writePage'>
+    <div id='writePage' className='frame'>
         <h1>게시글 작성</h1>
 
         <input type="text" placeholder='제목' value={post.title} 
