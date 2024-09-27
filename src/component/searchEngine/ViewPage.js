@@ -24,7 +24,7 @@ const ViewPage = ({ changePage, pageNo }) => {
   }
 
   return (
-    <div id='viewPage'>
+    <div id='viewPage' className='frame'>
       <h1>글 보기</h1>
       <input type='text' readOnly value={post.title}/>
       <textarea value={post.contents} readOnly></textarea>

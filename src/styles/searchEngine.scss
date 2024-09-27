@@ -1,31 +1,38 @@
 #searchEngine {
     display: flex;
     width: 100%;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     button {
         font-size: 16px;
         cursor: pointer;
         padding: 4px 10px;
-        background-color: #EBE3D5;
-        border: 1px solid #B0A695;
+        background-color: #e7e7e7;
+        border: 1px solid #b8b8b8;
         border-radius: 4px;
     }
     button:hover {
-        background-color: #c7b9a1;
-    }
-
-    h1 {
-        font-size: 20px;
-        font-weight: bolder;
-        margin: 20px 0;
+        background-color: #b8b8b8;
     }
 
     > #listPage {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width: 900px;
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            width: 800px;
+            font-size: 20px;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #000;
+        }
 
         > div {
             display: flex;
@@ -33,27 +40,46 @@
         }
 
         > .searchBar {
+            padding: 10px 0;
             > div {
                 display: flex;
 
                 > input {
                     width: 600px;
                     font-size: 16px;
-                    padding: 6px 10px;
+                    padding: 4px 10px;
                     margin-right: 4px;
+                    border: 1px solid #b8b8b8;
+                    border-radius: 4px;
                 }
                 > h5 {
                     display: flex;
+                    width: 140px;
                     font-size: 16px;
                     font-weight: bolder;
                     align-items: center;
-                    margin-right: 10px;
                 }
+            }
+        }
+
+        > .example {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            padding: 0 30px;
+
+            > h2 {
+                font-size: 14px;
+                font-style: italic;
+                padding: 2px 0;
+                color: #3e3e3e;
             }
         }
 
         > .postList {
             width: 800px;
+
             > table {
                 border: 1px solid #111;
                 border-collapse: collapse;
@@ -108,6 +134,11 @@
 
         > .postPaging {
             
+            h1 {
+                font-size: 20px;
+                font-weight: bolder;
+                margin: 20px 0;
+            }
         }
 
         > .postBtn {
@@ -120,18 +151,29 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 800px;
+        width: 900px;
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            width: 800px;
+            font-size: 20px;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #000;
+        }
 
         > input {
             display: flex;
-            width: 100%;
+            width: 800px;
             font-size: 16px;
             padding: 6px 10px;
             margin: 10px 0;
         }
         > textarea {
             display: flex;
-            width: 100%;
+            width: 800px;
             min-height: 600px;
             font-size: 16px;
             padding: 6px 10px;
@@ -154,11 +196,22 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 800px;
+        width: 900px;
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            width: 800px;
+            font-size: 20px;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #000;
+        }
 
         > input {
             display: flex;
-            width: 100%;
+            width: 800px;
             font-size: 20px;
             font-weight: bolder;
             padding: 6px 10px;
@@ -169,7 +222,7 @@
         }
         > textarea {
             display: flex;
-            width: 100%;
+            width: 800px;
             min-height: 600px;
             font-size: 16px;
             padding: 6px 10px;
