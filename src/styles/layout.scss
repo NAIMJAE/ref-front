@@ -121,6 +121,12 @@ body {
             padding: 2px 40px;
             color: #333333;
         }
+        >h4 {
+            font-size: 14px;
+            font-weight: bolder;
+            padding: 2px 40px;
+            color: #333333;
+        }
 
         > div {
             display: flex;
@@ -303,6 +309,11 @@ body {
             font-size: 16px;
         }
     }
+    .exam {
+        font-size: 14px;
+        font-style: italic;
+        margin: 2px 0px 2px 40px;
+    }
     .bold {
         font-weight: bolder;
     }
@@ -313,7 +324,7 @@ body {
         color: blue;
     }
     .green {
-        color: green;
+        color: rgb(0, 135, 0);
     }
     .brown {
         color: brown;
@@ -322,7 +333,7 @@ body {
         color: yellow;
     }
     .orange {
-        color: orange;
+        color: rgb(224, 146, 0);
     }
     .gray {
         color: gray;

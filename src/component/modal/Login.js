@@ -44,14 +44,17 @@ const Login = ({ setLoginModal }) => {
     }
 
   return (
-    <div className='modalBox'  onClick={() => setLoginModal(false)}>
+    <div className='modalBox'>
         <div className='modal login' onClick={bubblingBlock}>
-            <h1>Login</h1>
-            <div>
+            <div className='head'>
+                <h1>Login</h1>
+                <p onClick={() => setLoginModal(false)}>X</p>
+            </div>
+            <div className='input'>
                 <h2>Id</h2>
                 <input type="text" name='uid' value={userData.uid} onChange={inputData}/>
             </div>
-            <div>
+            <div className='input'>
                 <h2>Password</h2>
                 <input type="password" name='password' value={userData.password} onChange={inputData}/>
             </div>
