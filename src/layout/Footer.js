@@ -10,7 +10,7 @@ const Footer = () => {
           <h3>RefCode introduces various web programming concepts and provides examples.</h3>
           <h3>Enhance your web programming skills with RefCode.</h3>
           {/**<전체를 뒤엎을 변화>.<기능 수정, 기능 추가>.<버그, 내부 적 코드 보완>.<배포날짜>*/}
-          <h4>v1.2.1.2409281</h4>
+          <h4>v1.2.2.2410131</h4>
         </div>
         <div>
           <h2>Creator</h2>
