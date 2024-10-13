@@ -324,95 +324,97 @@ const OpenApiPage = () => {
                 </table>
             </div>
 
-            <div>
-                <p>불러오기 예제</p>
-                <h3>/getCharacterInfo (이름으로 캐릭터 정보 조회)</h3>
-                <div className='charInfoBtn'>
-                    <input type="text" value={charName} onChange={(e) => setCharName(e.target.value)}/>
-                    <button onClick={getInfoByName}>검색</button>
-                </div>
-                <table className='charInfo'>
-                    <tr>
-                        <td rowSpan={5}>
-                            <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
-                        </td>
-                        <td>이름</td>
-                        <td>{charInfo.charName}</td>
-                        <td>성별</td>
-                        <td>{charInfo.charGender}</td>
-                    </tr>
-                    <tr>
-                        <td>생년월일</td>
-                        <td>{charInfo.charBirth}</td>
-                        <td>나이</td>
-                        <td>{charInfo.charAge}</td>
-                    </tr>
-                    <tr>
-                        <td>키</td>
-                        <td>{charInfo.charHeight}</td>
-                        <td>몸무게</td>
-                        <td>{charInfo.charWeight}</td>
-                    </tr>
-                    <tr>
-                        <td>직업</td>
-                        <td>{charInfo.charJob}</td>
-                        <td>혈액형</td>
-                        <td>{charInfo.charBloodType}</td>
-                    </tr>
-                    <tr>
-                        <td>기타</td>
-                        <td colSpan={3}>{charInfo.charEtc}</td>
-                    </tr>
-                </table>
-
-                <h3>/getCharacterListInfo (캐릭터 전체 정보 조회)</h3>
-                <div className='allInfo'>
-                    <label htmlFor="">
-                        <h2>페이지번호</h2>
-                        <input type="number" min="1" value={pg} onChange={(e) => setPg(e.target.value)}/>
-                    </label>
-                    <label htmlFor="">
-                        <h2>검색결과수</h2>
-                        <input type="number" step="5" min="5" max="20" value={rows} onChange={(e) => setRows(e.target.value)}/>
-                    </label>
-                    <button onClick={getAllInfo}>전체 부르기</button>
-                </div>
-
-                {charInfoList.length > 0 && charInfoList.map((charInfo, index) => (
-                    <table className='charInfo' key={index}>
-                    <tr>
-                        <td rowSpan={5}>
-                            <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
-                        </td>
-                        <td>이름</td>
-                        <td>{charInfo.charName}</td>
-                        <td>성별</td>
-                        <td>{charInfo.charGender}</td>
-                    </tr>
-                    <tr>
-                        <td>생년월일</td>
-                        <td>{charInfo.charBirth}</td>
-                        <td>나이</td>
-                        <td>{charInfo.charAge}</td>
-                    </tr>
-                    <tr>
-                        <td>키</td>
-                        <td>{charInfo.charHeight}</td>
-                        <td>몸무게</td>
-                        <td>{charInfo.charWeight}</td>
-                    </tr>
-                    <tr>
-                        <td>직업</td>
-                        <td>{charInfo.charJob}</td>
-                        <td>혈액형</td>
-                        <td>{charInfo.charBloodType}</td>
-                    </tr>
-                    <tr>
-                        <td>기타</td>
-                        <td colSpan={3}>{charInfo.charEtc}</td>
-                    </tr>
+            <div className='frame'>
+                <p className='frameInfo'>불러오기 예제 (로그인 및 인증키를 발급 후 사용 가능)</p>
+                <div className='frameBody'>
+                    <h3>/getCharacterInfo (이름으로 캐릭터 정보 조회)</h3>
+                    <div className='charInfoBtn'>
+                        <input type="text" value={charName} onChange={(e) => setCharName(e.target.value)}/>
+                        <button onClick={getInfoByName}>검색</button>
+                    </div>
+                    <table className='charInfo'>
+                        <tr>
+                            <td rowSpan={5}>
+                                <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
+                            </td>
+                            <td>이름</td>
+                            <td>{charInfo.charName}</td>
+                            <td>성별</td>
+                            <td>{charInfo.charGender}</td>
+                        </tr>
+                        <tr>
+                            <td>생년월일</td>
+                            <td>{charInfo.charBirth}</td>
+                            <td>나이</td>
+                            <td>{charInfo.charAge}</td>
+                        </tr>
+                        <tr>
+                            <td>키</td>
+                            <td>{charInfo.charHeight}</td>
+                            <td>몸무게</td>
+                            <td>{charInfo.charWeight}</td>
+                        </tr>
+                        <tr>
+                            <td>직업</td>
+                            <td>{charInfo.charJob}</td>
+                            <td>혈액형</td>
+                            <td>{charInfo.charBloodType}</td>
+                        </tr>
+                        <tr>
+                            <td>기타</td>
+                            <td colSpan={3}>{charInfo.charEtc}</td>
+                        </tr>
                     </table>
-                ))}
+
+                    <h3>/getCharacterListInfo (캐릭터 전체 정보 조회)</h3>
+                    <div className='allInfo'>
+                        <label htmlFor="">
+                            <h2>페이지번호</h2>
+                            <input type="number" min="1" value={pg} onChange={(e) => setPg(e.target.value)}/>
+                        </label>
+                        <label htmlFor="">
+                            <h2>검색결과수</h2>
+                            <input type="number" step="5" min="5" max="20" value={rows} onChange={(e) => setRows(e.target.value)}/>
+                        </label>
+                        <button onClick={getAllInfo}>전체 부르기</button>
+                    </div>
+
+                    {charInfoList.length > 0 && charInfoList.map((charInfo, index) => (
+                        <table className='charInfo' key={index}>
+                        <tr>
+                            <td rowSpan={5}>
+                                <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
+                            </td>
+                            <td>이름</td>
+                            <td>{charInfo.charName}</td>
+                            <td>성별</td>
+                            <td>{charInfo.charGender}</td>
+                        </tr>
+                        <tr>
+                            <td>생년월일</td>
+                            <td>{charInfo.charBirth}</td>
+                            <td>나이</td>
+                            <td>{charInfo.charAge}</td>
+                        </tr>
+                        <tr>
+                            <td>키</td>
+                            <td>{charInfo.charHeight}</td>
+                            <td>몸무게</td>
+                            <td>{charInfo.charWeight}</td>
+                        </tr>
+                        <tr>
+                            <td>직업</td>
+                            <td>{charInfo.charJob}</td>
+                            <td>혈액형</td>
+                            <td>{charInfo.charBloodType}</td>
+                        </tr>
+                        <tr>
+                            <td>기타</td>
+                            <td colSpan={3}>{charInfo.charEtc}</td>
+                        </tr>
+                        </table>
+                    ))}
+                </div>
             </div>
         </div>
     </MainLayout>

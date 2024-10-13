@@ -221,50 +221,53 @@ const EncryptionPage = () => {
             </div>
             
             <div className='encodeBox frame'>
-                <div className='encoding'>
-                    <h4>암호화</h4>
-                    <div>
+                <p className='frameInfo'>SHA-256 암호화</p>
+                <div className='frameBody'>
+                    <div className='encoding'>
+                        <h4>암호화</h4>
                         <div>
-                            <h5>전송 메세지 : </h5>
-                            <input type="text" value={SHAResult.Plaintext}
-                                onChange={(e) => setSHAResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            <div>
+                                <h5>전송 메세지 : </h5>
+                                <input type="text" value={SHAResult.Plaintext}
+                                    onChange={(e) => setSHAResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            </div>
                         </div>
+                        <button onClick={SHAEncryption}>전송</button>   
                     </div>
-                    <button onClick={SHAEncryption}>전송</button>   
-                </div>
 
-                <table className='oneWayTable'>
-                    <tr>
-                        <td></td>
-                        <td>평문</td>
-                        <td>암호문</td>
-                    </tr>
-                    <tr>
-                        <td>기록</td>
-                        <td>
-                            {SHARecode.Plaintext.length > 0 && (
-                                <ul>
-                                    {SHARecode.Plaintext.map((text, index) => (
-                                        <li key={index}>
-                                            {text}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </td>
-                        <td>
-                            {SHARecode.Ciphertext.length > 0 && (
-                                <ul>
-                                    {SHARecode.Ciphertext.map((cipher, index) => (
-                                        <li key={index}>
-                                            {cipher}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </td>
-                    </tr>
-                </table>
+                    <table className='oneWayTable'>
+                        <tr>
+                            <td></td>
+                            <td>평문</td>
+                            <td>암호문</td>
+                        </tr>
+                        <tr>
+                            <td>기록</td>
+                            <td>
+                                {SHARecode.Plaintext.length > 0 && (
+                                    <ul>
+                                        {SHARecode.Plaintext.map((text, index) => (
+                                            <li key={index}>
+                                                {text}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </td>
+                            <td>
+                                {SHARecode.Ciphertext.length > 0 && (
+                                    <ul>
+                                        {SHARecode.Ciphertext.map((cipher, index) => (
+                                            <li key={index}>
+                                                {cipher}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div className='ts_box'>
@@ -279,67 +282,70 @@ const EncryptionPage = () => {
             </div>
 
             <div className='encodeBox frame'>
-                <div className='encoding'>
-                    <h4>암호화</h4>
-                    <div>
+                <p className='frameInfo'>BCrypt 암호화</p>
+                <div className='frameBody'>
+                    <div className='encoding'>
+                        <h4>암호화</h4>
                         <div>
-                            <h5>전송 메세지 : </h5>
-                            <input type="text" value={BCryptResult.Plaintext}
-                                onChange={(e) => setBCryptResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            <div>
+                                <h5>전송 메세지 : </h5>
+                                <input type="text" value={BCryptResult.Plaintext}
+                                    onChange={(e) => setBCryptResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            </div>
+                            <div>
+                                <h5>반복 횟수 : </h5>
+                                <input type="number" min={4} max={16} value={BCryptResult.Work}
+                                    onChange={(e) => setBCryptResult((prev) => ({ ...prev, Work: e.target.value }))}/>
+                            </div>
                         </div>
-                        <div>
-                            <h5>반복 횟수 : </h5>
-                            <input type="number" min={4} max={16} value={BCryptResult.Work}
-                                onChange={(e) => setBCryptResult((prev) => ({ ...prev, Work: e.target.value }))}/>
-                        </div>
+                        <button onClick={BCryptEncryption}>전송</button>
                     </div>
-                    <button onClick={BCryptEncryption}>전송</button>
-                </div>
 
-                <table className='oneWayTable'>
-                    <tr>
-                        <td></td>
-                        <td>평문</td>
-                        <td>반복횟수</td>
-                        <td>암호문</td>
-                    </tr>
-                    <tr>
-                        <td>기록</td>
-                        <td>
-                            {BCryptRecode.Plaintext.length > 0 && (
-                                <ul>
-                                    {BCryptRecode.Plaintext.map((text, index) => (
-                                        <li key={index}>
-                                            {text}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </td>
-                        <td>
-                            {BCryptRecode.Work.length > 0 && (
-                                <ul>
-                                    {BCryptRecode.Work.map((N, index) => (
-                                        <li key={index}>
-                                            {N}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </td>
-                        <td>
-                            {BCryptRecode.Ciphertext.length > 0 && (
-                                <ul>
-                                    {BCryptRecode.Ciphertext.map((cipher, index) => (
-                                        <li key={index}>
-                                            {cipher}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </td>
-                    </tr>
-                </table>
+                    <table className='oneWayTable'>
+                        <tr>
+                            <td></td>
+                            <td>평문</td>
+                            <td>반복횟수</td>
+                            <td>암호문</td>
+                        </tr>
+                        <tr>
+                            <td>기록</td>
+                            <td>
+                                {BCryptRecode.Plaintext.length > 0 && (
+                                    <ul>
+                                        {BCryptRecode.Plaintext.map((text, index) => (
+                                            <li key={index}>
+                                                {text}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </td>
+                            <td>
+                                {BCryptRecode.Work.length > 0 && (
+                                    <ul>
+                                        {BCryptRecode.Work.map((N, index) => (
+                                            <li key={index}>
+                                                {N}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </td>
+                            <td>
+                                {BCryptRecode.Ciphertext.length > 0 && (
+                                    <ul>
+                                        {BCryptRecode.Ciphertext.map((cipher, index) => (
+                                            <li key={index}>
+                                                {cipher}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div className='ts_box'>
@@ -352,59 +358,62 @@ const EncryptionPage = () => {
             </div>
 
             <div className='encodeBox frame'>
-                <div className='encoding'>
-                    <h4>암호화</h4>
-                    <div>
+                <p className='frameInfo'>AES 암호화</p>
+                <div className='frameBody'>
+                    <div className='encoding'>
+                        <h4>암호화</h4>
                         <div>
-                            <h5>전송 메세지 : </h5>
-                            <input type="text" value={AESResult.Plaintext}
-                                onChange={(e) => setAESResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            <div>
+                                <h5>전송 메세지 : </h5>
+                                <input type="text" value={AESResult.Plaintext}
+                                    onChange={(e) => setAESResult((prev) => ({ ...prev, Plaintext: e.target.value }))}/>
+                            </div>
+                            <div>
+                                <h5>암호화 키 bit : </h5>
+                                <select value={AESResult.Bit} onChange={(e) => setAESResult((prev) => ({ ...prev, Bit: e.target.value }))}>
+                                    <option value="128">128bit</option>
+                                    <option value="192">192bit</option>
+                                    <option value="256">256bit</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <h5>암호화 키 bit : </h5>
-                            <select value={AESResult.Bit} onChange={(e) => setAESResult((prev) => ({ ...prev, Bit: e.target.value }))}>
-                                <option value="128">128bit</option>
-                                <option value="192">192bit</option>
-                                <option value="256">256bit</option>
-                            </select>
-                        </div>
+                        <button onClick={AESEncryption}>전송</button>
                     </div>
-                    <button onClick={AESEncryption}>전송</button>
-                </div>
 
-                <table className='oneWayTable'>
-                    <tr>
-                        <td></td>
-                        <td>평문</td>
-                        <td>bit수</td>
-                        <td>SecretKey</td>
-                        <td>암호문</td>
-                    </tr>
-                    <tr>
-                        <td>결과</td>
-                        <td>{AESRecode.Plaintext}</td>
-                        <td>{AESRecode.Bit}</td>
-                        <td>{AESRecode.SecretKey}</td>
-                        <td>{AESRecode.Ciphertext}</td>
-                    </tr>
-                </table>
+                    <table className='oneWayTable'>
+                        <tr>
+                            <td></td>
+                            <td>평문</td>
+                            <td>bit수</td>
+                            <td>SecretKey</td>
+                            <td>암호문</td>
+                        </tr>
+                        <tr>
+                            <td>결과</td>
+                            <td>{AESRecode.Plaintext}</td>
+                            <td>{AESRecode.Bit}</td>
+                            <td>{AESRecode.SecretKey}</td>
+                            <td>{AESRecode.Ciphertext}</td>
+                        </tr>
+                    </table>
 
-                <div className='encoding'>
-                    <h4>복호화</h4>
-                    <div>
+                    <div className='encoding'>
+                        <h4>복호화</h4>
                         <div>
-                            <h5>암호문 : </h5>
-                            <input type="text" value={AESDecrypt.Ciphertext}
-                                onChange={(e) => setAESDecrypt((prev) => ({ ...prev, Ciphertext: e.target.value }))}/>
+                            <div>
+                                <h5>암호문 : </h5>
+                                <input type="text" value={AESDecrypt.Ciphertext}
+                                    onChange={(e) => setAESDecrypt((prev) => ({ ...prev, Ciphertext: e.target.value }))}/>
+                            </div>
+                            <div>
+                                <h5>SecretKey : </h5>
+                                <input type="text" value={AESDecrypt.SecretKey}
+                                    onChange={(e) => setAESDecrypt((prev) => ({ ...prev, SecretKey: e.target.value }))}/>
+                            </div>
                         </div>
-                        <div>
-                            <h5>SecretKey : </h5>
-                            <input type="text" value={AESDecrypt.SecretKey}
-                                onChange={(e) => setAESDecrypt((prev) => ({ ...prev, SecretKey: e.target.value }))}/>
-                        </div>
+                        <button onClick={AESDecryption}>전송</button>
+                        <p>복호화된 평문 : {AESDecrypt.Plaintext}</p>
                     </div>
-                    <button onClick={AESDecryption}>전송</button>
-                    <p>복호화된 평문 : {AESDecrypt.Plaintext}</p>
                 </div>
             </div>
 
@@ -418,64 +427,68 @@ const EncryptionPage = () => {
             </div>
 
             <div className='encodeBox frame'>
-                <table className='RSATable'>
-                    <tr>
-                        <td>USER A <button onClick={() => cerateRSAKeys("userA")}>key 생성</button></td>
-                        <td>USER B <button onClick={() => cerateRSAKeys("userB")}>key 생성</button></td>
-                    </tr>
-                    <tr>
-                        <td>공개 키 : <input type="text" value={userA.publicKey} /></td>
-                        <td>공개 키 : <input type="text" value={userB.publicKey} /></td>
-                    </tr>
-                    <tr>
-                        <td>비밀 키 : <input type="text" value={userA.privateKey} /></td>
-                        <td>비밀 키 : <input type="text" value={userB.privateKey} /></td>
-                    </tr>
-                </table>
+                <p className='frameInfo'>RSA 암호화</p>
 
-                <table className='RSATable2'>
-                    <tr>
-                        <td colSpan={2}>USER A</td>
-                        <td></td>
-                        <td colSpan={2}>USER B</td>
-                    </tr>
-                    <tr>
-                        <td>메세지</td>
-                        <td>
-                            <input type="text" value={RSAprocess.plainText}
-                                onChange={(e) => setRSAprocess((prev) => ({...prev, plainText: e.target.value}))}/>
-                        </td>
-                        <td></td>
-                        <td>수신</td>
-                        <td>
-                            <input type="text" value={RSAprocess.reception}
-                                onChange={(e) => setRSAprocess((prev) => ({...prev, reception: e.target.value}))}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>암호화</td>
-                        <td>
-                            <button className='userBBtn' onClick={() => RSAEncryption("public")}>[USER B] 공개 키로 암호화</button>
-                            <button className='userABtn' onClick={() => RSAEncryption("private")}>[USER A] 비밀 키로 암호화</button>
-                        </td>
-                        <td></td>
-                        <td>복호화</td>
-                        <td>
-                            <button className='userABtn' onClick={() => RSADecryption("public")}>[USER A] 공개 키로 복호화</button>
-                            <button className='userBBtn' onClick={() => RSADecryption("private")}>[USER B] 비밀 키로 복호화</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>암호문</td>
-                        <td>
-                            <input type="text" value={RSAprocess.cipherText} readOnly/>
-                            <button onClick={(e) => setRSAprocess((prev) => ({...prev, reception: RSAprocess.cipherText}))}>전송</button>
-                        </td>
-                        <td></td>
-                        <td>결과</td>
-                        <td><span>{RSAprocess.result}</span></td>
-                    </tr>
-                </table>
+                <div className='frameBody'>
+                    <table className='RSATable'>
+                        <tr>
+                            <td>USER A <button onClick={() => cerateRSAKeys("userA")}>key 생성</button></td>
+                            <td>USER B <button onClick={() => cerateRSAKeys("userB")}>key 생성</button></td>
+                        </tr>
+                        <tr>
+                            <td>공개 키 : <input type="text" value={userA.publicKey} /></td>
+                            <td>공개 키 : <input type="text" value={userB.publicKey} /></td>
+                        </tr>
+                        <tr>
+                            <td>비밀 키 : <input type="text" value={userA.privateKey} /></td>
+                            <td>비밀 키 : <input type="text" value={userB.privateKey} /></td>
+                        </tr>
+                    </table>
+
+                    <table className='RSATable2'>
+                        <tr>
+                            <td colSpan={2}>USER A</td>
+                            <td></td>
+                            <td colSpan={2}>USER B</td>
+                        </tr>
+                        <tr>
+                            <td>메세지</td>
+                            <td>
+                                <input type="text" value={RSAprocess.plainText}
+                                    onChange={(e) => setRSAprocess((prev) => ({...prev, plainText: e.target.value}))}/>
+                            </td>
+                            <td></td>
+                            <td>수신</td>
+                            <td>
+                                <input type="text" value={RSAprocess.reception}
+                                    onChange={(e) => setRSAprocess((prev) => ({...prev, reception: e.target.value}))}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>암호화</td>
+                            <td>
+                                <button className='userBBtn' onClick={() => RSAEncryption("public")}>[USER B] 공개 키로 암호화</button>
+                                <button className='userABtn' onClick={() => RSAEncryption("private")}>[USER A] 비밀 키로 암호화</button>
+                            </td>
+                            <td></td>
+                            <td>복호화</td>
+                            <td>
+                                <button className='userABtn' onClick={() => RSADecryption("public")}>[USER A] 공개 키로 복호화</button>
+                                <button className='userBBtn' onClick={() => RSADecryption("private")}>[USER B] 비밀 키로 복호화</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>암호문</td>
+                            <td>
+                                <input type="text" value={RSAprocess.cipherText} readOnly/>
+                                <button onClick={(e) => setRSAprocess((prev) => ({...prev, reception: RSAprocess.cipherText}))}>전송</button>
+                            </td>
+                            <td></td>
+                            <td>결과</td>
+                            <td><span>{RSAprocess.result}</span></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
         </div>
