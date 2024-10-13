@@ -20,164 +20,166 @@
         display: flex;
     }
     > .encodeBox {
-        flex-direction: column;
 
-        > .encoding {
-            display: flex;
-            padding: 10px;
-            align-items: center;
-            > h4 {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            > div {
+        > div {
+            flex-direction: column;
+            > .encoding {
                 display: flex;
-                flex-direction: column;
+                padding: 10px;
                 align-items: center;
-                padding-left: 20px;
+                > h4 {
+                    font-size: 20px;
+                    font-weight: bolder;
+                }
                 > div {
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    padding: 2px;
-                    > h5 {
-                        width: 120px;
-                        font-size: 16px;
-                    }
-                    > input {
-                        width: 400px;
-                        margin-left: 10px;
-                        padding: 4px;
-                        font-size: 16px;
-                    }
-                    > select {
-                        width: 400px;
-                        margin-left: 10px;
-                        padding: 4px;
-                        font-size: 16px;
-                    }
-                }
-            }
-            > p {
-                margin-left: 10px;
-                padding: 4px;
-                font-size: 16px;
-            }
-        }
-        > .oneWayTable {
-            border: 1px solid #111;
-            border-collapse: collapse;
-            margin: 20px 0;
-            > tr {
-                > td {
-                    border: 1px solid #111;
-                    font-size: 16px;
-                    padding: 4px 10px;
-                    text-align: start;
-                    > ul {
-                        li {
+                    padding-left: 20px;
+                    > div {
+                        display: flex;
+                        align-items: center;
+                        padding: 2px;
+                        > h5 {
+                            width: 120px;
                             font-size: 16px;
-                            margin: 6px 0;
+                        }
+                        > input {
+                            width: 400px;
+                            margin-left: 10px;
+                            padding: 4px;
+                            font-size: 16px;
+                        }
+                        > select {
+                            width: 400px;
+                            margin-left: 10px;
+                            padding: 4px;
+                            font-size: 16px;
                         }
                     }
                 }
-                > td:nth-child(1) {
-                    font-size: 20px;
-                    font-weight: bolder;
-                    width: 200px;
-                    text-align: center;
-                }
-            }
-            > tr:nth-child(1) {
-                td {
-                    font-size: 20px;
-                    font-weight: bolder;
-                    text-align: center;
-                }
-            }
-        }
-        > .RSATable {
-            border: 1px solid #111;
-            border-collapse: collapse;
-            margin: 20px 0;
-            > tr {
-                > td {
+                > p {
+                    margin-left: 10px;
+                    padding: 4px;
                     font-size: 16px;
-                    padding: 6px 10px;
-                    text-align: start;
-                    border: 1px solid #111;
-
-                    > input {
-                        width: 400px;
-                        margin-left: 10px;
-                        padding: 4px;
+                }
+            }
+            > .oneWayTable {
+                border: 1px solid #111;
+                border-collapse: collapse;
+                margin: 20px 0;
+                > tr {
+                    > td {
+                        border: 1px solid #111;
                         font-size: 16px;
+                        padding: 4px 10px;
+                        text-align: start;
+                        > ul {
+                            li {
+                                font-size: 16px;
+                                margin: 6px 0;
+                            }
+                        }
+                    }
+                    > td:nth-child(1) {
+                        font-size: 20px;
+                        font-weight: bolder;
+                        width: 200px;
+                        text-align: center;
+                    }
+                }
+                > tr:nth-child(1) {
+                    td {
+                        font-size: 20px;
+                        font-weight: bolder;
+                        text-align: center;
                     }
                 }
             }
-            > tr:nth-child(1) {
-                > td {
-                    font-size: 20px;
-                    font-weight: bolder;
-                    text-align: center;
-                }
-            }
-        }
-        > .RSATable2 {
-            border: 1px solid #111;
-            border-collapse: collapse;
-            > tr {
-                > td {
-                    font-size: 16px;
-                    padding: 4px 6px;
-                    text-align: start;
-                    border: 1px solid #111;
-                    text-align: center;
-
-                    > .userABtn {
-                        background-color: rgb(255, 215, 215);
-                        border: 1px solid rgb(223, 185, 185);
-                    }
-                    > .userBBtn {
-                        background-color: rgb(193, 221, 235);
-                        border: 1px solid rgb(164, 187, 199);
-                    }
-                    > .userABtn:hover {
-                        background-color: rgb(241, 181, 181);
-                    }
-                    > .userBBtn:hover {
-                        background-color: rgb(163, 206, 229);
-                    }
-                    > input {
-                        width: 440px;
-                        margin-left: 10px;
-                        padding: 4px;
+            > .RSATable {
+                border: 1px solid #111;
+                border-collapse: collapse;
+                margin: 20px 0;
+                > tr {
+                    > td {
                         font-size: 16px;
+                        padding: 6px 10px;
+                        text-align: start;
+                        border: 1px solid #111;
+    
+                        > input {
+                            width: 400px;
+                            margin-left: 10px;
+                            padding: 4px;
+                            font-size: 16px;
+                        }
                     }
-                    > span {
-                        margin-left: 10px;
+                }
+                > tr:nth-child(1) {
+                    > td {
+                        font-size: 20px;
+                        font-weight: bolder;
+                        text-align: center;
+                    }
+                }
+            }
+            > .RSATable2 {
+                border: 1px solid #111;
+                border-collapse: collapse;
+                > tr {
+                    > td {
                         font-size: 16px;
+                        padding: 4px 6px;
+                        text-align: start;
+                        border: 1px solid #111;
+                        text-align: center;
+    
+                        > .userABtn {
+                            background-color: rgb(255, 215, 215);
+                            border: 1px solid rgb(223, 185, 185);
+                        }
+                        > .userBBtn {
+                            background-color: rgb(193, 221, 235);
+                            border: 1px solid rgb(164, 187, 199);
+                        }
+                        > .userABtn:hover {
+                            background-color: rgb(241, 181, 181);
+                        }
+                        > .userBBtn:hover {
+                            background-color: rgb(163, 206, 229);
+                        }
+                        > input {
+                            width: 440px;
+                            margin-left: 10px;
+                            padding: 4px;
+                            font-size: 16px;
+                        }
+                        > span {
+                            margin-left: 10px;
+                            font-size: 16px;
+                        }
                     }
                 }
-            }
-            > tr:nth-child(2), tr:nth-child(3) {
-                td:nth-child(3) {
-                    border-bottom: 1px solid #ffffff;
+                > tr:nth-child(2), tr:nth-child(3) {
+                    td:nth-child(3) {
+                        border-bottom: 1px solid #ffffff;
+                    }
                 }
-            }
-            >  tr:nth-child(1) {
-                td {
-                    font-size: 20px;
-                    font-weight: bolder;
-                    text-align: center;
+                >  tr:nth-child(1) {
+                    td {
+                        font-size: 20px;
+                        font-weight: bolder;
+                        text-align: center;
+                    }
+                    td:nth-child(2) {
+                        border-bottom: 1px solid #ffffff;
+                    }
                 }
-                td:nth-child(2) {
-                    border-bottom: 1px solid #ffffff;
-                }
-            }
-            > tr:nth-child(4) {
-                td:nth-child(2) {
-                    input {
-                        width: 375px;
+                > tr:nth-child(4) {
+                    td:nth-child(2) {
+                        input {
+                            width: 375px;
+                        }
                     }
                 }
             }

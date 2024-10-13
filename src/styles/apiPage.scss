@@ -28,7 +28,7 @@
             font-weight: bolder;
             margin-bottom: 10px;
         }
-        > table {
+        table {
             border: 1px solid #111;
             border-collapse: collapse;
             margin-bottom: 10px;
@@ -55,15 +55,24 @@
             td:nth-child(1), td:nth-child(3) {
                 background-color: rgb(229, 229, 229);
                 font-weight: bolder;
+                text-align: center;
             }
         }
         > .serviceInfo {
             td:nth-child(1) {
                 background-color: rgb(229, 229, 229);
                 font-weight: bolder;
+                text-align: center;
             }
         }
         > .apiList {
+            tr:nth-child(1), tr:nth-child(5) {
+                td {
+                    text-align: center;
+                    font-size: 20px;
+                    padding: 10px;
+                }
+            }
             tr:nth-child(5), tr:nth-child(10) {
                 border-top: 6px double #111;
             }
@@ -80,6 +89,7 @@
                 > td:nth-child(1) {
                     background-color: rgb(229, 229, 229);
                     font-weight: bolder;
+                    text-align: center;
                 }
             }
         }
@@ -88,6 +98,7 @@
                 > td:nth-child(1) {
                     background-color: rgb(229, 229, 229);
                     font-weight: bolder;
+                    text-align: center;
                 }
             }
         }
@@ -96,11 +107,13 @@
                 > td {
                     background-color: rgb(229, 229, 229);
                     font-weight: bolder;
+                    text-align: center;
                 }
             }
             td:nth-child(1) {
                 background-color: rgb(229, 229, 229);
                 font-weight: bolder;
+                text-align: center;
             }
         }
         > .error {
@@ -108,74 +121,89 @@
                 > td {
                     background-color: rgb(229, 229, 229);
                     font-weight: bolder;
+                    text-align: center;
                 }
             }
         }
-        > .charInfoBtn {
-            margin-bottom: 10px;
-            input {
-                font-size: 20px;
-                padding: 4px;
-            }
-            button {
-                font-size: 18px;
-                padding: 4px;
-                margin-left: 10px;
-                cursor: pointer;
-            }
+        > .frameInfo {
+            margin: 0;
         }
-        > .charInfo {
-            img {
-                width: 200px;
-            }
-            td {
-                width: 200px;
-            }
-            tr:nth-child(1) {
-                td:nth-child(1) {
-                    width: 300px;
-                    background-color: transparent;
-                }
-                td:nth-child(3) {
-                    background-color: transparent;
-                    font-weight: normal;
-                }
-                td:nth-child(2), td:nth-child(4) {
-                    background-color: rgb(229, 229, 229);
-                    font-weight: bolder;
-                }
-            }
-            tr {
-                td:nth-child(1), td:nth-child(3) {
-                    background-color: rgb(229, 229, 229);
-                    font-weight: bolder;
-                }
-            }
-        }
-
-        > .allInfo {
+        > .frameBody {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-            > label {
-                display: flex;
-                margin-right: 20px;
-                h2 {
-                    font-size: 18px;
-                }
+            flex-direction: column;
+
+            > h3 {
+                font-size: 20px;
+                font-weight: bolder;
+                margin-bottom: 10px;
+            }
+
+            > .charInfoBtn {
+                margin-bottom: 10px;
                 input {
-                    width: 60px;
-                    font-size: 18px;
-                    margin-left: 10px;
+                    font-size: 20px;
                     padding: 4px;
                 }
+                button {
+                    font-size: 18px;
+                    padding: 4px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                }
             }
-            button {
-                font-size: 18px;
-                padding: 4px;
-                margin-left: 10px;
-                cursor: pointer;
+            > .charInfo {
+                img {
+                    width: 200px;
+                }
+                td {
+                    width: 200px;
+                }
+                tr:nth-child(1) {
+                    td:nth-child(1) {
+                        width: 300px;
+                        background-color: transparent;
+                    }
+                    td:nth-child(3) {
+                        background-color: transparent;
+                        font-weight: normal;
+                    }
+                    td:nth-child(2), td:nth-child(4) {
+                        background-color: rgb(229, 229, 229);
+                        font-weight: bolder;
+                    }
+                }
+                tr {
+                    td:nth-child(1), td:nth-child(3) {
+                        background-color: rgb(229, 229, 229);
+                        font-weight: bolder;
+                    }
+                }
+            }
+    
+            > .allInfo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                > label {
+                    display: flex;
+                    margin-right: 20px;
+                    h2 {
+                        font-size: 18px;
+                    }
+                    input {
+                        width: 60px;
+                        font-size: 18px;
+                        margin-left: 10px;
+                        padding: 4px;
+                    }
+                }
+                button {
+                    font-size: 18px;
+                    padding: 4px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                }
             }
         }
     }

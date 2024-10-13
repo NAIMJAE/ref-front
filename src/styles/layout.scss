@@ -25,8 +25,7 @@ div {
     box-sizing: border-box;
 }
 body {
-    background-image: url(../../public/images/main/background_pattern.png);
-    background-repeat: repeat;
+    background-color: white;
 }
 
 #mainLayout {
@@ -38,57 +37,63 @@ body {
 
 #header {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-self: center;
-    width: 1200px;
+    width: 100%;
     z-index: 2;
+    border-bottom: 1px solid #dfdfdf;
     
     div {
         display: flex;
     }
 
-    > #logoBox {
-        justify-content: center;
-        align-items: center;
-        padding-top: 40px;
-
-        > img {
-            width: 60px;
-            height: 60px;
-            padding: 10px 5px;
-        }
-
-        > a {
-            display: flex;
-            font-size: 40px;
-            font-weight: bolder;
-            padding: 10px 5px;
-        }
-    }
-
-    > #navBox {
+    > #headerBox {
+        width: 1200px;
         justify-content: space-between;
-        padding: 10px 10px 20px 10px;
 
-        > #nav {
-            > button {
+        > #logoBox {
+            align-items: center;
+            padding: 10px 10px 0 10px;
+
+            > a {
                 display: flex;
-                font-size: 14px;
-                font-weight: bolder;
-                margin-left: 10px;
-                box-sizing: border-box;
-                background-color: transparent;
-                border: 0;
-                cursor: pointer;
+                > img {
+                    width: 300px;
+                    height: 100px;
+                }
             }
         }
-        >#select {
-            display: none;
-            > select {
-                width: 80px;
-                font-size: 14px;
-                padding: 0 4px;
+        > #navBox {
+            padding: 0 10px;
+    
+            > #nav {
+                align-items: end;
+                > p {
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid #dfdfdf;
+                    padding: 0 10px 10px 10px;
+                    margin-bottom: -1px;
+                }
+                > button {
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    box-sizing: border-box;
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid #dfdfdf;
+                    padding: 0 10px 10px 10px;
+                    margin-bottom: -1px;
+                    cursor: pointer;
+                }
+                > button:hover {
+                    color: rgb(32, 130, 215);
+                    font-weight: bolder;
+                    border-bottom: 1px solid rgb(32, 130, 215);
+                }
             }
         }
     }
@@ -98,71 +103,77 @@ body {
     justify-content: center;
     align-self: center;
     align-items: center;
-    width: 1200px;
+    width: 100%;
     padding: 20px 20px 40px 20px;
     z-index: 2;
-    border-top: 1px solid #333333;
-    justify-content: space-between;
+    border-top: 1px solid #dfdfdf;
 
     > div {
         display: flex;
-        flex-direction: column;
-        align-self: start;
-        padding: 0 10px;
-        
-        > h2 {
-            font-size: 20px;
-            font-weight: bolder;
-            padding: 0 40px 10px 40px;
-            color: #333333;
-        }
-        > h3 {
-            font-size: 14px;
-            padding: 2px 40px;
-            color: #333333;
-        }
-        >h4 {
-            font-size: 14px;
-            font-weight: bolder;
-            padding: 2px 40px;
-            color: #333333;
-        }
+        width: 1200px;
+        justify-content: space-between;
+
 
         > div {
             display: flex;
-
-            > .creator {
+            flex-direction: column;
+            align-self: start;
+            padding: 0 10px;
+            
+            > h2 {
+                font-size: 20px;
+                font-weight: bolder;
+                padding: 0 40px 10px 40px;
+                color: #000;
+            }
+            > h3 {
+                font-size: 14px;
+                padding: 2px 40px;
+                color: #333333;
+            }
+            >h4 {
+                font-size: 14px;
+                font-weight: bolder;
+                padding: 2px 40px;
+                color: #000;
+            }
+    
+            > div {
                 display: flex;
-                flex-direction: column;
-                padding: 0 40px;
     
-                > div {
+                > .creator {
                     display: flex;
-                }
-                > .name {
-                    align-items: center;
-    
-                    > img {
+                    flex-direction: column;
+                    padding: 0 40px;
+        
+                    > div {
                         display: flex;
-                        width: 20px;
-                        height: 20px;
-                        margin-right: 10px;
                     }
-                    > h1 {
-                        font-size: 16px;
-                        font-weight: bolder;
-                        color: #333333;
-                    }
-                }
-                > .icon {
-                    margin-top: 5px;
-                    > a {
-                        display: flex;
+                    > .name {
+                        align-items: center;
+        
                         > img {
                             display: flex;
-                            width: 30px;
-                            height: 30px;
-                            margin-right: 5px;
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 10px;
+                        }
+                        > h1 {
+                            font-size: 16px;
+                            font-weight: bolder;
+                            color: #000;
+                        }
+                    }
+                    > .icon {
+                        margin-top: 5px;
+                        > a {
+                            display: flex;
+                            > img {
+                                display: flex;
+                                width: 30px;
+                                height: 30px;
+                                margin-right: 5px;
+                            }
                         }
                     }
                 }
@@ -174,98 +185,90 @@ body {
 #contents {
     display: flex;
     align-self: center;
-    padding: 10px;
+    padding: 10px 0;
     width: 1200px;
     height: auto;
 
+    div {
+        box-sizing: border-box;
+    }
+
     >#mainPage {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
 
-        > .refBox {
-            position: relative;
+        > .pageList {
             display: flex;
-            flex-direction: column;
-            width: 230px;
-            height: 360px;
-            margin: 32.5px;
-            cursor: pointer;
+            flex-wrap: wrap;
 
-            /* 조명 효과 추가 */
-            &::before {
-                content: '';
-                position: absolute;
-                top: -8%;
-                left: 50%;
-                width: 150px;
-                height: 150px;
-                background: radial-gradient(circle, rgba(255, 231, 187, 0.4), transparent 70%);
-                transform: translateX(-50%);
-                z-index: 10;
-                pointer-events: none; /* 사용자와의 상호작용 차단 */
-            }
-
-            > .imgBox {
-                display: flex;
-                width: 230px;
-                height: 230px;
-                overflow: hidden;
-                border: 10px solid #111;
-                border-image: linear-gradient(45deg, #381c0a, #8d461a) 1;
-                background-color: rgb(255, 255, 255);
-                box-shadow: 
-                inset -6px 6px 5px rgba(0, 0, 0, 0.3), /* 내부 그림자 */
-                -4px 6px 2px rgba(0, 0, 0, 0.6); /* 외부 그림자 */
-                padding: 20px;
-                z-index: 2; /* 이미지와 유리 질감 사이에 위치 */
-                >img {
-                    width: 170px;
-                    height: 170px;
-                }
-            }
-
-            > .textBox {
+            > .refBox {
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                height: 130px;
-
-                >h1 {
-                    font-size: 20px;
-                    font-weight: bolder;
-                    padding: 16px 0px 6px 0px;
-                    text-align: center;
-                }
-                
-                > .refInfo {
+                width: 400px;
+                padding: 20px 30px 40px 30px;
+                cursor: pointer;
+    
+    
+                > .imgBox {
                     display: flex;
-                    flex-direction: column;
-                    border-top: 1px solid rgb(0, 0, 0);
-                    opacity: 0; /* 투명하게 시작 */
-                    height: 0; /* 높이 0으로 시작 */
-                    overflow: hidden; /* 높이가 0일 때 내부 콘텐츠가 보이지 않도록 숨김 */
-                    transition: opacity 1s ease, height 1s ease; /* 투명도와 높이에 애니메이션 적용 */
-                    
-                    >h2 {
-                        font-size: 16px;
-                        padding: 6px 4px 4px 4px;
-                        margin-bottom: 2px;
-                        text-align: center;
+                    width: 340px;
+                    height: 200px;
+                    overflow: hidden;
+                    >img {
+                        width: 340px;
+                        height: 200px;
+                        transition: transform 0.3s ease-in-out;
                     }
-                    > div {
+                }
+    
+                > .textBox {
+                    display: flex;
+                    padding: 10px 0;
+    
+                    > .refInfo {
                         display: flex;
-                        justify-content: space-between;
-                        >h3 {
-                            font-size: 11px;
-                            padding: 2px 6px;
+                        flex-direction: column;
+                        border-right: 1px solid #bababa;
+    
+                        > h3 {
+                            min-width: 80px;
+                            max-width: 110px;
+                            font-size: 16px;
+                            font-weight: bolder;
+                            padding-top: 4px;
                         }
-                    } 
+                    }
                     
+                    > .refTitle {
+                        display: flex;
+                        flex-direction: column;
+                        padding-left: 10px;
+                        
+                        > h1 {
+                            font-size: 22px;
+                            font-weight: bolder;
+                            padding-bottom: 10px;
+                        }
+    
+                        > h2 {
+                            font-size: 14px;
+                            margin-bottom: 2px;
+                            color: #333333;
+                        }
+                    }
                 }
             }
-        }
-        >.refBox:hover .refInfo {
-            opacity: 1; /* 호버 시 완전히 보이도록 */
-            height: 100px; /* 호버 시 높이를 설정 (필요한 만큼의 값으로 조정 가능) */
+            >.refBox:hover img {
+                transform: scale(1.05);
+            }
+            >.refBox:hover {
+                background-color: #dfdfdf;
+            }
+            .refBox:nth-child(3n + 2) {
+                border-right: 1px solid #dfdfdf;
+                border-left: 1px solid #dfdfdf;
+            }
         }
     }
 }
@@ -393,11 +396,30 @@ body {
     }
 }
 .frame {
+    display: flex;
+    flex-direction: column;
     margin: 20px 20px 40px 20px;
-    padding: 40px 20px;
-    border: 10px solid #111;
-    border-image: linear-gradient(45deg, #2f2f2f, #888888) 1;
-    background-color: rgb(255, 255, 255);
-    box-shadow: inset -3px 3px 5px rgba(0, 0, 0, 0.3),
-                -4px 6px 5px rgba(0, 0, 0, 0.4);
+    background-color: rgb(243, 250, 255);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    border-left: 10px solid rgb(32, 130, 215);
+    border-radius: 10px;
+    overflow: hidden;
+
+    > .frameInfo {
+        display: flex;
+        background-color: rgb(201, 230, 255);
+        font-size: 20px;
+        font-weight: bolder;
+        color: rgb(11, 107, 191);
+        padding: 14px;
+        border-bottom: 2px solid rgb(154, 208, 255);
+    }
+    > .frameInfo::before {
+        content: "ⓘ";
+        margin-right: 6px;
+    }
+    > .frameBody {
+        display: flex;
+        padding: 20px;
+    }
 }

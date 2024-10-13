@@ -20,130 +20,135 @@
     > #listPage {
         display: flex;
         flex-direction: column;
-        align-items: center;
         width: 900px;
-
-        h1 {
-            display: flex;
-            justify-content: center;
-            width: 800px;
-            font-size: 20px;
-            font-weight: bolder;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #000;
-        }
 
         > div {
             display: flex;
-            justify-content: center;
-        }
-
-        > .searchBar {
-            padding: 10px 0;
-            > div {
-                display: flex;
-
-                > input {
-                    width: 600px;
-                    font-size: 16px;
-                    padding: 4px 10px;
-                    margin-right: 4px;
-                    border: 1px solid #b8b8b8;
-                    border-radius: 4px;
-                }
-                > h5 {
-                    display: flex;
-                    width: 140px;
-                    font-size: 16px;
-                    font-weight: bolder;
-                    align-items: center;
-                }
-            }
-        }
-
-        > .example {
-            display: flex;
+            align-items: center;
             flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-            padding: 0 30px;
-
-            > h2 {
-                font-size: 14px;
-                font-style: italic;
-                padding: 2px 0;
-                color: #3e3e3e;
-            }
-        }
-
-        > .postList {
-            width: 800px;
-
-            > table {
-                border: 1px solid #111;
-                border-collapse: collapse;
-                margin: 20px 0;
-
-                td {
-                    font-size: 16px;
-                    padding: 10px 16px;
-                    border: 1px solid #111;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    
-                    > a {
-                        font-size: 16px;
-                    }
-                    > span {
-                        border: 1px solid red;
-                        padding: 2px 4px;
-                        font-size: 14px;
-                        color: red;
-                        margin-left: 4px;
-                    }
-                    > span::after {
-                        content: "%";
-                    }
-                }
-
-                tr:nth-child(1) {
-                    td {
-                        font-weight: bolder;
-                    }
-                }
-
-                td:nth-child(1) {
-                    width: 60px;
-                    text-align: center;
-                }
-                td:nth-child(2) {
-                    width: 400px;
-                    cursor: pointer;
-                }
-                td:nth-child(2):hover {
-                    font-weight: bolder;
-                }
-                td:nth-child(3), td:nth-child(4) {
-                    width: 100px;
-                    text-align: center;
-                }
-            }
-        }
-
-        > .postPaging {
             
             h1 {
+                display: flex;
+                justify-content: center;
+                width: 800px;
                 font-size: 20px;
                 font-weight: bolder;
-                margin: 20px 0;
+                margin-bottom: 20px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #000;
             }
-        }
-
-        > .postBtn {
-            width: 800px;
-            justify-content: end;
+    
+            > div {
+                display: flex;
+                justify-content: center;
+            }
+    
+            > .searchBar {
+                padding: 10px 0;
+                > div {
+                    display: flex;
+    
+                    > input {
+                        width: 600px;
+                        font-size: 16px;
+                        padding: 4px 10px;
+                        margin-right: 4px;
+                        border: 1px solid #b8b8b8;
+                        border-radius: 4px;
+                    }
+                    > h5 {
+                        display: flex;
+                        width: 140px;
+                        font-size: 16px;
+                        font-weight: bolder;
+                        align-items: center;
+                    }
+                }
+            }
+    
+            > .example {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                padding: 0 30px;
+    
+                > h2 {
+                    font-size: 14px;
+                    font-style: italic;
+                    padding: 2px 0;
+                    color: #3e3e3e;
+                }
+            }
+    
+            > .postList {
+                width: 800px;
+    
+                > table {
+                    border: 1px solid #111;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+    
+                    td {
+                        font-size: 16px;
+                        padding: 10px 16px;
+                        border: 1px solid #111;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        
+                        > a {
+                            font-size: 16px;
+                        }
+                        > span {
+                            border: 1px solid red;
+                            padding: 2px 4px;
+                            font-size: 14px;
+                            color: red;
+                            margin-left: 4px;
+                        }
+                        > span::after {
+                            content: "%";
+                        }
+                    }
+    
+                    tr:nth-child(1) {
+                        td {
+                            font-weight: bolder;
+                        }
+                    }
+    
+                    td:nth-child(1) {
+                        width: 60px;
+                        text-align: center;
+                    }
+                    td:nth-child(2) {
+                        width: 400px;
+                        cursor: pointer;
+                    }
+                    td:nth-child(2):hover {
+                        font-weight: bolder;
+                    }
+                    td:nth-child(3), td:nth-child(4) {
+                        width: 100px;
+                        text-align: center;
+                    }
+                }
+            }
+    
+            > .postPaging {
+                
+                h1 {
+                    font-size: 20px;
+                    font-weight: bolder;
+                    margin: 20px 0;
+                }
+            }
+    
+            > .postBtn {
+                width: 800px;
+                justify-content: end;
+            }
         }
     }
 
