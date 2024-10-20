@@ -1,0 +1,302 @@
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#visitorTracking {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        display: flex;
+        box-sizing: border-box;
+    }
+
+    @media (min-width: 1200px) {
+        #analytics {
+            width: 1180px;
+        }
+    }
+
+    /* 1200px 이하일 때 */
+    @media (max-width: 1200px) {
+        #analytics {
+            width: 600px;
+            min-width: 0;
+        }
+    }
+
+    #analytics {
+        min-width: 600px;
+        max-width: 1180px;
+        padding: 20px 20px 0 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        background-color: #FFFFFF;
+
+        p, h1, h2 {
+            font-family: 'GangwonEduPowerExtraBoldA';
+        }
+
+        > #daily {
+            flex-direction: column;
+            width: 560px;
+            height: 350px;
+            margin-bottom: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px #9e9e9e,
+                        inset 1px 1px 1px #ebebeb,
+                        inset -2px -2px 2px #ebebeb;
+
+            > h1 {
+                font-size: 18px;
+                font-weight: bolder;
+                padding: 16px 16px 8px 16px;
+                color: #212121;
+            }
+
+            > div {
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                justify-content: center;
+                align-items: end;
+
+                > .each {
+                    flex-direction: column;
+                    border-top: 1px solid #e9e9e9;
+    
+                    > .graphBox {
+                        flex-direction: column;
+                        justify-content: end;
+                        align-items: center;
+                        height: 220px;
+                        border-left: 1px solid #e9e9e9;
+                        padding-top: 10px;
+    
+                        > p {
+                            height: 20px;
+                            font-size: 12px;
+                            color: #212121;
+                        }
+                        > .graph {
+                            width: 18px;
+                            min-height: 2px;
+                            max-height: 200px;
+                            background-color: rgb(0, 179, 255);
+                            border-top-right-radius: 4px;
+                            border-top-left-radius: 4px;
+                            box-shadow: inset 1px 1px 1px rgb(197, 237, 255);
+                        }
+                    }
+                    > p {
+                        font-size: 12px;
+                        padding: 4px;
+                        border-top: 2px solid #e9e9e9;
+                        color: #212121;
+                    }
+                }
+                > .each:nth-child(2n) .graph{
+                    background-color: rgb(247, 0, 255);
+                    box-shadow: inset 1px 1px 1px rgb(252, 156, 255);
+                }
+                > .each:nth-last-child(1) > .graphBox {
+                    border-right: 1px solid #e9e9e9;
+                }
+            }
+        }
+
+        > #summary {
+            flex-direction: column;
+            width: 560px;
+            height: 350px;
+            margin-bottom: 20px;
+
+            > div > h1 {
+                font-size: 18px;
+                font-weight: bolder;
+                padding: 16px 16px 8px 16px;
+                color: #212121;
+            }
+            > #visitors {
+                flex-direction: column;
+                background-color: #FFFFFF;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px #9e9e9e,
+                        inset 1px 1px 1px #ebebeb,
+                        inset -2px -2px 2px #ebebeb;
+                margin-bottom: 20px;
+
+                > #visitorBox {
+                    padding: 20px;
+                    justify-content: space-between;
+
+                    > div {
+                        width: 150px;
+                        height: 105.33px;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 10px;
+                        border-radius: 10px;
+                        box-shadow: 2px 2px 5px #9e9e9e,
+                                -1px -1px 1px #ebebeb,
+                                inset -1px -1px 2px #ebebeb;
+                        
+                        > h1 {
+                            font-size: 34px;
+                            font-weight: bolder;
+                            text-align: center;
+                            padding-top: 16px;
+                            color: #212121;
+                            text-shadow: 1px 1px 1px #c6c6c6;
+                        }
+                        > h2 {
+                            font-size: 20px;
+                            font-weight: bolder;
+                            text-align: center;
+                            padding: 0px 20px 4px 20px;
+                            color: #212121;
+                            text-shadow: 1px 1px 1px #c6c6c6;
+                        }
+                    }
+                    > #today {
+                        background-color: #15eaaa;
+                    }
+                    > #week {
+                        background-color: rgb(0, 128, 255);
+                    }
+                    > #month {
+                        background-color: rgb(255, 0, 255);
+                    }
+                }
+            }
+            > #division {
+                flex-direction: column;
+                background-color: #FFFFFF;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px #9e9e9e,
+                        inset 1px 1px 1px #ebebeb,
+                        inset -2px -2px 2px #ebebeb;
+                margin-bottom: 20px;
+
+                > div {
+                    height: 96px;
+                    padding: 10px 20px;
+                    justify-content: space-between;
+
+                    > div {
+                        align-items: center;
+                        padding: 8px 40px;
+
+                        > img {
+                            width: 70px;
+                            height: 70px;
+                            margin-right: 20px;
+                        }
+                        > p {
+                            font-size: 30px;
+                            color: #212121;
+                            padding-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+        > #doughnut {
+            flex-direction: column;
+            width: 560px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px #9e9e9e,
+                        inset 1px 1px 1px #ebebeb,
+                        inset -2px -2px 2px #ebebeb;
+            margin-bottom: 20px;
+
+            > h1 {
+                font-size: 18px;
+                font-weight: bolder;
+                padding: 16px 16px 8px 16px;
+                color: #212121;
+            }
+            .chartWrap{
+                position: relative;
+                padding: 50px;
+                justify-content: center;
+            }
+            .chart {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                transition: 0.3s;
+                background:lightgray;
+                display:inline-block;
+                box-shadow: 2px 2px 5px #9e9e9e,
+                        inset 1px 1px 1px #ebebeb,
+                        inset -1px -1px 1px #ebebeb;
+            }
+            .center{
+                content:'';
+                background: #FFFFFF;
+                position: absolute;
+                top:50%; left:50%;
+                width:170px; height:170px;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: inset 2px 2px 5px #9e9e9e,
+                        inset -2px -2px 2px #ebebeb;
+            }
+            .chart-bar {
+                position: absolute;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                color: #212121;
+                background-color: transparent;
+                text-align: center;
+                width: 60px; /* 레이블 너비 */
+                height: 60px; /* 레이블 높이 */
+                transform: translate(-50%, -50%); /* 레이블 중심에 맞춤 */
+
+                cursor: pointer;
+                font-family: 'GangwonEduPowerExtraBoldA';
+
+                > .city {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 50px;
+                    padding: 10px;
+                    background-color: rgb(255, 255, 255, 0.7);
+                    border: 1px solid #000;
+
+                    > div {
+                        min-width: 80px;
+                        max-width: 150px;
+                        justify-content: space-between;
+                        > p {
+                            display: flex;
+                            font-size: 12px;
+                            text-align: left;
+                            padding-top: 4px;
+                        }
+                    }
+                }
+            }
+            .chart-bar:hover {
+                font-weight: bolder;
+                .city{
+                    display: flex;
+                } 
+            }
+        }
+    }
+}
