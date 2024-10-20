@@ -24,7 +24,7 @@ const Footer = () => {
                 <Link to={"/"}>
                   <img src="../../images/main/blog_icon.png" alt="blog" />
                 </Link>
-                <Link to={"https://github.com/NAIMJAE"}>
+                <Link to={"https://github.com/NAIMJAE"} target='_blank'>
                   <img src="../../images/main/github_icon.png" alt="blog" />
                 </Link>
               </div>
@@ -39,7 +39,7 @@ const Footer = () => {
                 <Link to={"/"}>
                   <img src="../../images/main/blog_icon.png" alt="blog" />
                 </Link>
-                <Link to={"https://github.com/linma21"}>
+                <Link to={"https://github.com/linma21"} target='_blank'>
                   <img src="../../images/main/github_icon.png" alt="blog" />
                 </Link>
               </div>
