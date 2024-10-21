@@ -91,28 +91,6 @@ const VisitorTrackingPage = () => {
         <div className='ts_box'>
           <h2>Visitor Tracking에 대한 설명...</h2>
         </div>
-        {visitorCount.length > 0 && (
-          <div className='visitorTable'>
-            <h3>방문자 수</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>날짜</th>
-                  <th>방문자 수</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visitorCount.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.visitDate}</td>
-                    <td>{item.visitCount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
         <div id='analytics'>
           <div id='daily'>
             <h1>Daily Visitor Statistics (Last 2 Weeks)</h1>
