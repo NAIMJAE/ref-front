@@ -22,6 +22,9 @@
     .storageBox {
         justify-content: space-between;
 
+        > div {
+            justify-content: space-between;
+        }
         #loginBox {
             flex-direction: column;
             border: 1px solid #797979;
@@ -66,8 +69,9 @@
                 }
             }
         }
-        > #cookieBox {
+        #cookieBox {
             > table {
+                background-color: white;
                 border-collapse: collapse;
                 width: 700px;
                 tr {
@@ -93,7 +97,7 @@
             }
         }
 
-        > .shoppingBox {
+        .shoppingBox {
             flex-direction: column;
             border: 1px solid #797979;
             border-radius: 10px;

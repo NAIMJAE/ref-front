@@ -301,74 +301,77 @@ const DataStorage = () => {
 
 
             <div className='storageBox frame'>
-                {loginState && loginState != null ? (
-                    <div id='loginBox'>
-                        <h2>{userInfo.userName} 님</h2>
-                        <button onClick={logoutBtn}>로그아웃</button>
-                    </div>
-                ) : (
-                    <div id='loginBox'>
-                        <h2>로그인</h2>
-                        <input type="text" value={loginData.uid}
-                            onChange={(e) => setLoginData((prev)=>({...prev, uid:e.target.value}))}/>
-                        <input type="password" value={loginData.password}
-                            onChange={(e) => setLoginData((prev)=>({...prev, password:e.target.value}))}/>
-                        
-                        <div>
-                            <label htmlFor="">
-                                <input type="checkbox" checked={saveId} onChange={() => setSaveId(!saveId)}/>
-                                <p>아이디 저장</p>
-                            </label>
-                            <label htmlFor="">
-                                <input type="checkbox" onChange={(e) => autoLoginCheck(e)}/>
-                                <p>자동 로그인</p>
-                            </label>
+                <p className='frameInfo'>쿠키와 세션을 이용한 로그인</p>
+                <div className='frameBody'>
+                    {loginState && loginState != null ? (
+                        <div id='loginBox'>
+                            <h2>{userInfo.userName} 님</h2>
+                            <button onClick={logoutBtn}>로그아웃</button>
                         </div>
-                        
-                        <button onClick={loginBtn}>login</button>
-                        <h3>샘플 계정 abcd1234 / abcd1234!</h3>
+                    ) : (
+                        <div id='loginBox'>
+                            <h2>로그인</h2>
+                            <input type="text" value={loginData.uid}
+                                onChange={(e) => setLoginData((prev)=>({...prev, uid:e.target.value}))}/>
+                            <input type="password" value={loginData.password}
+                                onChange={(e) => setLoginData((prev)=>({...prev, password:e.target.value}))}/>
+                            
+                            <div>
+                                <label htmlFor="">
+                                    <input type="checkbox" checked={saveId} onChange={() => setSaveId(!saveId)}/>
+                                    <p>아이디 저장</p>
+                                </label>
+                                <label htmlFor="">
+                                    <input type="checkbox" onChange={(e) => autoLoginCheck(e)}/>
+                                    <p>자동 로그인</p>
+                                </label>
+                            </div>
+                            
+                            <button onClick={loginBtn}>login</button>
+                            <h3>샘플 계정 abcd1234 / abcd1234!</h3>
+                        </div>
+                    )}
+                    <div id='cookieBox'>
+                        {cookies && 
+                            <table>
+                                <tr>
+                                    <td>REF_LOGIN</td>
+                                    <td>로그인 유무</td>
+                                    <td>{cookies.REF_LOGIN}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_POPUP</td>
+                                    <td>팝업 관리</td>
+                                    <td>{cookies.REF_POPUP}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_AUTO</td>
+                                    <td>자동 로그인</td>
+                                    <td>{cookies.REF_AUTO}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_CART</td>
+                                    <td>비회원 CART</td>
+                                    <td>{cookies.REF_CART}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_SAVE</td>
+                                    <td>아이디 저장</td>
+                                    <td>{cookies.REF_SAVE}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_USER_CART</td>
+                                    <td>회원 CART</td>
+                                    <td>{cookies.REF_USER_CART}</td>
+                                </tr>
+                                <tr>
+                                    <td>REF_INFO</td>
+                                    <td>사용자 정보</td>
+                                    <td>{cookies.REF_INFO}</td>
+                                </tr>
+                            </table>
+                        }
                     </div>
-                )}
-                <div id='cookieBox'>
-                    {cookies && 
-                        <table>
-                            <tr>
-                                <td>REF_LOGIN</td>
-                                <td>로그인 유무</td>
-                                <td>{cookies.REF_LOGIN}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_POPUP</td>
-                                <td>팝업 관리</td>
-                                <td>{cookies.REF_POPUP}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_AUTO</td>
-                                <td>자동 로그인</td>
-                                <td>{cookies.REF_AUTO}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_CART</td>
-                                <td>비회원 CART</td>
-                                <td>{cookies.REF_CART}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_SAVE</td>
-                                <td>아이디 저장</td>
-                                <td>{cookies.REF_SAVE}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_USER_CART</td>
-                                <td>회원 CART</td>
-                                <td>{cookies.REF_USER_CART}</td>
-                            </tr>
-                            <tr>
-                                <td>REF_INFO</td>
-                                <td>사용자 정보</td>
-                                <td>{cookies.REF_INFO}</td>
-                            </tr>
-                        </table>
-                    }
                 </div>
             </div>
 

@@ -14,29 +14,27 @@ const Header = ({ setRegisterModal, setLoginModal }) => {
 
   return (
     <div id='header'>
-      <div id='logoBox'>
-        <img src="../../images/main/refcode_icon_500.png" alt="" />
-        <Link to="/">RefCode</Link>
-      </div>
-
-      <div id='navBox'>
-        <div id='nav'>
-          {!loginSlice.uid ? (
-            <>
-            <button onClick={() => setLoginModal(true)}>Login</button>
-            <button onClick={() => setRegisterModal(true)}>SignUp</button>
-            </>
-          ) : (
-            <>
-            <button onClick={logoutHandler}>Logout</button>
-            </>
-          )}
+      <div id='headerBox'>
+        <div id='logoBox'>
+          <Link to="/">
+            <img src="../../images/main/refcode_logo.png" alt="" />
+          </Link>
         </div>
 
-        <div id='select'>
-          <select name="" id="">
-            <option value="1">최신순</option>
-          </select>
+        <div id='navBox'>
+          <div id='nav'>
+            {!loginSlice.uid ? (
+              <>
+              <button onClick={() => setLoginModal(true)}>Login</button>
+              <button onClick={() => setRegisterModal(true)}>SignUp</button>
+              </>
+            ) : (
+              <>
+              <p>{loginSlice.name}님</p>
+              <button onClick={logoutHandler}>Logout</button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
