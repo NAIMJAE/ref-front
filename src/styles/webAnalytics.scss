@@ -68,6 +68,7 @@
                 padding: 20px;
                 justify-content: center;
                 align-items: end;
+                flex-direction: row-reverse;
 
                 > .each {
                     flex-direction: column;
