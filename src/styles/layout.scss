@@ -28,8 +28,44 @@ body {
     background-color: white;
 }
 
+@media (min-width: 1200px) {
+    #contents {
+        width: 1200px;
+    }
+}
+
+/* 1200px 이하일 때 */
+@media (max-width: 1200px) and (min-width: 800px) {
+    #contents {
+        width: 800px;
+        
+        .refBox:nth-child(3n + 2) {
+            border-right: 0!important;
+            border-left: 0!important;
+        }
+        .refBox:nth-child(2n) {
+            border-left: 1px solid #dfdfdf!important;
+        }
+        .frameBody {
+            flex-direction: column;
+        }
+    }
+}
+/* 800px 이하일 때 */
+@media (max-width: 800px) {
+    #contents {
+        width: 400px;
+
+        .refBox {
+            border-right: 0!important;
+            border-left: 0!important;
+        }
+    }
+}
+
 #mainLayout {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     width: 100%;
     height: auto;
@@ -186,7 +222,8 @@ body {
     display: flex;
     align-self: center;
     padding: 10px 0;
-    width: 1200px;
+    min-width: 400px;
+    max-width: 1200px;
     height: auto;
 
     div {

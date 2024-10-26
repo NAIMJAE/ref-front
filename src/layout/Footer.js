@@ -10,7 +10,7 @@ const Footer = () => {
           <h3>RefCode introduces various web programming concepts and provides examples.</h3>
           <h3>Enhance your web programming skills with RefCode.</h3>
           {/**<전체를 뒤엎을 변화>.<기능 수정, 기능 추가>.<버그, 내부 적 코드 보완>.<배포날짜>*/}
-          <h4>v1.2.2.2410131</h4>
+          <h4>v1.3.1-2410261</h4>
         </div>
         <div>
           <h2>Creator</h2>
@@ -24,7 +24,7 @@ const Footer = () => {
                 <Link to={"/"}>
                   <img src="../../images/main/blog_icon.png" alt="blog" />
                 </Link>
-                <Link to={"https://github.com/NAIMJAE"}>
+                <Link to={"https://github.com/NAIMJAE"} target='_blank'>
                   <img src="../../images/main/github_icon.png" alt="blog" />
                 </Link>
               </div>
@@ -39,7 +39,7 @@ const Footer = () => {
                 <Link to={"/"}>
                   <img src="../../images/main/blog_icon.png" alt="blog" />
                 </Link>
-                <Link to={"https://github.com/linma21"}>
+                <Link to={"https://github.com/linma21"} target='_blank'>
                   <img src="../../images/main/github_icon.png" alt="blog" />
                 </Link>
               </div>
