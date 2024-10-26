@@ -43,7 +43,7 @@ const VisitorTrackingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dailyVisitors]); // visitorCount가 변경될 때마다 실행
 
-  const [douColor, setDouColor] = useState([
+  const [douColor] = useState([
     "#FF6B6B","#4D96FF","#6BCB77","#FFD93D","#FFF89A"
   ])
 
@@ -125,8 +125,8 @@ const VisitorTrackingPage = () => {
 
           <div id='doughnut'>
             <h1>Visitor Location Distribution Analysis</h1>
-            <div class="chartWrap">
-              <div class="chart" style={chartStyle}>
+            <div className="chartWrap">
+              <div className="chart" style={chartStyle}>
                 <div className='center'></div>
               {(() => {
                 const radius = 120; // 차트의 반지름, chart 크기에 맞춰 조정
@@ -145,19 +145,29 @@ const VisitorTrackingPage = () => {
                   return (
                     <div className="chart-bar" key={index}
                       style={{position: "absolute", top: `${top}%`,left: `${left}%`}}>
-                      {item.country}<br/>{item.countryPercentage}%
-                      <div className='city'>
-                        {item.regions ? item.regions.map((region, id) => (
-                          <div>
-                          <p>ㆍ{region.regionName} : </p>
-                          <p>{region.visitCount}</p>
-                        </div>
-                        )) : <div></div>}
-                      </div>
+                      {item.countryPercentage}%
                     </div>
                   );
                 });
               })()}
+              </div>
+              <div className='chartInfo'>
+                <div className='infoBox'>
+                  {countryVisitorCount.map((item, index) => (
+                    <div key={index}>
+                      <span></span>
+                      <p>{item.country}</p>
+                      <div className='city'>
+                        {item.regions ? item.regions.map((region, id) => (
+                          <div key={id}>
+                            <p>ㆍ{region.regionName} : </p>
+                            <p>{region.visitCount}</p>
+                          </div>
+                        )) : <div></div>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
