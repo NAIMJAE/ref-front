@@ -29,6 +29,15 @@ const MainPage = () => {
     getRefList();
   },[]);
 
+  // refList의 길이가 3의 배수가 아닐 경우 필요한 fakeBox 개수 계산
+  const fakeBoxes = [];
+  if (refList.length % 3 !== 0) {
+    const fakeBoxCount = 3 - (refList.length % 3);
+    for (let i = 0; i < fakeBoxCount; i++) {
+      fakeBoxes.push(<div className="fakeBox" key={`fake-${i}`}></div>);
+    }
+  }
+
   return (
     <MainLayout>
       <div id='mainPage'>
@@ -51,6 +60,8 @@ const MainPage = () => {
               </div>
             </div>
           ))}
+
+          {fakeBoxes}
         </div>
       </div>
     </MainLayout>
