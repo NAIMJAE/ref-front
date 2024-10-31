@@ -96,36 +96,40 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
         <div className='frameBody'>
             <div className='shoppingBox'>
                 <h2>쇼핑</h2>
-                {product && product.map((prod, index) => (
-                    <div key={index}>
-                        <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
-                        <div>
-                            <h1>{prod.title}</h1>
-                            <h2>{prod.explain}</h2>
+                <div className='itemBox'>
+                    {product && product.map((prod, index) => (
+                        <div className='item' key={index}>
+                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
                             <div>
-                                <h3>{prod.price}원</h3>
-                                <button onClick={() => addCart(prod.prodId)}>장바구니</button>
+                                <h1>{prod.title}</h1>
+                                <h2>{prod.explain}</h2>
+                                <div>
+                                    <h3>{prod.price}원</h3>
+                                    <button onClick={() => addCart(prod.prodId)}>장바구니</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             <div className='shoppingBox cart'>
                 <h2>장바구니</h2>
-                {userCart && userCart.map((prod, index) => (
-                    <div key={index}>
-                        <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
-                        <div>
-                            <h1>{prod.title}</h1>
-                            <h2>{prod.explain}</h2>
+                <div className='itemBox'>
+                    {userCart && userCart.map((prod, index) => (
+                        <div className='item' key={index}>
+                            <img src={`../../images/dataStorage/${prod.thumb}`} alt="" />
                             <div>
-                                <h3>{prod.price}원</h3>
-                                <button onClick={() => deleteCart(prod.prodId)}>삭제</button>
+                                <h1>{prod.title}</h1>
+                                <h2>{prod.explain}</h2>
+                                <div>
+                                    <h3>{prod.price}원</h3>
+                                    <button onClick={() => deleteCart(prod.prodId)}>삭제</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     </div>
