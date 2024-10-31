@@ -33,7 +33,7 @@ const Footer = () => {
             <div className='creator'>
               <div className='name'>
                 <img src="../../images/main/user_icon.png" alt="profile" />
-                <h1>Linma</h1>
+                <h1>LINMA</h1>
               </div>
               <div className='icon'>
                 <Link to={"/"}>
