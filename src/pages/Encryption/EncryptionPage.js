@@ -412,8 +412,8 @@ const EncryptionPage = () => {
                             </div>
                         </div>
                         <button onClick={AESDecryption}>전송</button>
-                        <p>복호화된 평문 : {AESDecrypt.Plaintext}</p>
                     </div>
+                    <p>복호화된 평문 : {AESDecrypt.Plaintext}</p>
                 </div>
             </div>
 
@@ -467,14 +467,14 @@ const EncryptionPage = () => {
                         <tr>
                             <td>암호화</td>
                             <td>
-                                <button className='userBBtn' onClick={() => RSAEncryption("public")}>[USER B] 공개 키로 암호화</button>
-                                <button className='userABtn' onClick={() => RSAEncryption("private")}>[USER A] 비밀 키로 암호화</button>
+                                <button className='enBtn userBBtn' onClick={() => RSAEncryption("public")}>[USER B] 공개 키로 암호화</button>
+                                <button className='enBtn userABtn' onClick={() => RSAEncryption("private")}>[USER A] 비밀 키로 암호화</button>
                             </td>
                             <td></td>
                             <td>복호화</td>
                             <td>
-                                <button className='userABtn' onClick={() => RSADecryption("public")}>[USER A] 공개 키로 복호화</button>
-                                <button className='userBBtn' onClick={() => RSADecryption("private")}>[USER B] 비밀 키로 복호화</button>
+                                <button className='enBtn userABtn' onClick={() => RSADecryption("public")}>[USER A] 공개 키로 복호화</button>
+                                <button className='enBtn userBBtn' onClick={() => RSADecryption("private")}>[USER B] 비밀 키로 복호화</button>
                             </td>
                         </tr>
                         <tr>

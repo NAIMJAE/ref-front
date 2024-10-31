@@ -4,17 +4,14 @@
     padding: 0;
     font: normal 14px 'Noto Sans KR', sans-serif;
 }
-
 ul,
 ol {
     list-style: none;
 }
-
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
-
 input,
 textarea {
     outline: none;
@@ -26,41 +23,8 @@ div {
 }
 body {
     background-color: white;
-}
-
-@media (min-width: 1200px) {
-    #contents {
-        width: 1200px;
-    }
-}
-
-/* 1200px 이하일 때 */
-@media (max-width: 1200px) and (min-width: 800px) {
-    #contents {
-        width: 800px;
-        
-        .refBox:nth-child(3n + 2) {
-            border-right: 0!important;
-            border-left: 0!important;
-        }
-        .refBox:nth-child(2n) {
-            border-left: 1px solid #dfdfdf!important;
-        }
-        .frameBody {
-            flex-direction: column;
-        }
-    }
-}
-/* 800px 이하일 때 */
-@media (max-width: 800px) {
-    #contents {
-        width: 400px;
-
-        .refBox {
-            border-right: 0!important;
-            border-left: 0!important;
-        }
-    }
+    width: 100%;
+    overflow-x: hidden !important;
 }
 
 #mainLayout {
@@ -69,6 +33,7 @@ body {
     flex-direction: column;
     width: 100%;
     height: auto;
+    margin: 0 auto;
 }
 
 #header {
@@ -84,7 +49,7 @@ body {
     }
 
     > #headerBox {
-        width: 1200px;
+        width: 100%;
         justify-content: space-between;
 
         > #logoBox {
@@ -146,9 +111,8 @@ body {
 
     > div {
         display: flex;
-        width: 1200px;
+        width: 100%;
         justify-content: space-between;
-
 
         > div {
             display: flex;
@@ -222,7 +186,7 @@ body {
     display: flex;
     align-self: center;
     padding: 10px 0;
-    min-width: 400px;
+    width: 100%;
     max-width: 1200px;
     height: auto;
 
@@ -231,30 +195,31 @@ body {
     }
 
     >#mainPage {
+        width: 100%;
         display: flex;
         flex-direction: column;
 
         > .pageList {
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
 
             > .refBox {
                 position: relative;
-                display: flex;
+                flex: 1 1 calc(33.33% - 15px);
                 flex-direction: column;
-                width: 400px;
-                padding: 20px 30px 40px 30px;
+                align-items: center;
+                padding: 20px 0;
+                transition: background-color 0.3s ease-in-out;
                 cursor: pointer;
-    
     
                 > .imgBox {
                     display: flex;
-                    width: 340px;
-                    height: 200px;
                     overflow: hidden;
+                    justify-content: center;
+
                     >img {
-                        width: 340px;
-                        height: 200px;
+                        width: 85%;
                         transition: transform 0.3s ease-in-out;
                     }
                 }
@@ -262,15 +227,16 @@ body {
                 > .textBox {
                     display: flex;
                     padding: 10px 0;
-    
+                    width: 85%;
+                    justify-self: center;
+
                     > .refInfo {
                         display: flex;
                         flex-direction: column;
                         border-right: 1px solid #bababa;
+                        padding-right: 10px;
     
                         > h3 {
-                            min-width: 80px;
-                            max-width: 110px;
                             font-size: 16px;
                             font-weight: bolder;
                             padding-top: 4px;
@@ -305,6 +271,11 @@ body {
             .refBox:nth-child(3n + 2) {
                 border-right: 1px solid #dfdfdf;
                 border-left: 1px solid #dfdfdf;
+            }
+
+            > .fakeBox {
+                flex: 1 1 calc(33.33% - 15px);
+                visibility: hidden; /* fakeBox를 보이지 않게 설정 */
             }
         }
     }
@@ -458,5 +429,63 @@ body {
     > .frameBody {
         display: flex;
         padding: 20px;
+    }
+}
+
+/* 800px 이하 */
+@media (max-width: 800px) {
+    #contents #mainPage .pageList {
+        //width: 800px;
+        .refBox, .fakeBox {
+            flex: 1 1 calc(50% - 15px) !important;
+        }
+        .refBox:nth-child(3n + 2) {
+            border-right: 0 !important;
+            border-left: 0 !important;
+        }
+        .refBox:nth-child(2n) {
+            border-left: 1px solid #dfdfdf !important;
+        }
+        .frameBody {
+            flex-direction: column !important;
+        }
+    }
+    #footer > div > div > div {
+        flex-direction: column;
+        > .creator {
+            margin: 5px 0;
+        }
+    }
+}
+/* 500px 이하일 때 */
+@media (max-width: 500px) {
+    #contents #mainPage .pageList {
+
+        .refBox, .fakeBox {
+            flex: 1 1 100% !important;
+            border-right: 0 !important;
+            border-left: 0 !important;
+        }
+    }
+    #header > #headerBox > #logoBox > a > img {
+        width: 100%;
+        height: 100%;
+    }
+    #footer > div {
+        flex-direction: column;
+        > div {
+            width: 100%;
+            > div {
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row;
+                > .creator {
+                    margin: 5px 0;
+                }
+            }
+        }
+        > div:nth-child(2) {
+            margin-top: 20px;
+        }
     }
 }
