@@ -118,53 +118,61 @@
                 margin-bottom: 10px;
                 align-self: center;
             }
-
-            > div {
-                display: flex;
+            > .itemBox {
                 width: 100%;
-                max-width: 480px;
-                border: 1px solid #111;
-                border-radius: 10px;
-                padding: 10px;
-                background-color: #ffffff;
-                margin-bottom: 10px;
-
-                > img {
-                    width: 100px;
-                    height: 100px;
-                }
-                > div {
+                display: flex;
+                flex-direction: column;
+                > .item {
                     display: flex;
                     width: 100%;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    padding: 0 10px;
-                    > h1 {
-                        font-size: 18px;
-                        font-weight: bolder;
+                    max-width: 480px;
+                    border: 1px solid #111;
+                    border-radius: 10px;
+                    padding: 10px;
+                    background-color: #ffffff;
+                    margin-bottom: 10px;
+    
+                    > img {
+                        width: 100px;
+                        height: 100px;
                     }
-                    > h2 {
-                        font-size: 16px;
-                        font-weight: bolder;
-                        color: #6c6c6c;
-                    }
-                    
                     > div {
                         display: flex;
+                        width: 100%;
+                        flex-direction: column;
                         justify-content: space-between;
-                        align-items: center;
-                        > h3 {
+                        padding: 0 10px;
+                        > h1 {
                             font-size: 18px;
                             font-weight: bolder;
-                            color: #ff9028;
                         }
-                        > input {
-                            width: 50px;
-                            font-size: 18px;
-                            text-align: center;
-                            border: 1px solid #B0A695;
-                            border-radius: 4px;
-                            margin-right: 10px;
+                        > h2 {
+                            font-size: 16px;
+                            font-weight: bolder;
+                            color: #6c6c6c;
+                        }
+                        
+                        > div {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            > h3 {
+                                font-size: 18px;
+                                font-weight: bolder;
+                                color: #ff9028;
+                            }
+                            > input {
+                                width: 50px;
+                                font-size: 18px;
+                                text-align: center;
+                                border: 1px solid #B0A695;
+                                border-radius: 4px;
+                                margin-right: 10px;
+                            }
+                            > button {
+                                font-size: 18px;
+                                padding: 6px 4px;
+                            }
                         }
                     }
                 }
@@ -238,9 +246,46 @@
             margin: 20px 0 0 0;
         }
         > .shoppingBox {
+            padding: 10px;
             max-width: 100%;
-            > div {
+            > .itemBox {
                 max-width: 100%;
+                justify-content: space-between;
+                flex-direction: row;
+                flex-wrap: wrap;
+                > .item {
+                    max-width: 48%;
+                    flex-direction: column;
+                    > img {
+                        width: 100%;
+                        height: auto;
+                    }
+                    > div {
+                        display: flex;
+                        padding: 0;
+                        > h1 {
+                            font-size: 16px;
+                        }
+                        > h2 {
+                            font-size: 14px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            margin: 4px 0;
+                        }
+
+                        > div {
+                            margin-top: auto;
+                            > h3 {
+                                font-size: 16px;
+                            }
+                            > button {
+                                font-size: 16px;
+                                padding: 6px 4px;
+                            }
+                        }
+                    }
+                }
             }
         }
         > .cart {
@@ -251,12 +296,29 @@
 /* 500px 이하일 때 */
 @media (max-width: 500px) {
     #DataStorage > .storageBox > div {
-        #cookieBox {
+        > #cookieBox {
             min-width: 300px;
             > table {
                 > tr {
                     > td {
                         font-size: 12px;
+                    }
+                }
+            }
+        }
+        > .shoppingBox {
+            > .itemBox {
+                > .item {
+                    > div {
+                        > div {
+                            > h3 {
+                                font-size: 14px;
+                            }
+                            > button {
+                                font-size: 14px;
+                                padding: 4px 2px;
+                            }
+                        }
                     }
                 }
             }
