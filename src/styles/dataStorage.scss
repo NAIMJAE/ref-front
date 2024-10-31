@@ -18,7 +18,7 @@
     }
     div {
         display: flex;
-    }
+    } 
     .storageBox {
         justify-content: space-between;
 
@@ -31,7 +31,9 @@
             background-color: #eaeaea;
             border-radius: 10px;
             padding: 20px;
-            width: 342px;
+            width: 100%;
+            max-width: 342px;
+            min-width: 200px;
 
             > h2 {
                 font-size: 20px;
@@ -46,7 +48,7 @@
                 color: #4d4d4d;
             }
             > input {
-                width: 300px;
+                max-width: 300px;
                 font-size: 18px;
                 padding: 4px 10px;
                 margin-bottom: 10px;
@@ -70,10 +72,14 @@
             }
         }
         #cookieBox {
+            width: 100%;
+            min-width: 400px;
+            margin-left: 20px;
+
             > table {
                 background-color: white;
                 border-collapse: collapse;
-                width: 700px;
+                width: 100%;
                 tr {
                     td {
                         border: 1px solid #000;
@@ -85,13 +91,13 @@
                         font-weight: bolder;
                     }
                     td:nth-child(2) {
-                        width: 110px;
+                        width: 100px;
                     }
                     td:nth-child(3) {
-                        max-width: 120px;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         white-space: nowrap;
+                        overflow-x: auto;
                     }
                 }
             }
@@ -103,7 +109,8 @@
             border-radius: 10px;
             padding: 20px;
             background-color: #d1d1d1;
-            width: 522px;
+            width: 100%;
+            max-width: 522px;
 
             > h2 {
                 font-size: 26px;
@@ -114,7 +121,8 @@
 
             > div {
                 display: flex;
-                width: 480px;
+                width: 100%;
+                max-width: 480px;
                 border: 1px solid #111;
                 border-radius: 10px;
                 padding: 10px;
@@ -164,6 +172,7 @@
         }
         .cart {
             background-color: #ebebeb;
+            margin-left: 10px;
         }
     }
 
@@ -208,4 +217,49 @@
             }
         }
     }
+}
+/* 1000px 이하 */
+@media (max-width: 1000px) {
+}
+/* 800px 이하 */
+@media (max-width: 800px) {
+    #DataStorage > .storageBox > div {
+        flex-direction: column;
+        #loginBox {
+            max-width: 100%;
+            width: 100%;
+
+            > input {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+        #cookieBox {
+            margin: 20px 0 0 0;
+        }
+        > .shoppingBox {
+            max-width: 100%;
+            > div {
+                max-width: 100%;
+            }
+        }
+        > .cart {
+            margin: 20px 0 0 0;
+        }
+    } 
+}
+/* 500px 이하일 때 */
+@media (max-width: 500px) {
+    #DataStorage > .storageBox > div {
+        #cookieBox {
+            min-width: 300px;
+            > table {
+                > tr {
+                    > td {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    } 
 }
