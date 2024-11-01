@@ -198,15 +198,15 @@
             transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
-            width: 600px;
-            height: 600px;
             background-color: white;
             border: 2px solid #111;
             overflow: hidden;
 
             > img {
                 display: flex;
-                height: 560px;
+                width: 100%;
+                min-height: 150px;
+                max-height: 560px;
             }
 
             > div {
@@ -220,7 +220,8 @@
                 }
 
                 > p:hover {
-
+                    color: rgb(32, 130, 215);
+                    font-weight: bolder;
                 }
             }
         }
@@ -295,33 +296,45 @@
 }
 /* 500px 이하일 때 */
 @media (max-width: 500px) {
-    #DataStorage > .storageBox > div {
-        > #cookieBox {
-            min-width: 300px;
-            > table {
-                > tr {
-                    > td {
-                        font-size: 12px;
+    #DataStorage {
+        > .storageBox > div {
+            > #cookieBox {
+                min-width: 300px;
+                > table {
+                    > tr {
+                        > td {
+                            font-size: 12px;
+                        }
                     }
                 }
             }
-        }
-        > .shoppingBox {
-            > .itemBox {
-                > .item {
-                    > div {
+            > .shoppingBox {
+                > .itemBox {
+                    > .item {
                         > div {
-                            > h3 {
-                                font-size: 14px;
-                            }
-                            > button {
-                                font-size: 14px;
-                                padding: 4px 2px;
+                            > div {
+                                > h3 {
+                                    font-size: 14px;
+                                }
+                                > button {
+                                    font-size: 14px;
+                                    padding: 4px 2px;
+                                }
                             }
                         }
                     }
                 }
             }
+        } 
+        > #PopupComponent {
+            > #Popup {
+                > div {
+                    > p {
+                        font-size: 16px;
+                        padding: 2px;
+                    }
+                }
+            }
         }
-    } 
+    }
 }

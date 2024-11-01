@@ -106,20 +106,20 @@ body {
     align-self: center;
     align-items: center;
     width: 100%;
-    padding: 20px 20px 40px 20px;
     z-index: 2;
     border-top: 1px solid #dfdfdf;
 
     > div {
         display: flex;
         width: 1200px;
+        padding: 20px 0;
         justify-content: space-between;
 
         > div {
             display: flex;
             flex-direction: column;
             align-self: start;
-            padding: 0 10px;
+            padding: 0 20px;
 
             > h2 {
                 font-size: 20px;
@@ -156,9 +156,10 @@ body {
         
                         > img {
                             display: flex;
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 10px;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            margin-right: 5px;
                         }
                         > h1 {
                             font-size: 16px;
@@ -212,8 +213,6 @@ body {
             > .refBox {
                 position: relative;
                 flex: 1 1 calc(33.33% - 15px);
-                //flex-direction: column;
-                //align-items: center;
                 padding: 20px 0;
                 transition: background-color 0.3s ease-in-out;
                 cursor: pointer;
@@ -237,6 +236,7 @@ body {
 
                     > .refInfo {
                         display: flex;
+                        max-width: 50%;
                         flex-direction: column;
                         border-right: 1px solid #bababa;
                         padding-right: 10px;
