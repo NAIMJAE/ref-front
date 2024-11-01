@@ -129,7 +129,7 @@ const VisitorTrackingPage = () => {
               <div className="chart" style={chartStyle}>
                 <div className='center'></div>
               {(() => {
-                const radius = 120; // 차트의 반지름, chart 크기에 맞춰 조정
+                const radius = [115, 105, 115, 105, 115]; // 차트의 반지름, chart 크기에 맞춰 조정
                 let deg = -90; // 시작 각도 (상단에서 시작)
                 return countryVisitorCount.map((item, index) => {
                   const angle = item.countryPercentage * 3.6; // 각 항목의 전체 각도 계산
@@ -137,8 +137,8 @@ const VisitorTrackingPage = () => {
                   const radian = (currentDeg * Math.PI) / 180; // 각도를 라디안으로 변환
 
                   // 좌표 계산 (차트 중심을 기준으로)
-                  const left = 50 + (radius * Math.cos(radian)) / 300 * 100; // X 좌표를 퍼센트로 변환하여 계산
-                  const top = 50 + (radius * Math.sin(radian)) / 300 * 100; // Y 좌표를 퍼센트로 변환하여 계산
+                  const left = 50 + (radius[index] * Math.cos(radian)) / 300 * 100; // X 좌표를 퍼센트로 변환하여 계산
+                  const top = 50 + (radius[index] * Math.sin(radian)) / 300 * 100; // Y 좌표를 퍼센트로 변환하여 계산
 
                   deg += angle; // 다음 항목의 시작 각도를 설정
 

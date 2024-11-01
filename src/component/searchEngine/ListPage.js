@@ -85,25 +85,17 @@ const ListPage = ({ changePage, checkLogin, listState, setListState, loginSlice 
                 <h2>※ 검색을 통해 두 모델의 차이점을 확인해보세요. ex) "치킨 만드는 방법", "건강한 운동 방법" 검색</h2>
             </div>
             <div className='postList'>
-                <table>
-                    <tr>
-                        <td>No</td>
-                        <td>제목</td>
-                        <td>글쓴이</td>
-                        <td>날짜</td>
-                    </tr>
+                <div id='listBox'>
                     {postList.dtoList && postList.dtoList.length > 0 && postList.dtoList.map((post, index) => (
-                        <tr key={index}>
-                            <td>{post.pno}</td>
-                            <td onClick={() => changePage("view", post.pno)}>{post.title} 
-                                {post.related !== 0 && <span>{post.related}</span>}
-                            </td>
-                            <td>{post.uid}</td>
-                            <td>{Moment(post.rdate).format('YYYY-MM-DD HH:MM')}</td>
-                        </tr>
+                        <div className='item' key={index} onClick={() => changePage("view", post.pno)}>
+                            <p>{post.pno}</p>
+                            <div>
+                                <h2>{post.title}{post.related !== 0 && <span>{post.related}</span>}</h2>
+                                <h3>{post.uid} | {Moment(post.rdate).format('YYYY-MM-DD HH:MM')}</h3>
+                            </div>
+                        </div>
                     ))}
-                    
-                </table>
+                </div>
             </div>
             <div className='postPaging'>
 

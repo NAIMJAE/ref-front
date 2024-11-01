@@ -85,7 +85,7 @@ const ChatBotApiPage = () => {
 
   return (
     <MainLayout>
-      <div className='colDiv'>
+      <div id='chatBotApi'>
         <div className='ts_box'>
         <h1>ChatBot</h1>
           <h2 className='bg_blue bold'>챗봇 설명</h2>

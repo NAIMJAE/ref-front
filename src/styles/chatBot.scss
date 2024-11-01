@@ -1,186 +1,195 @@
-.ChatBotApiPage {
+#chatBotApi {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    width: 600px;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 
-    .chatBotbox {
-        flex-grow: 1;
+    > .ChatBotApiPage {
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
-        margin-bottom: 15px;
-        padding: 10px;
-        border: 1px solid #e6e6e6;
+        justify-content: space-between;
+        height: 100%;
+        padding: 2%;
+        border: 1px solid #ddd;
         border-radius: 8px;
-        background-color: #fafafa;
-        height: 800px;
-        overflow-y: auto;
-
-        .message {
+        background-color: #fff;
+        width: 95%;
+        max-width: 600px;
+    
+        > .chatBotbox {
+            flex-grow: 1;
             display: flex;
-            margin: 15px 0;
+            flex-direction: column;
+            overflow-y: auto;
+            margin-bottom: 15px;
             padding: 10px;
-            border-radius: 20px;
-            max-width: 90%;
-            word-wrap: break-word;
-
-            &.user {
-                align-self: flex-end;
-                background-color: #d1f8ff;
-                border-bottom-right-radius: 5px;
-                border-bottom-left-radius: 20px;
-            }
-
-            &.assistant {
-                align-self: flex-start;
-                background-color: #efefef;
-                border-bottom-left-radius: 5px;
-                border-bottom-right-radius: 20px;
-            }
-            &.typing {
-                align-self: flex-start;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            background-color: #fafafa;
+            min-height: 600px;
+            max-height: 800px;
+            overflow-y: auto;
+    
+            .message {
                 display: flex;
-                gap: 5px;
-        
-                .dot {
-                  width: 8px;
-                  height: 8px;
-                  background-color: #999;
-                  border-radius: 50%;
-                  animation: typing 1.5s infinite;
+                margin: 15px 0;
+                padding: 10px;
+                border-radius: 20px;
+                max-width: 90%;
+                word-wrap: break-word;
+    
+                &.user {
+                    align-self: flex-end;
+                    background-color: #d1f8ff;
+                    border-bottom-right-radius: 5px;
+                    border-bottom-left-radius: 20px;
                 }
-        
-                .dot:nth-child(2) {
-                  animation-delay: 0.3s;
+    
+                &.assistant {
+                    align-self: flex-start;
+                    background-color: #efefef;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 20px;
                 }
-        
-                .dot:nth-child(3) {
-                  animation-delay: 0.6s;
+                &.typing {
+                    align-self: flex-start;
+                    display: flex;
+                    gap: 5px;
+            
+                    .dot {
+                        width: 8px;
+                        height: 8px;
+                        background-color: #999;
+                        border-radius: 50%;
+                        animation: typing 1.5s infinite;
+                    }
+            
+                    .dot:nth-child(2) {
+                        animation-delay: 0.3s;
+                    }
+            
+                    .dot:nth-child(3) {
+                        animation-delay: 0.6s;
+                    }
                 }
             }
         }
-    }
-
-    .ctnInput {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        input[type='text'] {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #0095f6;
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-
-            &:hover {
-                background: linear-gradient(123deg, #fa6f00, #e433ff 50%, #8575ff);
-                transform: translateX(0);
-                  
+    
+        .ctnInput {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+    
+            input[type='text'] {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 20px;
+                outline: none;
+            }
+    
+            button {
+                padding: 10px 20px;
+                background-color: #0095f6;
+                color: #fff;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-weight: bold;
+    
+                &:hover {
+                    background: linear-gradient(123deg, #fa6f00, #e433ff 50%, #8575ff);
+                    transform: translateX(0);
+                }
             }
         }
     }
 }
+
         // 설명
-        .description {
-          padding-left: 20px;
-          width: 100%;
-          margin-bottom: 20px;
-  
-          h2 {
-              font-weight: bolder;
-              font-size: 24px;
-              margin-bottom: 10px;
-          }
-  
-          h3 {
-              font-size: 20px;
-              margin-bottom: 10px;
-              line-height: 1.6;
-  
-              &::before {
-                  content: "※ ";
-              }
-          }
-  
-          ul {
-              padding-left: 20px;
-              margin-bottom: 10px;
-  
-              li {
-                  font-size: 16px;
-                  color: #666;
-                  line-height: 1.4;
-                  margin-bottom: 5px;
-                  list-style-type: disc;
-              }
-          }
-          .gameRule {
-              padding: 15px;
-              margin-top: 20px;
-              background-color: #f9f9f9;
-              border-radius: 8px;
-              width: 100%;
-          
-              h2 {
-                  font-size: 20px;
-                  font-weight: bold;
-                  margin-bottom: 10px;
-              }
-          
-              h3 {
-                  font-size: 16px;
-                  margin-bottom: 8px;
-                  line-height: 1.5;
-                  color: #333;
-          
-                  &::before {
-                      content: "※ ";
-                      font-weight: bold;
-                      color: #555;
-                  }
-              }
-          
-              ul {
-                  padding-left: 20px;
-                  margin-bottom: 10px;
-          
-                  li {
-                      font-size: 14px;
-                      color: #555;
-                      line-height: 1.4;
-                      margin-bottom: 5px;
-                      list-style-type: disc;
-                  }
-              }
-          }
-          
-      }
+    .description {
+        padding-left: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+
+        h2 {
+            font-weight: bolder;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+
+            &::before {
+                content: "※ ";
+            }
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+
+            li {
+                font-size: 16px;
+                color: #666;
+                line-height: 1.4;
+                margin-bottom: 5px;
+                list-style-type: disc;
+            }
+        }
+        .gameRule {
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            width: 100%;
+        
+            h2 {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            h3 {
+                font-size: 16px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+                color: #333;
+        
+                &::before {
+                    content: "※ ";
+                    font-weight: bold;
+                    color: #555;
+                }
+            }
+        
+            ul {
+                padding-left: 20px;
+                margin-bottom: 10px;
+        
+                li {
+                    font-size: 14px;
+                    color: #555;
+                    line-height: 1.4;
+                    margin-bottom: 5px;
+                    list-style-type: disc;
+                }
+            }
+        }
+        
+    }
 @keyframes typing {
     0% {
-      opacity: 0.2;
+        opacity: 0.2;
     }
     20% {
-      opacity: 1;
+        opacity: 1;
     }
     100% {
-      opacity: 0.2;
+        opacity: 0.2;
     }
-  }
+}
