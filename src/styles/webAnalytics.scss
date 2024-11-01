@@ -17,23 +17,8 @@
         box-sizing: border-box;
     }
 
-    @media (min-width: 1200px) {
-        #analytics {
-            width: 1180px;
-        }
-    }
-
-    /* 1200px 이하일 때 */
-    @media (max-width: 1200px) {
-        #analytics {
-            width: 600px;
-            min-width: 0;
-        }
-    }
-
     #analytics {
-        min-width: 600px;
-        max-width: 1180px;
+        width: 100%;
         padding: 20px 20px 0 20px;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -46,8 +31,7 @@
 
         > #daily {
             flex-direction: column;
-            width: 560px;
-            height: 350px;
+            width: 48%;
             margin-bottom: 20px;
             background-color: #FFFFFF;
             border-radius: 10px;
@@ -65,12 +49,13 @@
             > div {
                 width: 100%;
                 height: 100%;
-                padding: 20px;
+                padding: 4%;
                 justify-content: center;
                 align-items: end;
                 flex-direction: row-reverse;
 
                 > .each {
+                    width: calc(100% / 14);
                     flex-direction: column;
                     border-top: 1px solid #e9e9e9;
     
@@ -88,7 +73,7 @@
                             color: #212121;
                         }
                         > .graph {
-                            width: 18px;
+                            width: 50%;
                             min-height: 2px;
                             max-height: 200px;
                             background-color: #4D96FF;
@@ -102,6 +87,7 @@
                         padding: 4px;
                         border-top: 2px solid #e9e9e9;
                         color: #212121;
+                        text-align: center;
                     }
                 }
                 > .each:nth-child(2n) .graph{
@@ -116,8 +102,8 @@
 
         > #summary {
             flex-direction: column;
-            width: 560px;
-            height: 350px;
+            justify-content: space-between;
+            width: 48%;
             margin-bottom: 20px;
 
             > div > h1 {
@@ -136,12 +122,12 @@
                 margin-bottom: 20px;
 
                 > #visitorBox {
-                    padding: 20px;
+                    padding: 4%;
+                    width: 100%;
                     justify-content: space-between;
 
                     > div {
-                        width: 150px;
-                        height: 105.33px;
+                        width: 30%;
                         justify-content: space-between;
                         flex-direction: column;
                         align-items: center;
@@ -186,16 +172,16 @@
                 box-shadow: 2px 2px 5px #9e9e9e,
                         inset 1px 1px 1px #ebebeb,
                         inset -2px -2px 2px #ebebeb;
-                margin-bottom: 20px;
 
                 > div {
-                    height: 96px;
-                    padding: 10px 20px;
+                    width: 100%;
+                    padding: 4%;
                     justify-content: space-between;
 
                     > div {
+                        width: 45%;
+                        justify-content: center;
                         align-items: center;
-                        padding: 8px 40px;
 
                         > img {
                             width: 70px;
@@ -213,7 +199,7 @@
         }
         > #doughnut {
             flex-direction: column;
-            width: 560px;
+            width: 48%;
             background-color: #FFFFFF;
             border-radius: 10px;
             box-shadow: 2px 2px 5px #9e9e9e,
@@ -229,13 +215,13 @@
             }
             .chartWrap{
                 position: relative;
-                padding: 40px 30px;
+                padding: 5%;
                 justify-content: space-between;
-
+                
                 .chart {
                     position: relative;
-                    width: 300px;
-                    height: 300px;
+                    width: 60%;
+                    padding-bottom: 60%;
                     border-radius: 50%;
                     transition: 0.3s;
                     background:lightgray;
@@ -249,7 +235,7 @@
                         background: #FFFFFF;
                         position: absolute;
                         top:50%; left:50%;
-                        width:170px; height:170px;
+                        width:50%; height:50%;
                         border-radius: 50%;
                         transform: translate(-50%, -50%);
                         box-shadow: inset 2px 2px 5px #9e9e9e,
@@ -271,17 +257,20 @@
                 }
                 
                 .chartInfo {
+                    width: 45%;
+                    justify-content: end;
                     align-items: center;
                     > .infoBox {
+                        width: 80%;
                         flex-direction: column;
-                        padding: 10px 20px;
+                        padding: calc(100% / 20);
                         border-radius: 10px;
                         box-shadow: 4px 4px 5px #c1c1c1,
                             inset -2px -2px 5px #dfdfdf,
                             -2px -2px 5px #f1f1f1;
 
                         > div {
-                            width: 120px;
+                            width: 100%;
                             position: relative;
                             justify-content: flex-start;
                             margin: 4px 0;
@@ -298,18 +287,17 @@
                                 padding-top: 6px;
                             }
                             > .city {
+                                width: 100%;
                                 display: none;
                                 flex-direction: column;
                                 position: absolute;
                                 top: 30px;
-                                left: -10px;
-                                padding: 10px;
+                                padding: 3%;
                                 background-color: rgb(255, 255, 255, 0.9);
                                 border: 1px solid #000;
                                 z-index: 1;
             
                                 > div {
-                                    width: 120px;
                                     justify-content: space-between;
                                     > p {
                                         display: flex;
@@ -332,6 +320,92 @@
                         > div:nth-child(3) > span {background-color: #6BCB77;}
                         > div:nth-child(4) > span {background-color: #FFD93D;}
                         > div:nth-child(5) > span {background-color: #FFF89A;}
+                    }
+                }
+            }
+        }
+    }
+}
+/* 1000px 이하 */
+@media (max-width: 1000px) {
+    #visitorTracking {
+        > #analytics {
+            flex-direction: column;
+
+            > #daily {
+                width: 100%;
+            }
+            > #summary {
+                width: 100%;
+            }
+            > #doughnut {
+                width: 100%;
+            }
+        }
+    }
+}
+/* 800px 이하 */
+@media (max-width: 800px) {
+}
+/* 500px 이하일 때 */
+@media (max-width: 500px) {
+    #visitorTracking {
+        > #analytics {
+            > #daily {
+                > h1 {
+                    font-size: 16px;
+                }
+                > div {
+                    > .each {
+                        > p {
+                            font-size: 10px;
+                            letter-spacing: -1px;
+                        }
+                    }
+                }
+            }
+            > #summary {
+                > #visitors {
+                    > h1 {
+                        font-size: 16px;
+                    }
+                }
+                > #division {
+                    > h1 {
+                        font-size: 16px;
+                    }
+                    > div {
+
+                        > div {
+
+                            > img {
+                                width: 50px;
+                                height: 50px;
+                                margin-right: 10px;
+                            }
+                            > p {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+            > #doughnut {
+                > h1 {
+                    font-size: 16px;
+                }
+                .chartWrap {
+                    //padding: 5px;
+                    .chartInfo > .infoBox {
+                        > div {
+                            > span {
+                                width: 15px;
+                                height: 15px;
+                            }
+                            > p {
+                                font-size: 12px;
+                            }
+                        }
                     }
                 }
             }
