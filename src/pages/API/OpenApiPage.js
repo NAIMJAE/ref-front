@@ -104,7 +104,7 @@ const OpenApiPage = () => {
                     </tr>
                     <tr>
                         <td>End Point</td>
-                        <td>https://refcode.shop/ref/shinchan/v1/</td>
+                        <td>https://api.refcode.info/ref/shinchan/v1/</td>
                     </tr>
                     <tr>
                         <td>인증키(serviceKey)</td>
@@ -162,7 +162,7 @@ const OpenApiPage = () => {
                     <tr>
                         <td rowSpan={5}>API 서비스 배포정보</td>
                         <td>서비스 URL</td>
-                        <td>https://refcode.shop/ref/shinchan/v1/</td>
+                        <td>https://api.refcode.info/ref/shinchan/v1/</td>
                     </tr>
                     <tr>
                         <td>서비스 버전</td>

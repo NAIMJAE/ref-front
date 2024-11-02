@@ -49,7 +49,7 @@ const MainPage = () => {
               </div>
               <div className='textBox'>
                 <div className='refInfo'>
-                  <h3>{ref.refCate}</h3>
+                  <pre>{ref.refCate}</pre>
                 </div>
 
                 <div className='refTitle'>
