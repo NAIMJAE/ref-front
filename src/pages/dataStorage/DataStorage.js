@@ -311,9 +311,9 @@ const DataStorage = () => {
                     ) : (
                         <div id='loginBox'>
                             <h2>로그인</h2>
-                            <input type="text" value={loginData.uid}
+                            <input type="text" value={loginData.uid} placeholder='Id'
                                 onChange={(e) => setLoginData((prev)=>({...prev, uid:e.target.value}))}/>
-                            <input type="password" value={loginData.password}
+                            <input type="password" value={loginData.password} placeholder='Password'
                                 onChange={(e) => setLoginData((prev)=>({...prev, password:e.target.value}))}/>
                             
                             <div>

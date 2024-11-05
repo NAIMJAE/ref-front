@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import { useNavigate } from 'react-router-dom';
 import { getRefListApi } from '../../api/MainPageApi';
+import InspectionPage from '../../layout/ErrorPage';
 /**
  * 
  * [진진] 
@@ -42,7 +43,7 @@ const MainPage = () => {
     <MainLayout>
       <div id='mainPage'>
         <div className='pageList'>
-          {refList && refList.map((ref, index)=>(
+          {refList.length > 0 ? (refList.map((ref, index)=>(
             <div className='refBox' key={index} onClick={() => navigate(`${ref.refApi}`)}>
               <div className='imgBox'>
                 <img src={`../../images/main/${ref.refThumb}`} alt="a" />
@@ -59,7 +60,9 @@ const MainPage = () => {
 
               </div>
             </div>
-          ))}
+          ))) : (
+            <InspectionPage/>
+          )}
 
           {fakeBoxes}
         </div>

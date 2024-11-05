@@ -14,8 +14,22 @@ a {
     -webkit-appearance: none;
 }
 button {
-    color: rgb(0, 0, 0);
     -webkit-appearance: none;
+    border: 0;
+    padding: 10px;
+    border: 2px solid #ff5f2e;
+    color: #ff5f2e;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bolder;
+    transition: 0.25s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+button:hover {
+    background-color: #ff5f2e;
+    color: #ffffff;
 }
 input,
 textarea {
@@ -90,9 +104,11 @@ body {
                     font-weight: bolder;
                     box-sizing: border-box;
                     background-color: transparent;
+                    color: #000;
                     border: 0;
                     border-bottom: 1px solid #dfdfdf;
                     padding: 0 10px 10px 10px;
+                    border-radius: 0;
                     margin-bottom: -1px;
                     cursor: pointer;
                 }
@@ -296,6 +312,47 @@ body {
         }
     }
 }
+#inspectionPage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    > div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        > img {
+            width: 340px;
+            height: 340px;
+        }
+
+        > div {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        > p {
+            font-size: 24px;
+            font-weight: bolder;
+        }
+        > button {
+            width: 35%;
+            font-size: 20px;
+            font-weight: bolder;
+            margin: 20px 0;
+            border: 2px solid #ad4800;
+            border-radius: 10px;
+            background-color: #eb6100;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        > button:hover {
+            background-color: #ff7c1f;
+        }
+    }
+}
 
 .ts_box {
     display: flex;
@@ -423,20 +480,27 @@ body {
     display: flex;
     flex-direction: column;
     margin: 20px 20px 40px 20px;
-    background-color: rgb(243, 250, 255);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-    border-left: 10px solid rgb(32, 130, 215);
-    border-radius: 10px;
+    //background-color: rgb(243, 250, 255);
+    background-color: rgb(255, 255, 255);
+    //box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4),
+        -4px -4px 10px rgba(0, 0, 0, 0.4);
+    //border-left: 10px solid rgb(32, 130, 215);
+    //border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
 
     > .frameInfo {
         display: flex;
-        background-color: rgb(201, 230, 255);
+        //background-color: rgb(201, 230, 255);
         font-size: 20px;
         font-weight: bolder;
-        color: rgb(11, 107, 191);
+        //color: rgb(11, 107, 191);
+        color: #ff5f2e;
         padding: 14px;
-        border-bottom: 2px solid rgb(154, 208, 255);
+        margin: 0 20px;
+        //border-bottom: 2px solid rgb(154, 208, 255);
+        border-bottom: 2px solid #ff5f2e;
     }
     > .frameInfo::before {
         content: "ⓘ";
@@ -482,6 +546,15 @@ body {
     .ts_box {
         padding: 10px;
     }
+    .frame {
+        margin: 10px;
+        > .frameInfo {
+            margin: 0 10px;
+        }
+        > .frameBody {
+            padding: 15px 10px;
+        }
+    }
 }
 /* 500px 이하일 때 */
 @media (max-width: 500px) {
@@ -521,8 +594,11 @@ body {
         padding: 5px;
     }
     .frame {
+        > .frameInfo {
+            margin: 0 5px;
+        }
         > .frameBody {
-            padding: 10px;
+            padding: 10px 5px;
         }
     }
 }

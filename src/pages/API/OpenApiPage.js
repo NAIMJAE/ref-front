@@ -79,341 +79,381 @@ const OpenApiPage = () => {
   return (
     <MainLayout>
         <div id='openApiPage'>
-            <div>
-                <p>기본정보</p>
-                <table className='basicInfo'>
-                    <tr>
-                        <td>데이터명</td>
-                        <td colSpan={3}>짱구 등장인물 정보</td>
-                    </tr>
-                    <tr>
-                        <td>서비스 유형</td>
-                        <td>Rest</td>
-                        <td>심의여부</td>
-                        <td>자동승인</td>
-                    </tr>
-                </table>
+
+            <div className='ts_box'>
+                <h1>제목</h1>
+                <h2 className='bg_blue bold'>Open API란?</h2>
+                <h3>- 정부, 공공기관, 기업 등이 데이터를 공개하고, 다양한 목적으로 활용할 수 있도록 제공</h3>
+                <h3>- API 중에서 플랫폼의 기능 또는 컨텐츠를 외부에서 쓸 수 있도록 웹 프로토콜(HTTP)로 호출할 수 있도록 개방(open)한 API를 의미</h3>
+                <br/>
+                
+                <h3 className='bg_green bold'>1. Open API의 특징</h3>
+                <h3>- Open API는 데이터를 일정한 형식으로 제공하여 데이터를 일관되게 처리할 수 있게 함 (JSON, XML 등)</h3>
+                <h3>- 데이터 조회에 특화된 API의 경우, GET 요청만으로 충분히 목적을 달성할 수 있음</h3>
+                <h3>- GET 요청은 웹 브라우저, 모바일 앱, API 클라이언트 등 다양한 환경에서 쉽게 사용될 수 있음</h3>
+                <h3>- API 제공자는 인증된 사용자만이 API에 접근할 수 있도록 하여, 무단 접근을 방지</h3>
+                <h3>- 사용자나 애플리케이션의 API 사용량 추적을 통해, 과도하게 사용하는 것을 방지</h3>
+                <br/>
+
+                <h3 className='bg_green bold'>2. 국가에서 무료 Open API를 제공하는 이유</h3>
+                <h3>- 공공 데이터를 API를 통해 공개함으로써 정부의 운영을 투명하게 만들 수 있음</h3>
+                <h3>- 개발자들이 이 데이터를 활용해 시민들에게 유용한 애플리케이션이나 서비스를 만들 수 있게 됨</h3>
+                <h3>- 데이터를 공개하고, 많은 사람들이 이 데이터를 활용할 수 있도록 함으로써, 데이터의 활용도를 극대화할 수 있음</h3>
+                <h3>- 국제적으로 통용되는 데이터 표준과 기술을 따르게 되고, 이는 국가의 IT 경쟁력을 강화하는 데 도움</h3>
+                <br/>
+
+                <h3 className='bg_green bold'>3. 기업에서 무료 Open API를 제공하는 이유</h3>
+                <h3>- 기업의 입장에서 Open API 제공을 통해 더 많은 고객 데이터를 확보할 수 있음 </h3>
+                <h3>- API를 제작하여 제공하는 투자 비용에 비해 기업이 얻는 브랜드 이미지와 이익이 더욱 크기 때문</h3>
+                <br/>
+                
             </div>
 
-            <div>
-                <p>서비스정보</p>
-                <table className='serviceInfo'>
-                    <tr>
-                        <td>데이터 포맷</td>
-                        <td>JSON</td>
-                    </tr>
-                    <tr>
-                        <td>End Point</td>
-                        <td>https://api.refcode.info/ref/shinchan/v1/</td>
-                    </tr>
-                    <tr>
-                        <td>인증키(serviceKey)</td>
-                        <td>
-                            {serviceKey}
-                            <button onClick={createServiceKey}>ServiceKey 발급</button>    
-                        </td>
-                    </tr>
-                </table>
+            <div className='section'>
+                <h1>OpenAPI SERVICE 예제</h1>
+                <p>서비스 개요</p>
+                <div className='serviceOutline'>
+                    <div className='listBox'>
+                        <h4>기본 정보</h4>
+                        <div>
+                            <h4>데이터명</h4>
+                            <h5>짱구 등장인물 정보</h5>
+                        </div>
+                        <div>
+                            <h4>서비스 유형</h4>
+                            <h5>REST (GET)</h5>
+                        </div>
+                        <div>
+                            <h4>데이터 포맷</h4>
+                            <h5>JSON</h5>
+                        </div>
+                        <div>
+                            <h4>서비스 인증/권한</h4>
+                            <h5>ServiceKey</h5>
+                        </div>
+                        <div>
+                            <h4>End Point</h4>
+                            <h5>https://api.refcode.info/ref/shinchan/v1/</h5>
+                        </div>
+                        <div className='serviceKey'>
+                            <div>
+                                <h4>인증키(serviceKey)</h4>
+                                <button onClick={createServiceKey}>ServiceKey 발급</button>
+                            </div>
+                            <h5>{serviceKey}</h5>
+                        </div>
+                    </div>
+
+                    <div className='listBox'>
+                        <h4>API 서비스 정보</h4>
+                        <div>
+                            <h4>API명 (영문)</h4>
+                            <h5>ShinChanCharacterInfo</h5>
+                        </div>
+                        <div>
+                            <h4>API명 (국문)</h4>
+                            <h5>짱구 캐릭터 인물 정보 조회 서비스</h5>
+                        </div>
+                        <div>
+                            <h4>API 설명</h4>
+                            <h5>
+                                1-1 캐릭터 이름을 이용해 캐릭터 정보 조회<br/>
+                                1-2 캐릭터들의 인물 정보 조회
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div className='listBox'>
+                        <h4>API 서비스 배포정보</h4>
+                        <div>
+                            <h4>서비스 버전</h4>
+                            <h5>v1.1</h5>
+                        </div>
+                        <div>
+                            <h4>서비스 시작 / 배포일</h4>
+                            <h5>2024-08-21 / 2024-08-21</h5>
+                        </div>
+                        <div>
+                            <h4>서비스 이력</h4>
+                            <h5>
+                                2024-08-21 : 서비스 시작<br/>
+                                2024-10-18 : End Point 변경
+                            </h5>
+                        </div>
+                        <div>
+                            <h4>메세지 교환유형</h4>
+                            <h5>Request-Response</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <p>API 서비스 명세</p>
-                <h3>서비스 개요</h3>
-                <table className='serviceOutline'>
-                    <tr>
-                        <td rowSpan={3}>API 서비스 정보</td>
-                        <td>API명 (영문)</td>
-                        <td>ShinChanCharacterInfo</td>
-                    </tr>
-                    <tr>
-                        <td>API명 (국문)</td>
-                        <td>짱구 캐릭터 인물 정보 조회 서비스</td>
-                    </tr>
-                    <tr>
-                        <td>API 설명</td>
-                        <td>
-                            1-1 캐릭터 이름을 이용해 캐릭터 정보 조회<br/>
-                            1-2 캐릭터들의 인물 정보 조회
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td rowSpan={5}>API 서비스 보안적용 기술 수준</td>
-                        <td>서비스 인증/ 권한</td>
-                        <td><b>[O] ServiceKey</b> [] 인증서 [] Basic [] 없음</td>
-                    </tr>
-                    <tr>
-                        <td>메세지 레벨 암호화</td>
-                        <td>[] 전자서명 [] 암호화 <b>[O] 없음</b></td>
-                    </tr>
-                    <tr>
-                        <td>전송 레벨 암호화</td>
-                        <td>[] SSL <b>[O] 없음</b></td>
-                    </tr>
-                    <tr>
-                        <td>인터페이스 표준</td>
-                        <td><b>[O] REST(GET)</b> [] RSS1.0 [] RSS2.0 [] 기타</td>
-                    </tr>
-                    <tr>
-                        <td>교환 데이터 표준</td>
-                        <td>[] XML <b>[O] JSON</b> [] MIME [] MTOM</td>
-                    </tr>
-                    
-                    <tr>
-                        <td rowSpan={5}>API 서비스 배포정보</td>
-                        <td>서비스 URL</td>
-                        <td>https://api.refcode.info/ref/shinchan/v1/</td>
-                    </tr>
-                    <tr>
-                        <td>서비스 버전</td>
-                        <td>v1.0</td>
-                    </tr>
-                    <tr>
-                        <td>서비스 시작일 / 배포일</td>
-                        <td>2024-08-21 / 2024-08-21</td>
-                    </tr>
-                    <tr>
-                        <td>서비스 이력</td>
-                        <td>2024-08-21 : 서비스 시작</td>
-                    </tr>
-                    <tr>
-                        <td>메세지 교환유형</td>
-                        <td>
-                            <b>[O] Request-Response</b> [] Publish-Subscribe <br/>
-                            [] Fire-and-Forgot [] Notification
-                        </td>
-                    </tr>
-                </table>
-
-                <h3>상세기능 목록</h3>
-                <table className='serviceList'>
-                    <tr>
-                        <td>번호</td>
-                        <td>API명(국문)</td>
-                        <td>상세기능명(영문)</td>
-                        <td>상세기능명(국문)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td rowSpan={2}>짱구 캐릭터 인물 정보 조회 서비스</td>
-                        <td>getCharacterInfo</td>
-                        <td>이름을 이용한 캐릭터 정보 REST 조회</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>getCharacterListInfo</td>
-                        <td>캐릭터 전체 정보 REST 조회</td>
-                    </tr>
-                </table>
+            <div className='section'>
+                <p>상세 기능 목록</p>
+                <div className='serviceList'>
+                    <div>
+                        <h3>1</h3>
+                        <div>
+                            <div>
+                                <h4>API명 (국문)</h4>
+                                <h5>짱구 캐릭터 인물 정보 조회 서비스</h5>
+                            </div>
+                            <div>
+                                <h4>상세기능명 (영문)</h4>
+                                <h5>getCharacterInfo</h5>
+                            </div>
+                            <div>
+                                <h4>상세기능명 (국문)</h4>
+                                <h5>이름을 이용한 캐릭터 정보 REST 조회</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                        <div>
+                            <div>
+                                <h4>API명 (국문)</h4>
+                                <h5>짱구 캐릭터 인물 정보 조회 서비스</h5>
+                            </div>
+                            <div>
+                                <h4>상세기능명 (영문)</h4>
+                                <h5>getCharacterListInfo</h5>
+                            </div>
+                            <div>
+                                <h4>상세기능명 (국문)</h4>
+                                <h5>캐릭터 전체 정보 REST 조회</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div>
+            <div className='section'>
                 <p>API 목록</p>
-                <table className='apiList'>
-                    <tr>
-                        <td colSpan={3}>/getCharacterInfo <span>이름으로 캐릭터 정보 조회</span></td>
-                    </tr>
-                    <tr>
-                        <td rowSpan={3}>요청 메세지 명세</td>
-                        <td>serviceKey</td>
-                        <td>발급받은 인증키</td>
-                    </tr>
-                    <tr>
-                        <td>type</td>
-                        <td>결과형식(json)</td>
-                    </tr>
-                    <tr>
-                        <td>name</td>
-                        <td>캐릭터 이름</td>
-                    </tr>
+                <div className='apiList'>
+                    <div className='listBox'>
+                        <h4>/getCharacterInfo 이름으로 캐릭터 정보 조회</h4>
+                        <div>
+                            <h5>요청 메세지 명세</h5>
+                            <div>
+                                <div>
+                                    <h4>serviceKey</h4>
+                                    <h5>발급받은 인증키</h5>
+                                </div>
+                                <div>
+                                    <h4>type</h4>
+                                    <h5>결과형식(json)</h5>
+                                </div>
+                                <div>
+                                    <h4>name</h4>
+                                    <h5>캐릭터 이름</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <tr>
-                        <td colSpan={3}>/getCharacterListInfo <span>캐릭터 전체 정보 조회</span></td>
-                    </tr>
-                    <tr>
-                        <td rowSpan={4}>요청 메세지 명세</td>
-                        <td>serviceKey</td>
-                        <td>발급받은 인증키</td>
-                    </tr>
-                    <tr>
-                        <td>type</td>
-                        <td>결과형식(json)</td>
-                    </tr>
-                    <tr>
-                        <td>numOfRows</td>
-                        <td>검색건수</td>
-                    </tr>
-                    <tr>
-                        <td>pageNo</td>
-                        <td>페이지 번호</td>
-                    </tr>
+                    <div className='listBox'>
+                        <h4>/getCharacterListInfo 캐릭터 전체 정보 조회</h4>
+                        <div>
+                            <h5>요청 메세지 명세</h5>
+                            <div>
+                                <div>
+                                    <h4>serviceKey</h4>
+                                    <h5>발급받은 인증키</h5>
+                                </div>
+                                <div>
+                                    <h4>type</h4>
+                                    <h5>결과형식(json)</h5>
+                                </div>
+                                <div>
+                                    <h4>numOfRows</h4>
+                                    <h5>검색건수</h5>
+                                </div>
+                                <div>
+                                    <h4>pageNo</h4>
+                                    <h5>페이지 번호</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <tr>
-                        <td rowSpan={11}>응답 메세지 명세 (공통)</td>
-                        <td>charNo</td>
-                        <td>캐릭터 구분 번호</td>
-                    </tr>
-                    <tr>
-                        <td>charImg</td>
-                        <td>캐릭터 이미지</td>
-                    </tr>
-                    <tr>
-                        <td>charName</td>
-                        <td>캐릭터 이름</td>
-                    </tr>
-                    <tr>
-                        <td>charGender</td>
-                        <td>캐릭터 성별</td>
-                    </tr>
-                    <tr>
-                        <td>charBirth</td>
-                        <td>캐릭터 생년월일</td>
-                    </tr>
-                    <tr>
-                        <td>charAge</td>
-                        <td>캐릭터 나이</td>
-                    </tr>
-                    <tr>
-                        <td>charHeight</td>
-                        <td>캐릭터 키</td>
-                    </tr>
-                    <tr>
-                        <td>charWeight</td>
-                        <td>캐릭터 몸무게</td>
-                    </tr>
-                    <tr>
-                        <td>charJob</td>
-                        <td>캐릭터 직업</td>
-                    </tr>
-                    <tr>
-                        <td>charBloodType</td>
-                        <td>캐릭터 혈액형</td>
-                    </tr>
-                    <tr>
-                        <td>charEtc</td>
-                        <td>캐릭터 기타 정보</td>
-                    </tr>
-                </table>
+                    <div className='listBox'>
+                        <div>
+                            <h5>응답 메세지 명세 (공통)</h5>
+                            <div>
+                                <div>
+                                    <h4>charNo</h4>
+                                    <h5>캐릭터 구분 번호</h5>
+                                </div>
+                                <div>
+                                    <h4>charImg</h4>
+                                    <h5>캐릭터 이미지</h5>
+                                </div>
+                                <div>
+                                    <h4>charName</h4>
+                                    <h5>캐릭터 이름</h5>
+                                </div>
+                                <div>
+                                    <h4>charGender</h4>
+                                    <h5>캐릭터 성별</h5>
+                                </div>
+                                <div>
+                                    <h4>charBirth</h4>
+                                    <h5>캐릭터 생년월일</h5>
+                                </div>
+                                <div>
+                                    <h4>charAge</h4>
+                                    <h5>캐릭터 나이</h5>
+                                </div>
+                                <div>
+                                    <h4>charHeight</h4>
+                                    <h5>캐릭터 키</h5>
+                                </div>
+                                <div>
+                                    <h4>charWeight</h4>
+                                    <h5>캐릭터 몸무게</h5>
+                                </div>
+                                <div>
+                                    <h4>charJob</h4>
+                                    <h5>캐릭터 직업</h5>
+                                </div>
+                                <div>
+                                    <h4>charBloodType</h4>
+                                    <h5>캐릭터 혈액형</h5>
+                                </div>
+                                <div>
+                                    <h4>charEtc</h4>
+                                    <h5>캐릭터 기타 정보</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <table className='error'>
-                    <tr>
-                        <td colSpan={2}>오류 코드 정리</td>
-                    </tr>
-                    <tr>
-                        <td>SERVICE_KEY_IS_NOT_REGISTERED_ERROR</td>
-                        <td>유효하지 않은 ServiceKey</td>
-                    </tr>
-                    <tr>
-                        <td>INVALID_REQUEST_PARAMETER_ERROR_TYPE</td>
-                        <td>옳바르지 않은 파라미터 (type)</td>
-                    </tr>
-                    <tr>
-                        <td>INVALID_REQUEST_PARAMETER_ERROR_NAME</td>
-                        <td>옳바르지 않은 파라미터 (name)</td>
-                    </tr>
-                    <tr>
-                        <td>PAGE_NUMBER_EXCEEDS_TOTAL_PAGES</td>
-                        <td>페이지 번호가 총 페이지 수를 초과</td>
-                    </tr>
-                    <tr>
-                        <td>UNKNOWN_ERROR</td>
-                        <td>기타 에러</td>
-                    </tr>
-                </table>
+            <div className='section'>
+                <p>오류 코드 정리</p>
+                <div className='error'>
+                    <h4>오류 코드</h4>
+                    <div className='listBox'>
+                        <div>
+                            <h4>SERVICE_KEY_IS_NOT_REGISTERED_ERROR</h4>
+                            <h5>유효하지 않은 ServiceKey</h5>
+                        </div>
+                        <div>
+                            <h4>INVALID_REQUEST_PARAMETER_ERROR_TYPE</h4>
+                            <h5>올바르지 않은 파라미터 (type)</h5>
+                        </div>
+                        <div>
+                            <h4>INVALID_REQUEST_PARAMETER_ERROR_NAME</h4>
+                            <h5>올바르지 않은 파라미터 (name)</h5>
+                        </div>
+                        <div>
+                            <h4>PAGE_NUMBER_EXCEEDS_TOTAL_PAGES</h4>
+                            <h5>페이지 번호가 총 페이지 수를 초과</h5>
+                        </div>
+                        <div>
+                            <h4>UNKNOWN_ERROR</h4>
+                            <h5>기타 에러</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div className='frame'>
-                <p className='frameInfo'>불러오기 예제 (로그인 및 인증키를 발급 후 사용 가능)</p>
+            <div className='openApiExam frame'>
+                <p className='frameInfo'>불러오기 예제 (로그인 및 인증키 발급 후 사용 가능)</p>
                 <div className='frameBody'>
-                    <h3>/getCharacterInfo (이름으로 캐릭터 정보 조회)</h3>
-                    <div className='charInfoBtn'>
+                    <h1>/getCharacterInfo (이름으로 캐릭터 정보 조회)</h1>
+                    <div className='searchBox'>
                         <input type="text" value={charName} onChange={(e) => setCharName(e.target.value)}/>
                         <button onClick={getInfoByName}>검색</button>
                     </div>
-                    <table className='charInfo'>
-                        <tr>
-                            <td rowSpan={5}>
-                                <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
-                            </td>
-                            <td>이름</td>
-                            <td>{charInfo.charName}</td>
-                            <td>성별</td>
-                            <td>{charInfo.charGender}</td>
-                        </tr>
-                        <tr>
-                            <td>생년월일</td>
-                            <td>{charInfo.charBirth}</td>
-                            <td>나이</td>
-                            <td>{charInfo.charAge}</td>
-                        </tr>
-                        <tr>
-                            <td>키</td>
-                            <td>{charInfo.charHeight}</td>
-                            <td>몸무게</td>
-                            <td>{charInfo.charWeight}</td>
-                        </tr>
-                        <tr>
-                            <td>직업</td>
-                            <td>{charInfo.charJob}</td>
-                            <td>혈액형</td>
-                            <td>{charInfo.charBloodType}</td>
-                        </tr>
-                        <tr>
-                            <td>기타</td>
-                            <td colSpan={3}>{charInfo.charEtc}</td>
-                        </tr>
-                    </table>
+                    <div className='searchResult'>
+                        <div className='imgBox'>
+                            <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
+                        </div>
+                        <div className='infoBox'>
+                            <div>
+                                <h4>이름</h4>
+                                <h5>{charInfo.charName}</h5>
+                                <h4>성별</h4>
+                                <h5>{charInfo.charGender}</h5>
+                            </div>
+                            <div>
+                                <h4>생년월일</h4>
+                                <h5>{charInfo.charBirth}</h5>
+                                <h4>나이</h4>
+                                <h5>{charInfo.charAge}</h5>
+                            </div>
+                            <div>
+                                <h4>키</h4>
+                                <h5>{charInfo.charHeight}</h5>
+                                <h4>몸무게</h4>
+                                <h5>{charInfo.charWeight}</h5>
+                            </div>
+                            <div>
+                                <h4>직업</h4>
+                                <h5>{charInfo.charJob}</h5>
+                                <h4>혈액형</h4>
+                                <h5>{charInfo.charBloodType}</h5>
+                            </div>
+                            <div>
+                                <h4>기타</h4>
+                                <h5>{charInfo.charEtc}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <h3>/getCharacterListInfo (캐릭터 전체 정보 조회)</h3>
-                    <div className='allInfo'>
-                        <label htmlFor="">
+                <div className='frameBody'>
+                    <h1>/getCharacterListInfo (캐릭터 전체 정보 조회)</h1>
+                    <div className='searchBox2'>
+                        <div>
                             <h2>페이지번호</h2>
                             <input type="number" min="1" value={pg} onChange={(e) => setPg(e.target.value)}/>
-                        </label>
-                        <label htmlFor="">
                             <h2>검색결과수</h2>
                             <input type="number" step="5" min="5" max="20" value={rows} onChange={(e) => setRows(e.target.value)}/>
-                        </label>
+                        </div>
                         <button onClick={getAllInfo}>전체 부르기</button>
                     </div>
-
                     {charInfoList.length > 0 && charInfoList.map((charInfo, index) => (
-                        <table className='charInfo' key={index}>
-                        <tr>
-                            <td rowSpan={5}>
+                        <div className='searchResult' key={index}>
+                            <div className='imgBox'>
                                 <img src={`${RootUrl()}/uploads/openApi/shinchan/${charInfo.charImg}`} alt="img" />
-                            </td>
-                            <td>이름</td>
-                            <td>{charInfo.charName}</td>
-                            <td>성별</td>
-                            <td>{charInfo.charGender}</td>
-                        </tr>
-                        <tr>
-                            <td>생년월일</td>
-                            <td>{charInfo.charBirth}</td>
-                            <td>나이</td>
-                            <td>{charInfo.charAge}</td>
-                        </tr>
-                        <tr>
-                            <td>키</td>
-                            <td>{charInfo.charHeight}</td>
-                            <td>몸무게</td>
-                            <td>{charInfo.charWeight}</td>
-                        </tr>
-                        <tr>
-                            <td>직업</td>
-                            <td>{charInfo.charJob}</td>
-                            <td>혈액형</td>
-                            <td>{charInfo.charBloodType}</td>
-                        </tr>
-                        <tr>
-                            <td>기타</td>
-                            <td colSpan={3}>{charInfo.charEtc}</td>
-                        </tr>
-                        </table>
+                            </div>
+                            <div className='infoBox'>
+                                <div>
+                                    <h4>이름</h4>
+                                    <h5>{charInfo.charName}</h5>
+                                    <h4>성별</h4>
+                                    <h5>{charInfo.charGender}</h5>
+                                </div>
+                                <div>
+                                    <h4>생년월일</h4>
+                                    <h5>{charInfo.charBirth}</h5>
+                                    <h4>나이</h4>
+                                    <h5>{charInfo.charAge}</h5>
+                                </div>
+                                <div>
+                                    <h4>키</h4>
+                                    <h5>{charInfo.charHeight}</h5>
+                                    <h4>몸무게</h4>
+                                    <h5>{charInfo.charWeight}</h5>
+                                </div>
+                                <div>
+                                    <h4>직업</h4>
+                                    <h5>{charInfo.charJob}</h5>
+                                    <h4>혈액형</h4>
+                                    <h5>{charInfo.charBloodType}</h5>
+                                </div>
+                                <div>
+                                    <h4>기타</h4>
+                                    <h5>{charInfo.charEtc}</h5>
+                                </div>
+                            </div>
+                        </div>
                     ))}
+                    
                 </div>
             </div>
         </div>
