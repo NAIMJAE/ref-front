@@ -67,6 +67,7 @@ const ShoppingConponent = ({ product, userCart, loginState, getCookie, setUserCa
             const newCartArr = cartArr.filter((prod) => prod !== prodId);
 
             const newCart = newCartArr.join(".");
+            document.cookie = `REF_CART=; Max-Age=0; secure; sameSite=none; domain=.refcode.info; path=/;`;
             document.cookie = `REF_CART=${newCart};`;
 
             setUserCart((prevCart) =>
