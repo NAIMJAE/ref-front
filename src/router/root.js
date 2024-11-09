@@ -7,6 +7,7 @@ import ChatBotApiPage from "../pages/API/ChatBotApiPage";
 import SearchEngine from "../pages/searchEngine/SearchEngine";
 import DataStorage from "../pages/dataStorage/DataStorage";
 import VisitorTracking from "../pages/webAnalytics/VisitorTrackingPage";
+import TestPage from "../pages/test/TestPage";
 
 const root = createBrowserRouter([
     // main
@@ -30,5 +31,8 @@ const root = createBrowserRouter([
 
     //webAnalytics
     { path: '/visitorTracking', element: <VisitorTracking /> },
+
+    // TestPage
+    { path: '/testPage', element: <TestPage /> },
 ]);
 export default root;
