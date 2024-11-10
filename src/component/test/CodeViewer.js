@@ -1,12 +1,4 @@
-import React, { useState } from 'react'
-
 const CodeViewer = () => {
-
-    const [codeText, setCodeText] = useState([
-        "public void getUserName(String uid) {",
-        "   String userName = userRepository.findById(uid);",
-        "}",
-    ]);
 
   return (
     <div className='codeViewer'>
@@ -15,7 +7,6 @@ const CodeViewer = () => {
         </div>
 
         <div className='viewBody'>
-            {codeText}
         </div>
     </div>
   )

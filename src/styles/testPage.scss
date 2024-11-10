@@ -9,6 +9,20 @@
         display: flex;
     }
 
+    .w100 {
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .w50 {
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    .w25 {
+        width: 25%;
+        margin-bottom: 20px;
+    }
+
     .codeBox {
         width: 50%;
         flex-direction: column;
