@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+p, h1, h2, span {
+    font-family: 'GangwonEduPowerExtraBoldA';
+}
+
+.BarGraph {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: end;
+    flex-direction: row-reverse;
+
+    * {
+        display: flex;
+    }
+
+    > .y-axis {
+        width: 5%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-right: 10px;
+        margin-bottom: 16px;
+        background-color: white;
+        z-index: 2;
+
+        > span {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 12px;
+            color: #212121;
+        }
+    }
+
+    > .graphBox {
+        width: 90%;
+        justify-content: center;
+        align-items: end;
+        flex-direction: row-reverse;
+
+        > .eachLine {
+            position: absolute;
+            width: 90%;
+            align-items: self-end;
+            opacity: 0.5;
+            margin-bottom: 24px;
+            z-index: 3;
+        }
+
+        > .lineBox {
+            position: absolute;
+            width: 90%;
+            align-items: self-end;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 24px;
+    
+            > .line {
+                width: 100%;
+                border: 1px dashed #e9e9e9;
+            }
+            > .line:nth-child(1), .line:nth-last-child(1) {
+                border: 0;
+            }
+        }
+        > .each {
+            flex-direction: column;
+            border-top: 1px solid #e9e9e9;
+            z-index: 2;
+    
+            > .graphBox {
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                border-left: 1px solid #e9e9e9;
+                
+                > .graph {
+                    position: relative;
+                    width: 50%;
+                    min-height: 2px;
+                    justify-content: center;
+                    border-top-right-radius: 4px;
+                    border-top-left-radius: 4px;
+    
+    
+                    transform: scaleY(0); /* 시작 상태: 세로 스케일 0 */
+                    transform-origin: bottom; /* 아래쪽을 기준으로 애니메이션 */
+                    animation: growUp 0.6s ease-out forwards;
+    
+                    > p {
+                        position: absolute;
+                        top: -12px;
+                        font-size: 12px;
+                        color: #212121;
+                    }
+                }
+            }
+            > p {
+                width: 100%;
+                font-size: 12px;
+                padding: 4px 0;
+                border-top: 2px solid #e9e9e9;
+                color: #212121;
+                justify-content: center;
+            }
+        }
+        > .each:nth-child(1) > .graphBox {
+            border-right: 1px solid #e9e9e9;
+        }
+    }
+}
+
+@keyframes growUp {
+    0% {
+        transform: scaleY(0); /* 아래쪽에서 시작 */
+    }
+    100% {
+        transform: scaleY(1); /* 원래 크기로 확장 */
+    }
+}
