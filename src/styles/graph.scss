@@ -12,106 +12,163 @@ p, h1, h2, span {
     position: relative;
     width: 100%;
     height: 100%;
+    padding: 20px 0;
     justify-content: center;
-    align-items: end;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    background-color: white;
 
     * {
         display: flex;
     }
 
-    > .y-axis {
-        width: 5%;
-        flex-direction: column;
-        justify-content: space-between;
-        padding-right: 10px;
-        margin-bottom: 16px;
-        background-color: white;
-        z-index: 2;
-
-        > span {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            font-size: 12px;
-            color: #212121;
-        }
+    > .graphTitle {
+        width: 100%;
+        justify-content: center;
+        font-weight: bolder;
     }
-
-    > .graphBox {
-        width: 90%;
+    > .graphBody {
+        position: relative;
+        width: 100%;
+        height: 100%;
         justify-content: center;
         align-items: end;
         flex-direction: row-reverse;
 
-        > .eachLine {
+        > .xTitle {
             position: absolute;
-            width: 90%;
-            align-items: self-end;
-            opacity: 0.5;
-            margin-bottom: 24px;
-            z-index: 3;
+            bottom: -20px;
         }
 
-        > .lineBox {
-            position: absolute;
-            width: 90%;
-            align-items: self-end;
+        > .y-axis {
+            position: relative;
+            width: 5%;
             flex-direction: column;
-            justify-content: space-between;
-            margin-bottom: 24px;
-    
-            > .line {
-                width: 100%;
-                border: 1px dashed #e9e9e9;
-            }
-            > .line:nth-child(1), .line:nth-last-child(1) {
-                border: 0;
-            }
-        }
-        > .each {
-            flex-direction: column;
-            border-top: 1px solid #e9e9e9;
+            margin-bottom: 14px;
+            background-color: white;
             z-index: 2;
     
-            > .graphBox {
-                flex-direction: column;
-                justify-content: end;
-                align-items: center;
-                border-left: 1px solid #e9e9e9;
-                
-                > .graph {
-                    position: relative;
-                    width: 50%;
-                    min-height: 2px;
-                    justify-content: center;
-                    border-top-right-radius: 4px;
-                    border-top-left-radius: 4px;
-    
-    
-                    transform: scaleY(0); /* 시작 상태: 세로 스케일 0 */
-                    transform-origin: bottom; /* 아래쪽을 기준으로 애니메이션 */
-                    animation: growUp 0.6s ease-out forwards;
-    
-                    > p {
-                        position: absolute;
-                        top: -12px;
-                        font-size: 12px;
-                        color: #212121;
-                    }
-                }
-            }
-            > p {
+            > span {
+                position: absolute;
+                right: 10px;
                 width: 100%;
+                display: flex;
+                justify-content: flex-end;
                 font-size: 12px;
-                padding: 4px 0;
-                border-top: 2px solid #e9e9e9;
                 color: #212121;
+            }
+            > .yTitle {
+                position: absolute;
                 justify-content: center;
+                left: -60%;
+                top: 50%;
+                transform: rotate(270deg);
+                transform-origin: center; /* 회전 중심을 가운데로 */
+                white-space: nowrap;
             }
         }
-        > .each:nth-child(1) > .graphBox {
-            border-right: 1px solid #e9e9e9;
+
+        > .graphBox {
+            width: 90%;
+            justify-content: center;
+            align-items: end;
+            flex-direction: row-reverse;
+    
+            > .eachLine {
+                position: absolute;
+                width: 90%;
+                align-items: self-end;
+                opacity: 0.5;
+                margin-bottom: 21px;
+                z-index: 3;
+            }
+    
+            > .lineBox {
+                position: absolute;
+                width: 90%;
+                align-items: self-end;
+                flex-direction: column;
+                margin-bottom: 22px;
+        
+                > .line {
+                    position: absolute;
+                    width: 100%;
+                    border: 1px dashed #e9e9e9;
+                }
+                > .line:nth-child(1), .line:nth-last-child(1) {
+                    border: 0;
+                }
+            }
+            > .each {
+                flex-direction: column;
+                border-top: 1px solid #e9e9e9;
+                z-index: 2;
+        
+                > .graph {
+                    flex-direction: column;
+                    justify-content: end;
+                    align-items: center;
+                    border-left: 1px solid #e9e9e9;
+                    
+                    > .bar {
+                        position: relative;
+                        width: 50%;
+                        min-height: 2px;
+                        justify-content: center;
+                        border-top-right-radius: 4px;
+                        border-top-left-radius: 4px;
+        
+        
+                        transform: scaleY(0); /* 시작 상태: 세로 스케일 0 */
+                        transform-origin: bottom; /* 아래쪽을 기준으로 애니메이션 */
+                        animation: growUp 0.6s ease-out forwards;
+        
+                        > p {
+                            position: absolute;
+                            top: -12px;
+                            font-size: 12px;
+                            color: #000;
+                        }
+                        > .hoverBox {
+                            display: none!important;
+                            position: absolute;
+                            top: 1%;
+                            left: 100%;
+                            padding: 4px;
+                            background-color: white;
+                            border: 1px solid #000;
+
+                            > span {
+                                padding-top: 6px;
+                            }
+                            > .xName {
+                                margin-right: 4px;
+                            }
+                            > .xName::after {
+                                content: ':';
+                                margin-left: 4px;
+                            }
+                        }
+                    }
+                    > .bar:hover .hoverBox{
+                        display: flex!important;
+                    }
+                }
+                > p {
+                    width: 100%;
+                    font-size: 12px;
+                    padding: 4px 0;
+                    border-top: 2px solid #e9e9e9;
+                    color: #000;
+                    justify-content: center;
+                }
+            }
+            > .each:nth-child(1) > .graph {
+                border-right: 1px solid #e9e9e9;
+            }
+            > .each:nth-child(1) > .graph > .bar > .hoverBox{
+                left: unset;
+                right: 100%;
+            }
         }
     }
 }

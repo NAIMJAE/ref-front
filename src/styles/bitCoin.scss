@@ -1,0 +1,31 @@
+#BitCoinPage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    div {
+        display: flex;
+    }
+
+    > table {
+        width: 95%;
+        border: 1px solid #111;
+        border-collapse: collapse;
+        > tr {
+            border: 1px solid #111;
+            > td {
+                font-size: 16px;
+                border: 1px solid #111;
+                padding: 12px 4px;
+                text-align: center;
+            }
+        }
+        > tr:nth-child(1) > td {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+    }
+}

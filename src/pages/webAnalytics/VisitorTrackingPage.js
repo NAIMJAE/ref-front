@@ -3,6 +3,7 @@ import MainLayout from '../../layout/MainLayout'
 import '../../styles/webAnalytics.scss'
 import { selectVisitorTrackingApi } from '../../api/VisitorTrackingApi'
 import BarGraph from '../../component/graph/BarGraph';
+import Moment from 'moment';
 
 const VisitorTrackingPage = () => {
   /******* 일일 이용자 수 그래프 (2주) *******/
@@ -18,7 +19,7 @@ const VisitorTrackingPage = () => {
         setDailyVisitors(
           response.data.dailyVisitors.map((each) => ({
             value: each.visitCount,
-            item: each.visitDate
+            item: Moment(each.visitDate).format('MM.DD')
           })));
         setDevicePercentage(response.data.devicePercentage);
         setVisitorCountForPeriod(response.data.visitorCountForPeriod);
