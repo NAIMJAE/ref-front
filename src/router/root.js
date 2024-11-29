@@ -8,6 +8,7 @@ import SearchEngine from "../pages/searchEngine/SearchEngine";
 import DataStorage from "../pages/dataStorage/DataStorage";
 import VisitorTracking from "../pages/webAnalytics/VisitorTrackingPage";
 import TestPage from "../pages/test/TestPage";
+import BitCoinPage from "../pages/bitCoin/BitCoinPage";
 
 const root = createBrowserRouter([
     // main
@@ -34,5 +35,6 @@ const root = createBrowserRouter([
 
     // TestPage
     { path: '/testPage', element: <TestPage /> },
+    { path: '/coin', element: <BitCoinPage /> },
 ]);
 export default root;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../styles/graph.scss'
 import Moment from 'moment';
 
-const BarGraph = ({ graphData, graphHeight, graphColor, eachLineView }) => {
+const BarGraph = ({ graphData, graphHeight, graphColor, eachLineView, graphTitle, xTitle, yTitle, hoverValue }) => {
     /** ※ Props List
      *  1. graphData[] *필수*
      *    - item : 가로축 항목
@@ -12,12 +12,27 @@ const BarGraph = ({ graphData, graphHeight, graphColor, eachLineView }) => {
      *    - 그래프 막대의 최대 높이
      *    - 그래프의 실제 높이는 조금 더 큼
      * 
-     *  3. graphColor[] *필수*
+     *  3. graphColor[]
      *    - 그래프 막대의 색상
+     *    - 배열에 들어 있는 색상을 반복
      * 
      *  4. eachLineView
      *    - 그래프 가로줄 표시
      *    - 기본값 true
+     * 
+     *  5. graphTitle
+     *    - title : 그래프 제목
+     *    - size : 제목 글자 크기
+     * 
+     *  6. xTitle
+     *    - 그래프 x축 제목
+     * 
+     *  7. yTitle
+     *    - 그래프 y축 제목
+     * 
+     *  8. hoverValue
+     *    - 그래프 hover시 값 표시
+     *    - 기본값 false
      */
     const [maxCount, setMaxCount] = useState(0);
     const [graphDataArray, setGraphDataArray] = useState([]);
@@ -33,9 +48,15 @@ const BarGraph = ({ graphData, graphHeight, graphColor, eachLineView }) => {
     useEffect(()=>{
         const checkData = () => {
             if(graphData.length > 0) {
-                setGraphDataArray(graphData.map((obj, index) => ({
-                    ...obj, color: graphColor[index % graphColor.length]
-                })));
+                if (graphColor !== undefined) {
+                    setGraphDataArray(graphData.map((obj, index) => ({
+                        ...obj, color: graphColor[index % graphColor.length]
+                    })));
+                }else {
+                    setGraphDataArray(graphData.map((obj) => ({
+                        ...obj, color: '#6EC207'
+                    })));
+                }
                 setWidthCount(graphData.length);
             }
             if (eachLineView != null) {
@@ -122,43 +143,55 @@ const BarGraph = ({ graphData, graphHeight, graphColor, eachLineView }) => {
 
   return (
     <div className='BarGraph'>
-        <div className='graphBox'>
-            {graphDataArray.map((item, index) => (
-                <div className='each' key={index}
-                    style={{width: `calc(100% / ${widthCount})`}}
-                >
-                    <div className='graphBox' style={{height: graphHeight + 'px'}}>
-                        <div className='graph' 
-                            style={{ height: graphHeight * (item.value / maxCount) + 'px',
-                                maxHeight: graphHeight + 'px',
-                                backgroundColor: item.color
-                            }}
-                            onMouseOver={() => setEachLine((prev) => ({...prev, value:graphHeight * (item.value / maxCount), color:item.color}))}
-                            onMouseOut={() => setEachLine((prev) => ({...prev, value:0}))}
-                        >
-                            <p>{item.value}</p>
+        {graphTitle && <p className='graphTitle' style={{fontSize:graphTitle.size + 'px'}}>{graphTitle.title}</p>}
+        <div className='graphBody'>
+            <div className='graphBox'>
+                {graphDataArray.map((item, index) => (
+                    <div className='each' key={index}
+                        style={{width: `calc(100% / ${widthCount})`}}
+                    >
+                        <div className='graph' style={{height: graphHeight + 'px'}}>
+                            <div className='bar' 
+                                style={{ height: graphHeight * (item.value / maxCount) + 'px',
+                                    maxHeight: graphHeight + 'px',
+                                    backgroundColor: item.color
+                                }}
+                                onMouseOver={() => setEachLine((prev) => ({...prev, value:graphHeight * (item.value / maxCount), color:item.color}))}
+                                onMouseOut={() => setEachLine((prev) => ({...prev, value:0}))}
+                            >
+                                <p>{item.value}</p>
+                                {hoverValue && item.value > 0 &&
+                                    <div className='hoverBox'>
+                                        <span className='xName'>{Moment(item.item).format('MM.DD')}</span>
+                                        <span className='xValue'>{item.value}</span>
+                                    </div>
+                                }
+                            </div>
                         </div>
+                        <p>{item.item}</p>
                     </div>
-                    <p>{Moment(item.item).format('MM.DD')}</p>
-                </div>
-            ))}
-            <div className='lineBox' style={{height: graphHeight + 2 + 'px'}}>
-                {yAxis && yAxis.map((index) => (
-                    <span className='line' key={index}></span>
                 ))}
+                <div className='lineBox' style={{height: graphHeight + 2 + 'px'}}>
+                    {yAxis && yAxis.map((axis, index) => (
+                        <span className='line' key={index} style={{bottom:graphHeight * (axis / maxCount) + 'px'}}></span>
+                    ))}
+                </div>
+                {eachLine.view && eachLine.value > 0 && 
+                    <span className='eachLine' style={{bottom:eachLine.value, border: `2px solid ${eachLine.color}`}}></span>
+                }
             </div>
-            {eachLine.view && eachLine.value > 0 && 
-                <span className='eachLine' style={{bottom:eachLine.value, border: `2px solid ${eachLine.color}`}}></span>
-            }
-        </div>
-        
-        <div className='y-axis'
-            style={{
-                height: `${graphHeight + 20}px`}}
-            >
-            {yAxis && yAxis.map((axis, index) => (
-                <span key={index}>{axis}</span>
-            ))}
+
+            {xTitle && <p className='xTitle'>{xTitle}</p>}
+            
+            <div className='y-axis'
+                style={{
+                    height: `${graphHeight + 20}px`}}
+                >
+                {yAxis && yAxis.map((axis, index) => (
+                    <span key={index} style={{bottom:graphHeight * (axis / maxCount) + 'px'}}>{axis}</span>
+                ))}
+                {yTitle && <p className='yTitle' >{yTitle}</p>}
+            </div>
         </div>
     </div>
   )

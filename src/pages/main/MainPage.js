@@ -17,6 +17,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   const [refList, setRefList] = useState([]);
+  const [refLoad, setRefLoad] = useState(true);
 
   useEffect(() => {
     const getRefList = async () => {
@@ -25,6 +26,7 @@ const MainPage = () => {
         setRefList(response);
       } catch (error) {
         console.log(error);
+        setRefLoad(false);
       }
     }
     getRefList();
@@ -43,7 +45,7 @@ const MainPage = () => {
     <MainLayout>
       <div id='mainPage'>
         <div className='pageList'>
-          {refList.length > 0 ? (refList.map((ref, index)=>(
+          {refLoad && refList.length > 0 ? (refList.map((ref, index)=>(
             <div className='refBox' key={index} onClick={() => navigate(`${ref.refApi}`)}>
               <div className='imgBox'>
                 <img src={`../../images/main/${ref.refThumb}`} alt="a" />
